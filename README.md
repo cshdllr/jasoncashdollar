@@ -4,7 +4,7 @@ A clean, minimal portfolio website showcasing design work and projects.
 
 ## 🚀 Live Site
 
-The site is deployed on GitHub Pages at: [https://jasoncashdollar.github.io/jasoncashdollar/](https://jasoncashdollar.github.io/jasoncashdollar/)
+The site is deployed on GitHub Pages at: [https://cshdllr.github.io/jasoncashdollar/](https://cshdllr.github.io/jasoncashdollar/)
 
 ## 📁 Project Structure
 
