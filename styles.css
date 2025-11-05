@@ -97,27 +97,23 @@ body {
 
 /* Projects Section */
 .projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
   margin-bottom: 120px;
+  max-width: 800px;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
+  padding-bottom: 60px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.project-image {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  margin-bottom: 24px;
-  display: block;
-}
-
-.project-content {
-  flex: 1;
+.project-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .project-title {
@@ -184,8 +180,11 @@ body {
   }
 
   .projects {
-    grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 48px;
+  }
+
+  .project-card {
+    padding-bottom: 48px;
   }
 
   .hero-title {
@@ -234,9 +233,12 @@ body {
   }
 
   .projects {
-    grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 40px;
     margin-bottom: 80px;
+  }
+
+  .project-card {
+    padding-bottom: 40px;
   }
 
   .project-title {
@@ -254,17 +256,6 @@ body {
   .footer-nav {
     flex-direction: column;
     gap: 16px;
-  }
-}
-
-/* Animations and Interactions */
-@media (prefers-reduced-motion: no-preference) {
-  .project-card {
-    transition: transform 0.2s ease;
-  }
-
-  .project-card:hover {
-    transform: translateY(-2px);
   }
 }
 
@@ -303,7 +294,7 @@ body {
   margin-bottom: 80px;
 }
 
-.project-title {
+.project-header .project-title {
   font-family: "DM Serif Display", serif;
   font-size: 56px;
   font-weight: 400;
@@ -457,7 +448,7 @@ body {
     padding: 60px 32px;
   }
 
-  .project-title {
+  .project-header .project-title {
     font-size: 48px;
   }
 
@@ -483,7 +474,7 @@ body {
     margin-bottom: 60px;
   }
 
-  .project-title {
+  .project-header .project-title {
     font-size: 36px;
   }
 
