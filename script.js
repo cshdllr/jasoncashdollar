@@ -36,34 +36,53 @@ document.addEventListener('DOMContentLoaded', function() {
             rootMargin: '0px 0px -50px 0px'
         };
         
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+        // Get all project sections
+        const projectSections = document.querySelectorAll('.projects');
+        
+        projectSections.forEach((section) => {
+            // Get section header and project cards within this section
+            const sectionHeader = section.querySelector('.section-header');
+            const projectCards = section.querySelectorAll('.project-card');
+            
+            // Set initial styles for section header
+            if (sectionHeader) {
+                sectionHeader.style.opacity = '0';
+                sectionHeader.style.transform = 'translateY(20px)';
+                sectionHeader.style.transition = 'opacity 0.6s ease 0s, transform 0.6s ease 0s';
+            }
+            
+            // Set initial styles for project cards in this section
+            projectCards.forEach((card, cardIndex) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                // Use cardIndex within this section for stagger delay, starting after header
+                card.style.transition = `opacity 0.6s ease ${(cardIndex + 1) * 0.1}s, transform 0.6s ease ${(cardIndex + 1) * 0.1}s`;
             });
-        }, observerOptions);
-        
-        // Observe project cards for subtle animations
-        const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach((card, index) => {
-            // Add initial styles for animation
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
             
-            observer.observe(card);
-        });
-        
-        // Observe section headers for subtle animations
-        const sectionHeaders = document.querySelectorAll('.section-header');
-        sectionHeaders.forEach((header, index) => {
-            // Add initial styles for animation
-            header.style.opacity = '0';
-            header.style.transition = `opacity 2.2s ease ${index * 0.1}s`;
+            // Create observer for this section
+            const sectionObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate section header first (0s delay)
+                        if (sectionHeader) {
+                            sectionHeader.style.opacity = '1';
+                            sectionHeader.style.transform = 'translateY(0)';
+                        }
+                        
+                        // Animate all project cards in this section with staggered delays
+                        projectCards.forEach((card) => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        });
+                        
+                        // Stop observing once animated
+                        sectionObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
             
-            observer.observe(header);
+            // Observe the section (or header if available)
+            sectionObserver.observe(sectionHeader || section);
         });
     }
     
