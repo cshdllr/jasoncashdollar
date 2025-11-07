@@ -55,6 +55,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             observer.observe(card);
         });
+        
+        // Observe section headers for subtle animations
+        const sectionHeaders = document.querySelectorAll('.section-header');
+        sectionHeaders.forEach((header, index) => {
+            // Add initial styles for animation
+            header.style.opacity = '0';
+            header.style.transition = `opacity 2.2s ease ${index * 0.1}s`;
+            
+            observer.observe(header);
+        });
     }
     
     // Keyboard navigation enhancement

@@ -1,3 +1,14 @@
+/* CSS Variables */
+:root {
+  /* Font Sizes */
+  --font-size-small: 18px;
+  --font-size-medium: 20px;
+  --font-size-large: 24px;
+
+  /* Colors */
+  --background-color: #fff;
+}
+
 /* Reset and Base Styles */
 * {
   margin: 0;
@@ -6,7 +17,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: var(--font-size-medium);
   scroll-behavior: smooth;
 }
 
@@ -16,14 +27,14 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: #000;
-  background-color: #fff;
+  background-color: var(--background-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Container */
 .container {
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 0 24px;
   min-height: 100vh;
@@ -37,12 +48,12 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 40px 0;
-  border-bottom: 1px solid #f0f0f0;
 }
 
 .name {
-  font-family: "DM Serif Display", serif;
-  font-size: 28px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    serif;
+  font-size: var(--font-size-large);
   font-weight: 400;
   color: #000;
   text-decoration: none;
@@ -68,17 +79,18 @@ body {
 /* Main Content */
 .main {
   flex: 1;
-  padding: 80px 0;
+  padding: 24px 0;
 }
 
 /* Hero Section */
 .hero {
-  margin-bottom: 120px;
-  max-width: 800px;
+  margin-bottom: 60px;
+  max-width: 600px;
 }
 
 .hero-title {
-  font-family: "DM Serif Display", serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    serif;
   font-size: 48px;
   font-weight: 400;
   line-height: 1.2;
@@ -87,7 +99,7 @@ body {
 }
 
 .hero-description {
-  font-size: 24px;
+  font-size: var(--font-size-medium);
   font-weight: 400;
   line-height: 1.5;
   color: #000;
@@ -99,30 +111,39 @@ body {
 .projects {
   display: flex;
   flex-direction: column;
-  gap: 60px;
-  margin-bottom: 120px;
-  max-width: 800px;
+  gap: 24px;
+  margin-bottom: 60px;
+  max-width: 600px;
+}
+
+.section-header {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    serif;
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #000;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  padding-bottom: 60px;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.project-card:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
 }
 
 .project-title {
-  font-family: "DM Serif Display", serif;
-  font-size: 32px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    serif;
+  font-size: var(--font-size-medium);
   font-weight: 400;
   line-height: 1.3;
-  margin-bottom: 16px;
   color: #000;
+  text-decoration: none;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.project-title:hover {
+  opacity: 0.6;
 }
 
 .project-description {
@@ -192,7 +213,7 @@ body {
   }
 
   .hero-description {
-    font-size: 20px;
+    font-size: var(--font-size-medium);
   }
 
   .project-title {
@@ -221,7 +242,7 @@ body {
   }
 
   .hero {
-    margin-bottom: 80px;
+    margin-bottom: 20px;
   }
 
   .hero-title {
@@ -262,6 +283,7 @@ body {
 /* Focus styles for accessibility */
 .nav-link:focus,
 .project-link:focus,
+.project-title:focus,
 .footer-link:focus {
   outline: 2px solid #000;
   outline-offset: 4px;
@@ -286,7 +308,7 @@ body {
 .project-main {
   flex: 1;
   padding: 60px 0;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -295,7 +317,8 @@ body {
 }
 
 .project-header .project-title {
-  font-family: "DM Serif Display", serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    serif;
   font-size: 56px;
   font-weight: 400;
   line-height: 1.1;
@@ -310,7 +333,7 @@ body {
 .section-title {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 20px;
+  font-size: var(--font-size-medium);
   font-weight: 700;
   line-height: 1.3;
   color: #000;
@@ -426,7 +449,8 @@ body {
 }
 
 .nav-card-title {
-  font-family: "DM Serif Display", serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    serif;
   font-size: 24px;
   font-weight: 400;
   color: #000;
@@ -453,7 +477,7 @@ body {
   }
 
   .section-title {
-    font-size: 20px;
+    font-size: var(--font-size-medium);
   }
 
   .project-image-grid {
@@ -479,7 +503,7 @@ body {
   }
 
   .section-title {
-    font-size: 20px;
+    font-size: var(--font-size-medium);
   }
 
   .section-text,
@@ -515,7 +539,7 @@ body {
   }
 
   .nav-card-title {
-    font-size: 20px;
+    font-size: var(--font-size-medium);
   }
 }
 
