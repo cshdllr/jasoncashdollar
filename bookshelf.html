@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf - Jason Cashdollar</title>
+    <meta name="description" content="Books I've read, tracked automatically from my Goodreads profile.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jasoncashdollar.github.io/jasoncashdollar/bookshelf">
+    <meta property="og:title" content="Bookshelf - Jason Cashdollar">
+    <meta property="og:description" content="Books I've read, tracked automatically from my Goodreads profile.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jasoncashdollar.github.io/jasoncashdollar/bookshelf">
+    <meta property="twitter:title" content="Bookshelf - Jason Cashdollar">
+    <meta property="twitter:description" content="Books I've read, tracked automatically from my Goodreads profile.">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+    <div class="container bookshelf-container">
+        <header class="header">
+            <a href="index.html" class="name">Jason Cashdollar</a>
+            <nav class="nav-links">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="https://read.cv/jasoncashdollar" target="_blank" rel="noopener noreferrer" class="nav-link">Read.cv</a>
+                <a href="https://www.linkedin.com/in/jasoncashdollar/" target="_blank" rel="noopener noreferrer" class="nav-link">LinkedIn</a>
+            </nav>
+        </header>
+
+        <main class="bookshelf-main">
+            <div class="bookshelf-header">
+                <h1 class="bookshelf-title">Bookshelf</h1>
+                <p class="bookshelf-description">Books I've read, synced automatically from my Goodreads profile.</p>
+                
+                <!-- Year navigation -->
+                <div class="year-navigation" id="year-navigation">
+                    <!-- Years will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Coverflow carousel container -->
+            <div class="coverflow-container">
+                <div class="swiper bookshelf-swiper">
+                    <div class="swiper-wrapper" id="bookshelf-carousel">
+                        <!-- Books will be dynamically inserted here -->
+                    </div>
+                </div>
+                
+                <!-- Navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+
+            <!-- Book details display -->
+            <div class="book-details" id="book-details">
+                <h2 class="book-title" id="book-title">Select a book</h2>
+                <p class="book-author" id="book-author"></p>
+                <div class="book-meta" id="book-meta">
+                    <span class="book-rating" id="book-rating"></span>
+                    <span class="book-date" id="book-date"></span>
+                </div>
+                <div class="book-info" id="book-info">
+                    <span class="book-pages" id="book-pages"></span>
+                    <span class="book-published" id="book-published"></span>
+                </div>
+            </div>
+
+            <!-- Loading state -->
+            <div class="loading-state" id="loading-state">
+                <p>Loading books...</p>
+            </div>
+
+            <!-- Empty state -->
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <p>No books found. Check back later!</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <nav class="footer-nav">
+                <a href="index.html#about" class="footer-link">About</a>
+                <a href="https://read.cv/jasoncashdollar" target="_blank" rel="noopener noreferrer" class="footer-link">Read.cv</a>
+                <a href="https://www.linkedin.com/in/jasoncashdollar/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+            </nav>
+        </footer>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="bookshelf.js"></script>
+</body>
+</html>
+

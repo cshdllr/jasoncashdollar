@@ -47,12 +47,24 @@ body {
   flex-direction: column;
 }
 
+/* Bookshelf gets full width container */
+.bookshelf-container {
+  max-width: 100%;
+  padding: 0;
+  overflow: visible;
+}
+
 /* Header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-large) 0;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .name {
@@ -175,6 +187,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .footer-nav {
@@ -538,4 +555,353 @@ body {
     border: 1px solid #ddd;
     background-color: #f9f9f9;
   }
+}
+
+/* ===== BOOKSHELF PAGE STYLES ===== */
+
+/* Bookshelf Main Layout */
+.bookshelf-main {
+  flex: 1;
+  padding: 40px 0;
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%; /* Allow full width */
+  overflow: visible; /* Allow overflow for coverflow */
+}
+
+.bookshelf-header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bookshelf-title {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+.bookshelf-description {
+  font-size: var(--font-size-medium);
+  font-weight: 400;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+/* Year Navigation */
+.year-navigation {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.year-button {
+  font-size: 16px;
+  font-weight: 500;
+  color: #999;
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 20px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.year-button:hover {
+  color: #000;
+  background-color: #f5f5f5;
+}
+
+.year-button.active {
+  color: #000;
+  font-weight: 600;
+  background-color: #f0f0f0;
+}
+
+.year-button:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Coverflow Container */
+.coverflow-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  padding: 60px 0;
+  display: none; /* Hidden until books load */
+  overflow: visible; /* Show books on the sides */
+}
+
+.bookshelf-swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  overflow: visible; /* Show books on the sides */
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 450px;
+  opacity: 0.4; /* Fade out side books */
+  transition: opacity 0.3s ease;
+}
+
+.swiper-slide-active {
+  opacity: 1; /* Full opacity for active book */
+}
+
+.book-cover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.swiper-slide-active .book-cover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Book Details Display */
+.book-details {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 24px;
+  display: none; /* Hidden until books load */
+}
+
+.book-title {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.book-author {
+  font-size: var(--font-size-medium);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.book-meta {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.book-rating {
+  font-size: 18px;
+  color: #000;
+  letter-spacing: 2px;
+}
+
+.book-date {
+  font-size: 18px;
+  color: #666;
+}
+
+.book-info {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.book-pages,
+.book-published {
+  font-size: 16px;
+  color: #999;
+}
+
+/* Loading and Empty States */
+.loading-state,
+.empty-state {
+  text-align: center;
+  padding: 120px 24px;
+  color: #666;
+}
+
+.loading-state p,
+.empty-state p {
+  font-size: var(--font-size-medium);
+}
+
+/* Responsive Design for Bookshelf */
+@media (max-width: 1199px) {
+  .coverflow-container {
+    max-width: 100%;
+    padding: 40px 0;
+  }
+
+  .swiper-slide {
+    width: 250px;
+    height: 375px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 44px;
+    height: 44px;
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 809px) {
+  .bookshelf-main {
+    padding: 20px 0;
+  }
+
+  .bookshelf-header {
+    margin-bottom: 40px;
+  }
+
+  .bookshelf-title {
+    font-size: 36px;
+  }
+
+  .bookshelf-description {
+    font-size: 18px;
+  }
+
+  .coverflow-container {
+    padding: 20px 0;
+    margin-bottom: 60px;
+  }
+
+  .swiper-slide {
+    width: 200px;
+    height: 300px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 16px;
+  }
+
+  .book-title {
+    font-size: 24px;
+  }
+
+  .book-author {
+    font-size: 18px;
+  }
+
+  .book-meta {
+    gap: 16px;
+  }
+
+  .book-rating,
+  .book-date {
+    font-size: 16px;
+  }
+
+  .book-info {
+    gap: 16px;
+  }
+
+  .book-pages,
+  .book-published {
+    font-size: 14px;
+  }
+
+  .loading-state,
+  .empty-state {
+    padding: 80px 24px;
+  }
+}
+
+/* Touch device enhancements */
+@media (hover: none) {
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
+  }
+  
+  .swiper-button-next:active,
+  .swiper-button-prev:active {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+/* Accessibility */
+.swiper-button-next:focus,
+.swiper-button-prev:focus {
+  outline: 2px solid #000;
+  outline-offset: 4px;
 }
