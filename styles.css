@@ -6,7 +6,7 @@
   --font-size-large: 24px;
 
   /* Colors */
-  --background-color: #fff;
+  --background-color: #f1f1f1;
 
   /* Spacing */
   --spacing-small: 12px;
@@ -63,8 +63,6 @@ body {
   max-width: 600px;
   margin: 0 auto;
   width: 100%;
-  padding-left: 24px;
-  padding-right: 24px;
 }
 
 .name {
@@ -211,84 +209,12 @@ body {
   opacity: 0.6;
 }
 
-@media (max-width: 809px) {
-  .container {
-    padding: 0 20px;
-  }
-
-  .header {
-    flex-direction: column;
-    gap: 24px;
-    align-items: flex-start;
-    padding: 32px 0;
-  }
-
-  .nav-links {
-    gap: 24px;
-  }
-
-  .main {
-    padding: 60px 0;
-  }
-
-  .hero {
-    margin-bottom: 20px;
-  }
-
-  .hero-title {
-    font-size: 32px;
-  }
-
-  .hero-description {
-    font-size: 18px;
-  }
-
-  .projects {
-    gap: var(--spacing-large);
-    margin-bottom: 80px;
-  }
-
-  .project-card {
-    padding-bottom: var(--spacing-large);
-  }
-
-  .project-title {
-    font-size: 24px;
-  }
-
-  .project-description {
-    font-size: 16px;
-  }
-
-  .footer {
-    padding: var(--spacing-large) 0 var(--spacing-medium);
-  }
-
-  .footer-nav {
-    flex-direction: column;
-    gap: 16px;
-  }
-}
-
 /* Focus styles for accessibility */
 .nav-link:focus,
 .project-link:focus,
 .project-title:focus {
   outline: 2px solid #000;
   outline-offset: 4px;
-}
-
-/* Print styles */
-@media print {
-  .header,
-  .footer {
-    border: none;
-  }
-
-  .nav-links,
-  .footer-nav {
-    display: none;
-  }
 }
 
 /* ===== PROJECT PAGE STYLES ===== */
@@ -371,7 +297,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  margin: var(--spacing-large) 0;
+  margin: var(--spacing-medium) 0;
 }
 
 .project-image-grid-three {
@@ -458,103 +384,6 @@ body {
   color: #000;
   text-decoration: underline;
   text-underline-offset: 4px;
-}
-
-/* Responsive Design for Project Pages */
-@media (max-width: 1199px) {
-  .project-main {
-    max-width: 100%;
-    padding: 60px 32px;
-  }
-
-  .project-header .project-title {
-    font-size: 48px;
-  }
-
-  .section-title {
-    font-size: var(--font-size-medium);
-  }
-
-  .project-image-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-image-grid-three {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 809px) {
-  .project-main {
-    padding: var(--spacing-large) 20px;
-  }
-
-  .project-header {
-    margin-bottom: 60px;
-  }
-
-  .project-header .project-title {
-    font-size: 36px;
-  }
-
-  .section-title {
-    font-size: var(--font-size-medium);
-  }
-
-  .section-text,
-  .section-list {
-    font-size: 16px;
-  }
-
-  .project-section {
-    margin-bottom: 60px;
-  }
-
-  .project-image-placeholder {
-    min-height: 200px;
-    margin: 24px 0;
-  }
-
-  .project-image-grid .project-image-placeholder {
-    min-height: 150px;
-  }
-
-  .project-navigation {
-    margin-top: 80px;
-    padding-top: var(--spacing-large);
-  }
-
-  .nav-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .project-nav-card {
-    padding: 24px 20px;
-  }
-
-  .nav-card-title {
-    font-size: var(--font-size-medium);
-  }
-}
-
-/* Print styles for project pages */
-@media print {
-  .project-navigation,
-  .header,
-  .footer {
-    display: none;
-  }
-
-  .project-main {
-    padding: 0;
-    max-width: none;
-  }
-
-  .project-image-placeholder {
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-  }
 }
 
 /* ===== BOOKSHELF PAGE STYLES ===== */
@@ -802,115 +631,6 @@ body {
 .loading-state p,
 .empty-state p {
   font-size: var(--font-size-medium);
-}
-
-/* Responsive Design for Bookshelf */
-@media (max-width: 1199px) {
-  .coverflow-container {
-    max-width: 100%;
-    padding: 40px 0;
-  }
-
-  .swiper-slide {
-    width: 250px;
-    height: 375px;
-  }
-
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 44px;
-    height: 44px;
-  }
-
-  .swiper-button-next:after,
-  .swiper-button-prev:after {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 809px) {
-  .bookshelf-main {
-    padding: 20px 0;
-  }
-
-  .bookshelf-header {
-    margin-bottom: 40px;
-  }
-
-  .bookshelf-title {
-    font-size: 36px;
-  }
-
-  .bookshelf-description {
-    font-size: 18px;
-  }
-
-  .coverflow-container {
-    padding: 20px 0;
-    margin-bottom: 60px;
-  }
-
-  .swiper-slide {
-    width: 200px;
-    height: 300px;
-  }
-
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 40px;
-    height: 40px;
-  }
-
-  .swiper-button-next:after,
-  .swiper-button-prev:after {
-    font-size: 16px;
-  }
-
-  .book-title {
-    font-size: 24px;
-  }
-
-  .book-author {
-    font-size: 18px;
-  }
-
-  .book-meta {
-    gap: 16px;
-  }
-
-  .book-rating,
-  .book-date {
-    font-size: 16px;
-  }
-
-  .book-info {
-    gap: 16px;
-  }
-
-  .book-pages,
-  .book-published {
-    font-size: 14px;
-  }
-
-  .loading-state,
-  .empty-state {
-    padding: 80px 24px;
-  }
-}
-
-/* Touch device enhancements */
-@media (hover: none) {
-  .swiper-button-next:hover,
-  .swiper-button-prev:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #000;
-  }
-
-  .swiper-button-next:active,
-  .swiper-button-prev:active {
-    background-color: #000;
-    color: #fff;
-  }
 }
 
 /* Accessibility */
