@@ -2,12 +2,15 @@
 document.addEventListener('DOMContentLoaded', async function() {
     const loadingState = document.getElementById('loading-state');
     const emptyState = document.getElementById('empty-state');
-    const coverflowContainer = document.querySelector('.coverflow-container');
+    const coverflowContainer = document.getElementById('coverflow-container');
+    const textListContainer = document.getElementById('text-list-container');
+    const verticalCoversContainer = document.getElementById('vertical-covers-container');
     const bookDetails = document.getElementById('book-details');
     const yearNavigation = document.getElementById('year-navigation');
     
     let swiperInstance = null;
     let booksData = [];
+    let currentView = 'covers'; // Default view
     
     try {
         // Fetch book data
@@ -29,12 +32,79 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Initialize year navigation
         initializeYearNavigation(books);
         
-        // Initialize the coverflow
-        initializeCoverflow(books);
+        // Initialize view toggle buttons
+        initializeViewToggles();
+        
+        // Initialize default view (covers)
+        switchView('covers');
         
     } catch (error) {
         console.error('Error loading bookshelf:', error);
         showEmptyState();
+    }
+    
+    /**
+     * Initialize view toggle buttons
+     */
+    function initializeViewToggles() {
+        const viewToggles = document.querySelectorAll('.view-toggle');
+        
+        viewToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const view = this.dataset.view;
+                switchView(view);
+            });
+        });
+    }
+    
+    /**
+     * Switch between different views
+     */
+    function switchView(view) {
+        currentView = view;
+        
+        // Update active toggle button
+        const viewToggles = document.querySelectorAll('.view-toggle');
+        viewToggles.forEach(toggle => {
+            if (toggle.dataset.view === view) {
+                toggle.classList.add('active');
+            } else {
+                toggle.classList.remove('active');
+            }
+        });
+        
+        // Hide all containers
+        textListContainer.style.display = 'none';
+        verticalCoversContainer.style.display = 'none';
+        coverflowContainer.style.display = 'none';
+        
+        // Show/hide year navigation (only for coverflow)
+        if (view === 'coverflow') {
+            yearNavigation.style.display = 'flex';
+        } else {
+            yearNavigation.style.display = 'none';
+        }
+        
+        // Show the selected view
+        switch(view) {
+            case 'list':
+                renderTextList();
+                textListContainer.style.display = 'block';
+                break;
+            case 'covers':
+                renderVerticalCovers();
+                verticalCoversContainer.style.display = 'block';
+                break;
+            case 'coverflow':
+                if (!swiperInstance) {
+                    initializeCoverflow(booksData);
+                }
+                coverflowContainer.style.display = 'block';
+                break;
+        }
+        
+        // Hide loading state
+        loadingState.style.display = 'none';
     }
     
     /**
@@ -162,11 +232,8 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
         
-        // Hide loading state and show content
-        loadingState.style.display = 'none';
-        coverflowContainer.style.display = 'block';
+        // Show book details for coverflow
         bookDetails.style.display = 'block';
-        yearNavigation.style.display = 'flex';
     }
     
     /**
@@ -229,8 +296,146 @@ document.addEventListener('DOMContentLoaded', async function() {
         loadingState.style.display = 'none';
         emptyState.style.display = 'block';
         coverflowContainer.style.display = 'none';
+        textListContainer.style.display = 'none';
+        verticalCoversContainer.style.display = 'none';
         bookDetails.style.display = 'none';
         yearNavigation.style.display = 'none';
+    }
+    
+    /**
+     * Render text list view grouped by year
+     */
+    function renderTextList() {
+        // Clear existing content
+        textListContainer.innerHTML = '';
+        
+        // Group books by year
+        const booksByYear = {};
+        booksData.forEach(book => {
+            if (book.readAt) {
+                const year = new Date(book.readAt).getFullYear();
+                if (!booksByYear[year]) {
+                    booksByYear[year] = [];
+                }
+                booksByYear[year].push(book);
+            }
+        });
+        
+        // Sort years newest to oldest
+        const years = Object.keys(booksByYear).sort((a, b) => b - a);
+        
+        // Create sections for each year
+        years.forEach(year => {
+            const yearSection = document.createElement('div');
+            yearSection.className = 'text-list-year-section';
+            
+            const yearHeader = document.createElement('h2');
+            yearHeader.className = 'text-list-year-header';
+            yearHeader.textContent = year;
+            yearSection.appendChild(yearHeader);
+            
+            booksByYear[year].forEach(book => {
+                const bookEntry = document.createElement('div');
+                bookEntry.className = 'text-list-book';
+                
+                const title = document.createElement('span');
+                title.className = 'text-list-book-title';
+                title.textContent = book.title;
+                
+                const author = document.createElement('span');
+                author.className = 'text-list-book-author';
+                author.textContent = ` ${book.author}`;
+                
+                bookEntry.appendChild(title);
+                bookEntry.appendChild(author);
+                
+                // Add rating if available
+                if (book.rating > 0) {
+                    const rating = document.createElement('span');
+                    rating.className = 'text-list-book-rating';
+                    rating.textContent = ' ' + '★'.repeat(book.rating);
+                    bookEntry.appendChild(rating);
+                }
+                
+                yearSection.appendChild(bookEntry);
+            });
+            
+            textListContainer.appendChild(yearSection);
+        });
+    }
+    
+    /**
+     * Render vertical covers view
+     */
+    function renderVerticalCovers() {
+        // Clear existing content
+        verticalCoversContainer.innerHTML = '';
+        
+        const coversGrid = document.createElement('div');
+        coversGrid.className = 'vertical-covers-grid';
+        
+        booksData.forEach(book => {
+            const coverItem = document.createElement('div');
+            coverItem.className = 'vertical-cover-item';
+            
+            // Book cover image
+            const img = document.createElement('img');
+            img.src = book.imageUrl;
+            img.alt = `${book.title} by ${book.author}`;
+            img.className = 'vertical-cover-image';
+            img.loading = 'lazy';
+            
+            // Add error handling for images
+            img.onerror = function() {
+                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="120"%3E%3Crect width="80" height="120" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="10" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3ENo Cover%3C/text%3E%3C/svg%3E';
+            };
+            
+            // Book info container
+            const info = document.createElement('div');
+            info.className = 'vertical-cover-info';
+            
+            const title = document.createElement('div');
+            title.className = 'vertical-cover-title';
+            title.textContent = book.title;
+            
+            const author = document.createElement('div');
+            author.className = 'vertical-cover-author';
+            author.textContent = book.author;
+            
+            const meta = document.createElement('div');
+            meta.className = 'vertical-cover-meta';
+            
+            // Add rating if available
+            if (book.rating > 0) {
+                const rating = document.createElement('span');
+                rating.className = 'vertical-cover-rating';
+                rating.textContent = '★'.repeat(book.rating);
+                meta.appendChild(rating);
+            }
+            
+            // Add read date if available
+            if (book.readAt) {
+                const date = document.createElement('span');
+                date.className = 'vertical-cover-date';
+                const readDate = new Date(book.readAt);
+                date.textContent = readDate.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short'
+                });
+                meta.appendChild(date);
+            }
+            
+            info.appendChild(title);
+            info.appendChild(author);
+            info.appendChild(meta);
+            
+            coverItem.appendChild(img);
+            coverItem.appendChild(info);
+            
+            coversGrid.appendChild(coverItem);
+        });
+        
+        verticalCoversContainer.appendChild(coversGrid);
     }
 });
 
