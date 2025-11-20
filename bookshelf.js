@@ -12,6 +12,56 @@ document.addEventListener('DOMContentLoaded', async function() {
     let booksData = [];
     let currentView = 'covers'; // Default view
     
+    /**
+     * Get the best available cover image URL for a book
+     * Uses Open Library API with ISBN as primary source, falls back to Goodreads
+     */
+    function getCoverImageUrl(book) {
+        // Primary: Use Open Library API if ISBN is available
+        if (book.isbn && book.isbn.trim() !== '') {
+            return `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`;
+        }
+        
+        // Fallback: Use existing Goodreads imageUrl
+        if (book.imageUrl) {
+            return book.imageUrl;
+        }
+        
+        // Final fallback: placeholder
+        return null;
+    }
+    
+    /**
+     * Create an image element with proper error handling and fallbacks
+     */
+    function createBookImage(book, className = '') {
+        const img = document.createElement('img');
+        img.alt = `${book.title} by ${book.author}`;
+        img.loading = 'lazy';
+        if (className) {
+            img.className = className;
+        }
+        
+        // Try primary source first
+        const primaryUrl = getCoverImageUrl(book);
+        img.src = primaryUrl || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="300"%3E%3Crect width="200" height="300" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="14" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3ENo Cover%3C/text%3E%3C/svg%3E';
+        
+        // Set up error handling with fallback chain
+        let fallbackAttempted = false;
+        img.onerror = function() {
+            // If primary source (Open Library) fails and we have a Goodreads URL, try that
+            if (!fallbackAttempted && book.isbn && book.imageUrl) {
+                fallbackAttempted = true;
+                this.src = book.imageUrl;
+            } else {
+                // Final fallback: SVG placeholder
+                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="300"%3E%3Crect width="200" height="300" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="14" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3ENo Cover%3C/text%3E%3C/svg%3E';
+            }
+        };
+        
+        return img;
+    }
+    
     try {
         // Fetch book data
         const response = await fetch('data/books.json');
@@ -38,6 +88,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Initialize default view (covers)
         switchView('covers');
         
+        // Update indicator on window resize
+        window.addEventListener('resize', updateToggleIndicator);
+        
     } catch (error) {
         console.error('Error loading bookshelf:', error);
         showEmptyState();
@@ -55,6 +108,33 @@ document.addEventListener('DOMContentLoaded', async function() {
                 switchView(view);
             });
         });
+        
+        // Set initial indicator position
+        updateToggleIndicator();
+    }
+    
+    /**
+     * Update the sliding toggle indicator position
+     */
+    function updateToggleIndicator() {
+        const indicator = document.querySelector('.view-toggle-indicator');
+        const activeToggle = document.querySelector('.view-toggle.active');
+        
+        if (indicator && activeToggle) {
+            const togglesContainer = document.querySelector('.view-toggles');
+            const containerRect = togglesContainer.getBoundingClientRect();
+            const activeRect = activeToggle.getBoundingClientRect();
+            
+            // Calculate position relative to container
+            const left = activeRect.left - containerRect.left;
+            const width = activeRect.width;
+            const height = activeRect.height;
+            
+            indicator.style.left = `${left}px`;
+            indicator.style.width = `${width}px`;
+            indicator.style.height = `${height}px`;
+            indicator.style.top = '4px'; // Match the padding of view-toggles
+        }
     }
     
     /**
@@ -72,6 +152,9 @@ document.addEventListener('DOMContentLoaded', async function() {
                 toggle.classList.remove('active');
             }
         });
+        
+        // Update the sliding indicator position
+        updateToggleIndicator();
         
         // Hide all containers
         textListContainer.style.display = 'none';
@@ -178,15 +261,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             const bookCover = document.createElement('div');
             bookCover.className = 'book-cover';
             
-            const img = document.createElement('img');
-            img.src = book.imageUrl;
-            img.alt = `${book.title} by ${book.author}`;
-            img.loading = 'lazy';
-            
-            // Add error handling for images
-            img.onerror = function() {
-                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="300"%3E%3Crect width="200" height="300" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="14" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3ENo Cover%3C/text%3E%3C/svg%3E';
-            };
+            const img = createBookImage(book);
             
             bookCover.appendChild(img);
             slide.appendChild(bookCover);
