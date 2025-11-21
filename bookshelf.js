@@ -14,17 +14,17 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     /**
      * Get the best available cover image URL for a book
-     * Uses Open Library API with ISBN as primary source, falls back to Goodreads
+     * Prioritizes Goodreads URLs since they're most reliable
      */
     function getCoverImageUrl(book) {
-        // Primary: Use Open Library API if ISBN is available
-        if (book.isbn && book.isbn.trim() !== '') {
-            return `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`;
-        }
-        
-        // Fallback: Use existing Goodreads imageUrl
+        // Primary: Use Goodreads imageUrl if available (most reliable)
         if (book.imageUrl) {
             return book.imageUrl;
+        }
+        
+        // Fallback: Try Open Library if we have an ISBN but no Goodreads URL
+        if (book.isbn && book.isbn.trim() !== '') {
+            return `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`;
         }
         
         // Final fallback: placeholder
@@ -37,25 +37,38 @@ document.addEventListener('DOMContentLoaded', async function() {
     function createBookImage(book, className = '') {
         const img = document.createElement('img');
         img.alt = `${book.title} by ${book.author}`;
-        img.loading = 'lazy';
+        // Removed lazy loading so all covers load immediately
         if (className) {
             img.className = className;
         }
         
-        // Try primary source first
-        const primaryUrl = getCoverImageUrl(book);
-        img.src = primaryUrl || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="300"%3E%3Crect width="200" height="300" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="14" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3ENo Cover%3C/text%3E%3C/svg%3E';
+        // Get the best available cover URL (Goodreads prioritized)
+        const coverUrl = getCoverImageUrl(book);
+        const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="300"%3E%3Crect width="200" height="300" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="14" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3ENo Cover%3C/text%3E%3C/svg%3E';
         
-        // Set up error handling with fallback chain
+        img.src = coverUrl || placeholderSvg;
+        
+        // Handle load errors with intelligent fallback
         let fallbackAttempted = false;
-        img.onerror = function() {
-            // If primary source (Open Library) fails and we have a Goodreads URL, try that
-            if (!fallbackAttempted && book.isbn && book.imageUrl) {
+        
+        // If Open Library returns 1x1 pixel placeholder, it means no cover available
+        img.onload = function() {
+            if (!fallbackAttempted && (this.naturalWidth === 1 || this.naturalHeight === 1)) {
+                // This is likely Open Library's "no cover" indicator
                 fallbackAttempted = true;
-                this.src = book.imageUrl;
-            } else {
-                // Final fallback: SVG placeholder
-                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="300"%3E%3Crect width="200" height="300" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="14" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3ENo Cover%3C/text%3E%3C/svg%3E';
+                this.src = placeholderSvg;
+            }
+        };
+        
+        // Handle network errors
+        img.onerror = function() {
+            if (!fallbackAttempted && !book.imageUrl && book.isbn) {
+                // We tried Open Library but it failed, show placeholder
+                fallbackAttempted = true;
+                this.src = placeholderSvg;
+            } else if (!fallbackAttempted) {
+                // Unexpected error, show placeholder
+                this.src = placeholderSvg;
             }
         };
         
@@ -454,16 +467,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             coverItem.className = 'vertical-cover-item';
             
             // Book cover image
-            const img = document.createElement('img');
-            img.src = book.imageUrl;
-            img.alt = `${book.title} by ${book.author}`;
-            img.className = 'vertical-cover-image';
-            img.loading = 'lazy';
-            
-            // Add error handling for images
-            img.onerror = function() {
-                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="120"%3E%3Crect width="80" height="120" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="10" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3ENo Cover%3C/text%3E%3C/svg%3E';
-            };
+            const img = createBookImage(book, 'vertical-cover-image');
             
             // Book info container
             const info = document.createElement('div');
