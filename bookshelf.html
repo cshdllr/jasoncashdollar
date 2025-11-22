@@ -22,9 +22,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
     <div class="container bookshelf-container">
@@ -42,15 +39,16 @@
                     <h1 class="bookshelf-title">Bookshelf</h1>
                     <div class="view-toggles">
                         <div class="view-toggle-indicator"></div>
-                        <button class="view-toggle" data-view="list" aria-label="List view">List</button>
-                        <button class="view-toggle active" data-view="covers" aria-label="Cover view">Covers</button>
-                        <button class="view-toggle" data-view="coverflow" aria-label="Coverflow view">Coverflow</button>
+                        <button class="view-toggle" data-view="grid" aria-label="Grid view">
+                            <img src="icons/grid.png" alt="" />
+                        </button>
+                        <button class="view-toggle active" data-view="cards" aria-label="Cards view">
+                            <img src="icons/cards.png" alt="" />
+                        </button>
+                        <button class="view-toggle" data-view="list" aria-label="List view">
+                            <img src="icons/list.png" alt="" />
+                        </button>
                     </div>
-                </div>
-                
-                <!-- Year navigation -->
-                <div class="year-navigation" id="year-navigation">
-                    <!-- Years will be dynamically inserted here -->
                 </div>
             </div>
 
@@ -59,36 +57,14 @@
                 <!-- Books will be dynamically inserted here -->
             </div>
 
-            <!-- Vertical Covers View -->
-            <div class="vertical-covers-container" id="vertical-covers-container" style="display: none;">
+            <!-- Grid View (covers only) -->
+            <div class="grid-covers-container" id="grid-covers-container" style="display: none;">
                 <!-- Books will be dynamically inserted here -->
             </div>
 
-            <!-- Coverflow carousel container -->
-            <div class="coverflow-container" id="coverflow-container" style="display: none;">
-                <div class="swiper bookshelf-swiper">
-                    <div class="swiper-wrapper" id="bookshelf-carousel">
-                        <!-- Books will be dynamically inserted here -->
-                    </div>
-                </div>
-                
-                <!-- Navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                
-                <!-- Book details display -->
-                <div class="book-details" id="book-details">
-                    <h2 class="book-title" id="book-title">Select a book</h2>
-                    <p class="book-author" id="book-author"></p>
-                    <div class="book-meta" id="book-meta">
-                        <span class="book-rating" id="book-rating"></span>
-                        <span class="book-date" id="book-date"></span>
-                    </div>
-                    <div class="book-info" id="book-info">
-                        <span class="book-pages" id="book-pages"></span>
-                        <span class="book-published" id="book-published"></span>
-                    </div>
-                </div>
+            <!-- Vertical Covers View -->
+            <div class="vertical-covers-container" id="vertical-covers-container" style="display: none;">
+                <!-- Books will be dynamically inserted here -->
             </div>
 
             <!-- Loading state -->
@@ -104,8 +80,6 @@
 
     </div>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="bookshelf.js"></script>
 </body>
 </html>

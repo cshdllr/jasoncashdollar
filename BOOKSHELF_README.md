@@ -2,7 +2,7 @@
 
 ## Overview
 
-The bookshelf feature automatically syncs your read books from Goodreads and displays them in a beautiful 3D coverflow carousel on your website.
+The bookshelf feature automatically syncs your read books from Goodreads and displays them in three beautiful view modes on your website.
 
 ## How It Works
 
@@ -25,19 +25,22 @@ The following information is extracted for each book:
 - Publication year
 - ISBN (when available)
 
-### 3. Display
-- **Coverflow Effect**: Books are displayed in a 3D carousel using Swiper.js
-- **Navigation**: Arrow buttons, keyboard arrow keys, and touch/swipe gestures
-- **Book Details**: When a book is selected, its details appear below the carousel
-- **Responsive Design**: Adapts beautifully to desktop, tablet, and mobile devices
+### 3. Display Views
+The bookshelf offers three viewing modes:
+- **Grid View**: Shows book covers only in a responsive grid layout
+- **Cards View** (default): Shows book covers with title, author, rating, and read date
+- **List View**: Text-only display grouped by year with titles, authors, and ratings
+
+All views are fully responsive and adapt beautifully to desktop, tablet, and mobile devices.
 
 ## Files
 
 ### Core Files
 - `bookshelf.html` - Main bookshelf page
-- `bookshelf.js` - JavaScript logic for coverflow and data loading
+- `bookshelf.js` - JavaScript logic for rendering different views and data loading
 - `styles.css` - Contains bookshelf-specific styles at the bottom
 - `data/books.json` - Auto-generated book data (don't edit manually)
+- `icons/` - SVG icons for view toggle buttons (grid, cards, list)
 
 ### Automation Files
 - `.github/workflows/update-bookshelf.yml` - GitHub Actions workflow
@@ -65,6 +68,12 @@ node .github/scripts/fetch-books.js
 
 ## Customization
 
+### Change View Mode
+Click the view toggle icons at the top of the bookshelf to switch between:
+- **Grid** (📱 icon): Covers only, responsive grid
+- **Cards** (📄 icon): Covers with details (default)
+- **List** (☰ icon): Text-only grouped by year
+
 ### Change Update Frequency
 Edit `.github/workflows/update-bookshelf.yml` and modify the cron schedule:
 ```yaml
@@ -77,32 +86,10 @@ Common schedules:
 - Weekly (Monday): `'0 9 * * 1'`
 - Monthly (1st of month): `'0 9 1 * *'`
 
-### Customize Coverflow Settings
-Edit `bookshelf.js` and modify the Swiper configuration:
-```javascript
-const swiper = new Swiper('.bookshelf-swiper', {
-    effect: 'coverflow',
-    coverflowEffect: {
-        rotate: 50,      // Rotation angle
-        stretch: 0,      // Stretch space between slides
-        depth: 100,      // Depth offset
-        modifier: 1,     // Effect multiplier
-        slideShadows: true,
-    },
-    // ... other settings
-});
-```
-
 ### Styling
 Bookshelf-specific styles are in `styles.css` under the `/* ===== BOOKSHELF PAGE STYLES ===== */` section.
 
 ## Dependencies
-
-### External Libraries
-- **Swiper.js v11** - Coverflow carousel effect
-  - Loaded from CDN in `bookshelf.html`
-  - CSS: `https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css`
-  - JS: `https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js`
 
 ### GitHub Actions
 - **Node.js 20** - For running the fetch script
@@ -120,10 +107,10 @@ Bookshelf-specific styles are in `styles.css` under the `/* ===== BOOKSHELF PAGE
 - If an image fails to load, a placeholder will be shown
 - Some very old books may not have cover images
 
-### Coverflow Not Working
+### Views Not Switching
 1. Check browser console for errors
-2. Ensure Swiper.js CDN links are loading properly
-3. Verify `data/books.json` exists and contains valid JSON
+2. Verify `data/books.json` exists and contains valid JSON
+3. Ensure icon SVG files are in the `icons/` folder
 
 ## Technical Details
 
@@ -133,10 +120,10 @@ The Goodreads RSS feed is in XML format with book data in `<item>` blocks. The f
 ### Browser Compatibility
 - Modern browsers (Chrome, Firefox, Safari, Edge) - Full support
 - Mobile browsers - Full support with touch gestures
-- Older browsers - Graceful fallback (no 3D effects, but still functional)
+- Older browsers - Graceful fallback with standard grid/list display
 
 ### Performance
-- Images are lazy-loaded for better performance
+- Book covers are loaded immediately for the best user experience
 - Only 100 most recent books are fetched (Goodreads RSS limit)
 - Book data is cached in `data/books.json` to avoid repeated API calls
 
@@ -145,7 +132,6 @@ The Goodreads RSS feed is in XML format with book data in `<item>` blocks. The f
 Potential improvements you could add:
 - Search/filter functionality
 - Sort by rating, date, or author
-- Different view modes (grid, list, etc.)
 - Book reviews/notes from Goodreads
 - Link to Goodreads book page
 - Reading statistics and charts

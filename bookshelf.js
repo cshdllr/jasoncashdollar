@@ -1,16 +1,13 @@
-// Bookshelf Coverflow Implementation
+// Bookshelf Implementation
 document.addEventListener('DOMContentLoaded', async function() {
     const loadingState = document.getElementById('loading-state');
     const emptyState = document.getElementById('empty-state');
-    const coverflowContainer = document.getElementById('coverflow-container');
+    const gridCoversContainer = document.getElementById('grid-covers-container');
     const textListContainer = document.getElementById('text-list-container');
     const verticalCoversContainer = document.getElementById('vertical-covers-container');
-    const bookDetails = document.getElementById('book-details');
-    const yearNavigation = document.getElementById('year-navigation');
     
-    let swiperInstance = null;
     let booksData = [];
-    let currentView = 'covers'; // Default view
+    let currentView = 'cards'; // Default view
     
     /**
      * Get the best available cover image URL for a book
@@ -92,14 +89,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         
         booksData = books;
         
-        // Initialize year navigation
-        initializeYearNavigation(books);
-        
         // Initialize view toggle buttons
         initializeViewToggles();
         
-        // Initialize default view (covers)
-        switchView('covers');
+        // Initialize default view (cards)
+        switchView('cards');
         
         // Update indicator on window resize
         window.addEventListener('resize', updateToggleIndicator);
@@ -172,14 +166,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Hide all containers
         textListContainer.style.display = 'none';
         verticalCoversContainer.style.display = 'none';
-        coverflowContainer.style.display = 'none';
-        
-        // Show/hide year navigation (only for coverflow)
-        if (view === 'coverflow') {
-            yearNavigation.style.display = 'flex';
-        } else {
-            yearNavigation.style.display = 'none';
-        }
+        gridCoversContainer.style.display = 'none';
         
         // Show the selected view
         switch(view) {
@@ -187,15 +174,13 @@ document.addEventListener('DOMContentLoaded', async function() {
                 renderTextList();
                 textListContainer.style.display = 'block';
                 break;
-            case 'covers':
+            case 'cards':
                 renderVerticalCovers();
                 verticalCoversContainer.style.display = 'block';
                 break;
-            case 'coverflow':
-                if (!swiperInstance) {
-                    initializeCoverflow(booksData);
-                }
-                coverflowContainer.style.display = 'block';
+            case 'grid':
+                renderGridCovers();
+                gridCoversContainer.style.display = 'block';
                 break;
         }
         
@@ -204,190 +189,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     
     /**
-     * Initialize year navigation
-     */
-    function initializeYearNavigation(books) {
-        // Extract unique years from books
-        const yearsMap = new Map();
-        
-        books.forEach((book, index) => {
-            if (book.readAt) {
-                const year = new Date(book.readAt).getFullYear();
-                if (!yearsMap.has(year)) {
-                    yearsMap.set(year, index); // Store first book index for each year
-                }
-            }
-        });
-        
-        // Sort years newest to oldest (left to right, oldest on right)
-        const years = Array.from(yearsMap.keys()).sort((a, b) => b - a);
-        
-        // Create year buttons
-        years.forEach(year => {
-            const button = document.createElement('button');
-            button.className = 'year-button';
-            button.textContent = year;
-            button.dataset.year = year;
-            button.dataset.bookIndex = yearsMap.get(year);
-            
-            button.addEventListener('click', function() {
-                const bookIndex = parseInt(this.dataset.bookIndex);
-                if (swiperInstance) {
-                    swiperInstance.slideTo(bookIndex);
-                }
-            });
-            
-            yearNavigation.appendChild(button);
-        });
-    }
-    
-    /**
-     * Update active year in navigation
-     */
-    function updateActiveYear(book) {
-        if (!book.readAt) return;
-        
-        const currentYear = new Date(book.readAt).getFullYear();
-        const yearButtons = yearNavigation.querySelectorAll('.year-button');
-        
-        yearButtons.forEach(button => {
-            if (parseInt(button.dataset.year) === currentYear) {
-                button.classList.add('active');
-            } else {
-                button.classList.remove('active');
-            }
-        });
-    }
-    
-    /**
-     * Initialize Swiper coverflow carousel
-     */
-    function initializeCoverflow(books) {
-        const carouselElement = document.getElementById('bookshelf-carousel');
-        
-        // Populate carousel with book covers
-        books.forEach((book, index) => {
-            const slide = document.createElement('div');
-            slide.className = 'swiper-slide';
-            slide.dataset.bookIndex = index;
-            
-            const bookCover = document.createElement('div');
-            bookCover.className = 'book-cover';
-            
-            const img = createBookImage(book);
-            
-            bookCover.appendChild(img);
-            slide.appendChild(bookCover);
-            carouselElement.appendChild(slide);
-        });
-        
-        // Initialize Swiper with coverflow effect
-        swiperInstance = new Swiper('.bookshelf-swiper', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: 'auto',
-            initialSlide: 0,
-            coverflowEffect: {
-                rotate: 35,        // Less rotation for better side visibility
-                stretch: -20,      // Negative stretch brings books closer together
-                depth: 150,        // Increased depth for more dramatic perspective
-                modifier: 1.5,     // Increased modifier for more pronounced effect
-                slideShadows: true,
-            },
-            keyboard: {
-                enabled: true,
-                onlyInViewport: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            loop: false,
-            speed: 600,
-            on: {
-                slideChange: function() {
-                    const book = books[this.activeIndex];
-                    updateBookDetails(book);
-                    updateActiveYear(book);
-                },
-                init: function() {
-                    // Show first book details on load
-                    const book = books[0];
-                    updateBookDetails(book);
-                    updateActiveYear(book);
-                }
-            }
-        });
-        
-        // Show book details for coverflow
-        bookDetails.style.display = 'block';
-    }
-    
-    /**
-     * Update the book details display
-     */
-    function updateBookDetails(book) {
-        const titleElement = document.getElementById('book-title');
-        const authorElement = document.getElementById('book-author');
-        const ratingElement = document.getElementById('book-rating');
-        const dateElement = document.getElementById('book-date');
-        const pagesElement = document.getElementById('book-pages');
-        const publishedElement = document.getElementById('book-published');
-        
-        titleElement.textContent = book.title;
-        authorElement.textContent = `by ${book.author}`;
-        
-        // Format rating with stars
-        if (book.rating > 0) {
-            const stars = '★'.repeat(book.rating) + '☆'.repeat(5 - book.rating);
-            ratingElement.textContent = `${stars} (${book.rating}/5)`;
-            ratingElement.style.display = 'inline-block';
-        } else {
-            ratingElement.style.display = 'none';
-        }
-        
-        // Format read date
-        if (book.readAt) {
-            const readDate = new Date(book.readAt);
-            const formattedDate = readDate.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long'
-            });
-            dateElement.textContent = `Read: ${formattedDate}`;
-            dateElement.style.display = 'inline-block';
-        } else {
-            dateElement.style.display = 'none';
-        }
-        
-        // Format page count
-        if (book.numPages > 0) {
-            pagesElement.textContent = `${book.numPages} pages`;
-            pagesElement.style.display = 'inline-block';
-        } else {
-            pagesElement.style.display = 'none';
-        }
-        
-        // Format published year
-        if (book.bookPublished) {
-            publishedElement.textContent = `Published: ${book.bookPublished}`;
-            publishedElement.style.display = 'inline-block';
-        } else {
-            publishedElement.style.display = 'none';
-        }
-    }
-    
-    /**
      * Show empty state when no books are found
      */
     function showEmptyState() {
         loadingState.style.display = 'none';
         emptyState.style.display = 'block';
-        coverflowContainer.style.display = 'none';
+        gridCoversContainer.style.display = 'none';
         textListContainer.style.display = 'none';
         verticalCoversContainer.style.display = 'none';
-        bookDetails.style.display = 'none';
-        yearNavigation.style.display = 'none';
     }
     
     /**
@@ -515,6 +324,28 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
         
         verticalCoversContainer.appendChild(coversGrid);
+    }
+    
+    /**
+     * Render grid covers view (covers only, no text)
+     */
+    function renderGridCovers() {
+        // Clear existing content
+        gridCoversContainer.innerHTML = '';
+        
+        const coversGrid = document.createElement('div');
+        coversGrid.className = 'grid-covers-grid';
+        
+        booksData.forEach(book => {
+            const coverItem = document.createElement('div');
+            coverItem.className = 'grid-cover-item';
+            
+            const img = createBookImage(book, 'grid-cover-image');
+            coverItem.appendChild(img);
+            coversGrid.appendChild(coverItem);
+        });
+        
+        gridCoversContainer.appendChild(coversGrid);
     }
 });
 
