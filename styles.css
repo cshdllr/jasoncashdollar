@@ -4,6 +4,7 @@
   --font-size-small: 18px;
   --font-size-medium: 20px;
   --font-size-large: 24px;
+  --font-size-extra-large: 48px;
 
   /* Colors */
   --background-color: #fff;
@@ -147,20 +148,16 @@ a:focus {
   width: fit-content;
 }
 
-.project-title {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    serif;
-  font-size: var(--font-size-medium);
-  font-weight: 400;
+.page-title {
+  font-size: var(--font-size-extra-large);
+  font-weight: 700;
   line-height: 1.3;
   color: #000;
   text-decoration: none;
   display: block;
   transition: opacity 0.2s ease;
-}
-
-.project-title:hover {
-  opacity: 0.6;
+  margin-bottom: 0;
+  flex: 1;
 }
 
 .project-description {
@@ -221,7 +218,7 @@ a:focus {
 
 .nav-link:focus,
 .project-link:focus,
-.project-title:focus {
+.page-title:focus {
   outline: none;
 }
 
@@ -239,13 +236,7 @@ a:focus {
   margin-bottom: 80px;
 }
 
-.project-header .project-title {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    serif;
-  font-size: 56px;
-  font-weight: 400;
-  line-height: 1.1;
-  color: #000;
+.project-header .page-title {
   margin-bottom: 24px;
 }
 
@@ -422,7 +413,7 @@ a:focus {
   text-align: left;
 }
 
-.bookshelf-title {
+/* .bookshelf-title {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     serif;
   font-size: 56px;
@@ -431,7 +422,7 @@ a:focus {
   color: #000;
   margin-bottom: 0;
   flex: 1;
-}
+} */
 
 .view-toggles {
   display: flex;
@@ -536,12 +527,6 @@ a:focus {
 }
 
 .grid-cover-item {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.grid-cover-item:hover {
-  transform: scale(1.05);
 }
 
 .grid-cover-image {
@@ -619,11 +604,6 @@ a:focus {
   gap: 16px;
   padding: 12px;
   border-radius: 8px;
-  transition: background-color 0.2s ease;
-}
-
-.vertical-cover-item:hover {
-  background-color: #f9f9f9;
 }
 
 .vertical-cover-image {
