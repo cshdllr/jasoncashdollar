@@ -82,7 +82,7 @@ function parseCSV(csvPath) {
       readAt: readAt,
       bookId: bookId,
       isbn: '',
-      imageUrl: `https://covers.openlibrary.org/b/id/${bookId}-L.jpg`, // Placeholder, will be updated by RSS if available
+      imageUrl: '', // Will use Goodreads URL from RSS if book is in both sources
       averageRating: averageRating,
       bookPublished: yearPublished,
       numPages: numPages,
@@ -212,18 +212,32 @@ function extractTag(content, tagName) {
 }
 
 /**
- * Merge CSV books with RSS books (RSS takes precedence for matching books)
+ * Merge CSV books with RSS books, preserving existing Goodreads imageUrls
+ * Priority: RSS > existing books.json > CSV
  */
-function mergeBooks(csvBooks, rssBooks) {
+function mergeBooks(csvBooks, rssBooks, existingBooks = []) {
   const bookMap = new Map();
   
-  // Add all CSV books first
-  csvBooks.forEach(book => {
+  // First, add existing books to preserve their imageUrls
+  existingBooks.forEach(book => {
     const key = `${book.title.toLowerCase()}_${book.author.toLowerCase()}`;
     bookMap.set(key, book);
   });
   
-  // Overwrite with RSS books (they have better image URLs and are more recent)
+  // Add/update with CSV books (but preserve existing imageUrl if CSV doesn't have one)
+  csvBooks.forEach(book => {
+    const key = `${book.title.toLowerCase()}_${book.author.toLowerCase()}`;
+    const existing = bookMap.get(key);
+    
+    if (existing && existing.imageUrl && !book.imageUrl) {
+      // Preserve existing Goodreads imageUrl
+      book.imageUrl = existing.imageUrl;
+    }
+    
+    bookMap.set(key, book);
+  });
+  
+  // RSS books always take precedence (they have the best data)
   rssBooks.forEach(book => {
     const key = `${book.title.toLowerCase()}_${book.author.toLowerCase()}`;
     bookMap.set(key, book);
@@ -248,6 +262,19 @@ async function main() {
   try {
     console.log('Starting book data collection...');
     
+    // Define paths
+    const dataDir = path.join(process.cwd(), 'data');
+    const outputPath = path.join(dataDir, 'books.json');
+    
+    // Load existing books.json to preserve imageUrls
+    let existingBooks = [];
+    if (fs.existsSync(outputPath)) {
+      console.log('Loading existing books.json...');
+      const existingData = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
+      existingBooks = existingData.books || [];
+      console.log(`Found ${existingBooks.length} existing books`);
+    }
+    
     // Parse CSV file
     console.log('Reading CSV file...');
     const csvBooks = parseCSV(CSV_PATH);
@@ -260,9 +287,9 @@ async function main() {
     const rssBooks = parseRSSFeed(xmlData);
     console.log(`Found ${rssBooks.length} books in RSS feed`);
     
-    // Merge the data
-    console.log('Merging CSV and RSS data...');
-    const books = mergeBooks(csvBooks, rssBooks);
+    // Merge the data (preserving existing imageUrls)
+    console.log('Merging CSV, RSS, and existing book data...');
+    const books = mergeBooks(csvBooks, rssBooks, existingBooks);
     
     console.log(`Total unique books: ${books.length}`);
     console.log(`  - From CSV: ${csvBooks.length}`);
@@ -270,13 +297,11 @@ async function main() {
     console.log(`  - Merged result: ${books.length}`);
     
     // Create data directory if it doesn't exist
-    const dataDir = path.join(process.cwd(), 'data');
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true });
     }
     
     // Write to data/books.json
-    const outputPath = path.join(dataDir, 'books.json');
     fs.writeFileSync(
       outputPath,
       JSON.stringify({ books, lastUpdated: new Date().toISOString() }, null, 2)
