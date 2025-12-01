@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Flesh",
+      "author": "David Szalay",
+      "rating": 4,
+      "readAt": "Fri, 28 Nov 2025 00:00:00 +0000",
+      "bookId": "214195417",
+      "isbn": "1982122811",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717908825l/214195417._SY475_.jpg",
+      "averageRating": 4,
+      "bookPublished": "2025",
+      "numPages": 364,
+      "source": "rss"
+    },
+    {
       "title": "Shards of Earth (The Final Architecture, #1)",
       "author": "Adrian Tchaikovsky",
       "rating": 3,
@@ -151,7 +164,7 @@
       "bookId": "219912076",
       "isbn": "0593831888",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1728547576l/219912076._SY475_.jpg",
-      "averageRating": 3.92,
+      "averageRating": 3.91,
       "bookPublished": "2025",
       "numPages": 416,
       "source": "rss"
@@ -190,7 +203,7 @@
       "bookId": "208932385",
       "isbn": "0374602646",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1716387539l/208932385._SY475_.jpg",
-      "averageRating": 3.84,
+      "averageRating": 3.83,
       "bookPublished": "2024",
       "numPages": 464,
       "source": "rss"
@@ -619,7 +632,7 @@
       "bookId": "59016923",
       "isbn": "0802158757",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631916775l/59016923._SX318_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.16,
       "bookPublished": "2021",
       "numPages": 70,
       "source": "rss"
@@ -632,7 +645,7 @@
       "bookId": "123251520",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1678913606l/123251520._SY475_.jpg",
-      "averageRating": 4.4,
+      "averageRating": 4.39,
       "bookPublished": "1866",
       "numPages": 298,
       "source": "rss"
@@ -1022,7 +1035,7 @@
       "bookId": "62674734",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1663720154l/62674734._SY475_.jpg",
-      "averageRating": 3.73,
+      "averageRating": 3.72,
       "bookPublished": "2022",
       "numPages": 0,
       "source": "rss"
@@ -1048,7 +1061,7 @@
       "bookId": "58181475",
       "isbn": "0593330994",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1622167785l/58181475._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.18,
       "bookPublished": "2021",
       "numPages": 333,
       "source": "rss"
@@ -1226,14 +1239,14 @@
       "title": "Just Mercy: A Story of Justice and Redemption",
       "author": "Bryan Stevenson",
       "rating": 5,
-      "readAt": "Thu, 23 Dec 2021 00:00:00 +0000",
+      "readAt": "Thu, 23 Dec 2021 00:00:00 GMT",
       "bookId": "23418947",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1413866254l/23418947.jpg",
-      "averageRating": 4.67,
+      "averageRating": 4.62,
       "bookPublished": "2014",
       "numPages": 352,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "The Overstory",
@@ -1472,6 +1485,19 @@
     {
       "title": "Beowulf: A New Translation",
       "author": "Beowulf Poet",
+      "rating": 3,
+      "readAt": "Fri, 27 Nov 2020 00:00:00 GMT",
+      "bookId": "45889029",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1598342469l/45889029._SY475_.jpg",
+      "averageRating": 3.5,
+      "bookPublished": "2020",
+      "numPages": 178,
+      "source": "csv"
+    },
+    {
+      "title": "Beowulf: A New Translation",
+      "author": "Unknown",
       "rating": 3,
       "readAt": "Fri, 27 Nov 2020 00:00:00 +0000",
       "bookId": "45889029",
@@ -4759,5 +4785,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2025-11-25T04:19:11.553Z"
+  "lastUpdated": "2025-12-01T09:32:07.068Z"
 }
