@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const projectSections = document.querySelectorAll('.projects');
         
         projectSections.forEach((section) => {
-            // Get section header and project cards within this section
+            // Get section header and project cards/work items within this section
             const sectionHeader = section.querySelector('.section-header');
-            const projectCards = section.querySelectorAll('.project-card');
+            const animatedItems = section.querySelectorAll('.project-card, .work-item');
             
             // Set initial styles for section header
             if (sectionHeader) {
@@ -51,12 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 sectionHeader.style.transition = 'opacity 0.6s ease 0s, transform 0.6s ease 0s';
             }
             
-            // Set initial styles for project cards in this section
-            projectCards.forEach((card, cardIndex) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                // Use cardIndex within this section for stagger delay, starting after header
-                card.style.transition = `opacity 0.6s ease ${(cardIndex + 1) * 0.1}s, transform 0.6s ease ${(cardIndex + 1) * 0.1}s`;
+            // Set initial styles for animated items in this section
+            animatedItems.forEach((item, itemIndex) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                // Use itemIndex within this section for stagger delay, starting after header
+                item.style.transition = `opacity 0.6s ease ${(itemIndex + 1) * 0.1}s, transform 0.6s ease ${(itemIndex + 1) * 0.1}s`;
             });
             
             // Create observer for this section
@@ -69,10 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             sectionHeader.style.transform = 'translateY(0)';
                         }
                         
-                        // Animate all project cards in this section with staggered delays
-                        projectCards.forEach((card) => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
+                        // Animate all items in this section with staggered delays
+                        animatedItems.forEach((item) => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
                         });
                         
                         // Stop observing once animated

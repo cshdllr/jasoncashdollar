@@ -607,3 +607,51 @@ p a {
   font-size: 14px;
   color: #999;
 }
+
+/* ===== WORK HISTORY STYLES ===== */
+
+.work-item {
+  display: flex;
+  align-items: center;
+  margin: 16px 80px 0px 80px;
+}
+
+.work-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.work-link:hover {
+  opacity: 0.6;
+}
+
+.work-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-medium);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.work-logo.border {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: transparent;
+}
+
+.work-company {
+  font-size: var(--font-size-medium);
+  font-weight: 400;
+  color: var(--color-primary-text);
+}
+
+.work-dates {
+  font-size: var(--font-size-small);
+  font-weight: 400;
+  color: var(--color-secondary-text);
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  margin-left: auto;
+}
