@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "The Safekeep",
+      "author": "Yael van der Wouden",
+      "rating": 5,
+      "readAt": "Fri, 5 Dec 2025 00:00:00 +0000",
+      "bookId": "199897944",
+      "isbn": "1668034360",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1698835404l/199897944._SY475_.jpg",
+      "averageRating": 4.2,
+      "bookPublished": "2024",
+      "numPages": 272,
+      "source": "rss"
+    },
+    {
       "title": "Flesh",
       "author": "David Szalay",
       "rating": 4,
@@ -8,7 +21,7 @@
       "bookId": "214195417",
       "isbn": "1982122811",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717908825l/214195417._SY475_.jpg",
-      "averageRating": 4,
+      "averageRating": 3.99,
       "bookPublished": "2025",
       "numPages": 364,
       "source": "rss"
@@ -34,7 +47,7 @@
       "bookId": "214985934",
       "isbn": "1681378736",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733308068l/214985934._SX318_.jpg",
-      "averageRating": 3.88,
+      "averageRating": 3.87,
       "bookPublished": "2022",
       "numPages": 125,
       "source": "rss"
@@ -229,7 +242,7 @@
       "bookId": "18889555",
       "isbn": "0807083704",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1385158817l/18889555._SX318_.jpg",
-      "averageRating": 4.38,
+      "averageRating": 4.37,
       "bookPublished": "1979",
       "numPages": 264,
       "source": "rss"
@@ -443,6 +456,19 @@
       "source": "csv"
     },
     {
+      "title": "Jonathan Strange &amp; Mr Norrell",
+      "author": "Susanna Clarke",
+      "rating": 5,
+      "readAt": "Wed, 31 Jul 2024 00:00:00 +0000",
+      "bookId": "53108625",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1586543926l/53108625._SY475_.jpg",
+      "averageRating": 4.06,
+      "bookPublished": "2004",
+      "numPages": 865,
+      "source": "rss"
+    },
+    {
       "title": "Tom Lake",
       "author": "Ann Patchett",
       "rating": 4,
@@ -632,7 +658,7 @@
       "bookId": "123251520",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1678913606l/123251520._SY475_.jpg",
-      "averageRating": 4.39,
+      "averageRating": 4.4,
       "bookPublished": "1866",
       "numPages": 298,
       "source": "rss"
@@ -905,7 +931,7 @@
       "bookId": "57363023",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1615333370l/57363023._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.18,
       "bookPublished": "2013",
       "numPages": 433,
       "source": "rss"
@@ -1204,7 +1230,7 @@
       "bookId": "55742688",
       "isbn": "0374715246",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1603166953l/55742688._SY475_.jpg",
-      "averageRating": 4.32,
+      "averageRating": 4.31,
       "bookPublished": "2021",
       "numPages": 290,
       "source": "rss"
@@ -1213,14 +1239,14 @@
       "title": "A Registry of My Passage upon the Earth: Stories",
       "author": "Daniel       Mason",
       "rating": 4,
-      "readAt": "Fri, 31 Dec 2021 00:00:00 +0000",
+      "readAt": "Fri, 31 Dec 2021 00:00:00 GMT",
       "bookId": "49148828",
-      "isbn": "0316477613",
+      "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1575850344l/49148828._SY475_.jpg",
-      "averageRating": 3.95,
+      "averageRating": 3.72,
       "bookPublished": "2020",
       "numPages": 226,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "Just Mercy: A Story of Justice and Redemption",
@@ -4772,5 +4798,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2025-12-01T09:32:07.068Z"
+  "lastUpdated": "2025-12-08T09:31:45.704Z"
 }
