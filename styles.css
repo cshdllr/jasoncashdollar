@@ -125,6 +125,17 @@ p a {
   max-width: 600px;
   margin: 0 80px 80px 80px;
   text-wrap: pretty;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .hero-title {
