@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Train Dreams",
+      "author": "Denis Johnson",
+      "rating": 3,
+      "readAt": "Wed, 10 Dec 2025 00:00:00 +0000",
+      "bookId": "12702554",
+      "isbn": "1429995203",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1726616058l/12702554._SY475_.jpg",
+      "averageRating": 3.99,
+      "bookPublished": "2002",
+      "numPages": 125,
+      "source": "rss"
+    },
+    {
       "title": "The Safekeep",
       "author": "Yael van der Wouden",
       "rating": 5,
@@ -47,7 +60,7 @@
       "bookId": "214985934",
       "isbn": "1681378736",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733308068l/214985934._SX318_.jpg",
-      "averageRating": 3.87,
+      "averageRating": 3.88,
       "bookPublished": "2022",
       "numPages": 125,
       "source": "rss"
@@ -164,7 +177,7 @@
       "bookId": "217203110",
       "isbn": "1982112840",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1734718045l/217203110._SY475_.jpg",
-      "averageRating": 4.51,
+      "averageRating": 4.5,
       "bookPublished": "2025",
       "numPages": 435,
       "source": "rss"
@@ -242,7 +255,7 @@
       "bookId": "18889555",
       "isbn": "0807083704",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1385158817l/18889555._SX318_.jpg",
-      "averageRating": 4.37,
+      "averageRating": 4.38,
       "bookPublished": "1979",
       "numPages": 264,
       "source": "rss"
@@ -333,7 +346,7 @@
       "bookId": "56442303",
       "isbn": "0374602409",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1609129724l/56442303._SY475_.jpg",
-      "averageRating": 4.25,
+      "averageRating": 4.26,
       "bookPublished": "1967",
       "numPages": 371,
       "source": "rss"
@@ -463,7 +476,7 @@
       "bookId": "53108625",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1586543926l/53108625._SY475_.jpg",
-      "averageRating": 4.06,
+      "averageRating": 4.07,
       "bookPublished": "2004",
       "numPages": 865,
       "source": "rss"
@@ -801,7 +814,7 @@
       "bookId": "60457992",
       "isbn": "1945492627",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645371720l/60457992._SY475_.jpg",
-      "averageRating": 4.04,
+      "averageRating": 4.03,
       "bookPublished": "1995",
       "numPages": 175,
       "source": "rss"
@@ -840,7 +853,7 @@
       "bookId": "36680837",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1614366774l/36680837._SY475_.jpg",
-      "averageRating": 4.45,
+      "averageRating": 4.46,
       "bookPublished": "180",
       "numPages": 256,
       "source": "rss"
@@ -1226,14 +1239,14 @@
       "title": "Four Thousand Weeks: Time Management for Mortals",
       "author": "Oliver Burkeman",
       "rating": 2,
-      "readAt": "Fri, 14 Jan 2022 00:00:00 +0000",
+      "readAt": "Fri, 14 Jan 2022 00:00:00 GMT",
       "bookId": "55742688",
-      "isbn": "0374715246",
+      "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1603166953l/55742688._SY475_.jpg",
-      "averageRating": 4.31,
+      "averageRating": 4.18,
       "bookPublished": "2021",
       "numPages": 290,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "A Registry of My Passage upon the Earth: Stories",
@@ -4798,5 +4811,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2025-12-08T09:31:45.704Z"
+  "lastUpdated": "2025-12-15T09:35:27.625Z"
 }
