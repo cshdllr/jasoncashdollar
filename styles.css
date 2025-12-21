@@ -139,6 +139,32 @@ p a {
   opacity: 0.6;
 }
 
+/* Breadcrumb Header for Sub-pages */
+.breadcrumb {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.header:has(.breadcrumb) {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.breadcrumb-name {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.breadcrumb-name:hover {
+  opacity: 0.6;
+}
+
+.breadcrumb-project {
+  font-weight: 400;
+}
+
 /* Main Content */
 .main {
   flex: 1;
@@ -645,6 +671,8 @@ p a {
     gap: 8px;
     padding-left: var(--content-margin);
     padding-right: var(--content-margin);
+    margin-left: 0;
+    margin-right: 0;
   }
 
   /* Hero stacks vertically with photo on top */
