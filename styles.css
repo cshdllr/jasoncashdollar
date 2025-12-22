@@ -358,6 +358,24 @@ p a {
   margin-bottom: 0;
 }
 
+/* Button-style link for project pages */
+.link-button {
+  display: inline-block;
+  background-color: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 4px 16px;
+  border-radius: var(--border-radius-medium);
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.link-button:hover {
+  background-color: var(--color-background-tertiary);
+  opacity: 0.9;
+}
+
 /* ===== BOOKSHELF PAGE STYLES ===== */
 
 /* Bookshelf Main Layout */
