@@ -575,7 +575,7 @@ p a {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 12px;
+  padding: 12px 0;
   border-radius: 8px;
 }
 
@@ -731,10 +731,5 @@ p a {
 
   .vertical-covers-grid {
     gap: 0;
-  }
-
-  .vertical-cover-item {
-    padding-left: 0;
-    padding-right: 0;
   }
 }
