@@ -356,6 +356,7 @@ p a {
   text-align: center;
   font-style: italic;
   margin-bottom: 0;
+  padding-top: 8px;
 }
 
 /* Button-style link for project pages */
@@ -731,5 +732,10 @@ p a {
 
   .vertical-covers-grid {
     gap: 0;
+  }
+
+  .image-caption {
+    padding-right: var(--content-margin);
+    padding-left: var(--content-margin);
   }
 }
