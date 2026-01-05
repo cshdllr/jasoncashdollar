@@ -1,9 +1,22 @@
 {
   "books": [
     {
+      "title": "Just Kids",
+      "author": "Patti Smith",
+      "rating": 4,
+      "readAt": "Tue, 30 Dec 2025 00:00:00 +0000",
+      "bookId": "32315914",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1475184708l/32315914._SY475_.jpg",
+      "averageRating": 4.22,
+      "bookPublished": "2010",
+      "numPages": 320,
+      "source": "rss"
+    },
+    {
       "title": "Do Androids Dream of Electric Sheep?",
       "author": "Philip K. Dick",
-      "rating": 0,
+      "rating": 3,
       "readAt": "Sat, 20 Dec 2025 00:00:00 +0000",
       "bookId": "57460539",
       "isbn": "",
@@ -125,7 +138,7 @@
       "bookId": "8500769",
       "isbn": "1416545972",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328336932l/8500769.jpg",
-      "averageRating": 4.14,
+      "averageRating": 4.15,
       "bookPublished": "2007",
       "numPages": 242,
       "source": "rss"
@@ -151,7 +164,7 @@
       "bookId": "61043279",
       "isbn": "1737485907",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1651849328l/61043279._SY475_.jpg",
-      "averageRating": 3.95,
+      "averageRating": 3.9,
       "bookPublished": "2021",
       "numPages": 384,
       "source": "rss"
@@ -203,7 +216,7 @@
       "bookId": "219912076",
       "isbn": "0593831888",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1728547576l/219912076._SY475_.jpg",
-      "averageRating": 3.9,
+      "averageRating": 3.89,
       "bookPublished": "2025",
       "numPages": 416,
       "source": "rss"
@@ -281,7 +294,7 @@
       "bookId": "123811874",
       "isbn": "1538765500",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680179150l/123811874._SY475_.jpg",
-      "averageRating": 4.47,
+      "averageRating": 4.48,
       "bookPublished": "1998",
       "numPages": 434,
       "source": "rss"
@@ -322,7 +335,7 @@
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1593873603l/54386622._SY475_.jpg",
       "averageRating": 4.35,
       "bookPublished": "2015",
-      "numPages": 433,
+      "numPages": 441,
       "source": "rss"
     },
     {
@@ -346,7 +359,7 @@
       "bookId": "197828937",
       "isbn": "0593190289",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1695914086l/197828937._SY475_.jpg",
-      "averageRating": 3.37,
+      "averageRating": 3.36,
       "bookPublished": "2024",
       "numPages": 333,
       "source": "rss"
@@ -385,7 +398,7 @@
       "bookId": "211050274",
       "isbn": "0593230396",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1718939285l/211050274._SY475_.jpg",
-      "averageRating": 4.58,
+      "averageRating": 4.59,
       "bookPublished": "2024",
       "numPages": 237,
       "source": "rss"
@@ -489,7 +502,7 @@
       "bookId": "53108625",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1586543926l/53108625._SY475_.jpg",
-      "averageRating": 4.06,
+      "averageRating": 4.07,
       "bookPublished": "2004",
       "numPages": 865,
       "source": "rss"
@@ -632,7 +645,7 @@
       "bookId": "208944365",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1708515061l/208944365._SY475_.jpg",
-      "averageRating": 4.32,
+      "averageRating": 4.31,
       "bookPublished": "2021",
       "numPages": 151,
       "source": "rss"
@@ -671,7 +684,7 @@
       "bookId": "59016923",
       "isbn": "0802158757",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631916775l/59016923._SX318_.jpg",
-      "averageRating": 4.15,
+      "averageRating": 4.14,
       "bookPublished": "2021",
       "numPages": 70,
       "source": "rss"
@@ -684,7 +697,7 @@
       "bookId": "123251520",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1678913606l/123251520._SY475_.jpg",
-      "averageRating": 4.4,
+      "averageRating": 4.39,
       "bookPublished": "1866",
       "numPages": 298,
       "source": "rss"
@@ -931,7 +944,7 @@
       "bookId": "45695810",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1624531706l/45695810.jpg",
-      "averageRating": 4.48,
+      "averageRating": 4.47,
       "bookPublished": "2016",
       "numPages": 466,
       "source": "rss"
@@ -1087,7 +1100,7 @@
       "bookId": "59355202",
       "isbn": "0316300160",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1634332691l/59355202._SY475_.jpg",
-      "averageRating": 4.05,
+      "averageRating": 4.04,
       "bookPublished": "2020",
       "numPages": 577,
       "source": "rss"
@@ -1100,7 +1113,7 @@
       "bookId": "58181475",
       "isbn": "0593330994",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1622167785l/58181475._SY475_.jpg",
-      "averageRating": 4.18,
+      "averageRating": 4.17,
       "bookPublished": "2021",
       "numPages": 333,
       "source": "rss"
@@ -1226,14 +1239,14 @@
       "title": "Children of Time (Children of Time, #1)",
       "author": "Adrian Tchaikovsky",
       "rating": 5,
-      "readAt": "Sun, 6 Feb 2022 00:00:00 +0000",
+      "readAt": "Sun, 06 Feb 2022 00:00:00 GMT",
       "bookId": "40514364",
-      "isbn": "0316452491",
+      "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1545337652l/40514364._SX318_.jpg",
-      "averageRating": 4.39,
-      "bookPublished": "2015",
+      "averageRating": 4.3,
+      "bookPublished": "2018",
       "numPages": 588,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "Bewilderment",
@@ -4805,7 +4818,7 @@
       "bookId": "9862182",
       "isbn": "0872865150",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328774960l/9862182.jpg",
-      "averageRating": 4.43,
+      "averageRating": 4.42,
       "bookPublished": "2011",
       "numPages": 240,
       "source": "rss"
@@ -4824,5 +4837,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2025-12-29T09:33:54.219Z"
+  "lastUpdated": "2026-01-05T09:35:46.221Z"
 }
