@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Be Here Now",
+      "author": "Ram Dass",
+      "rating": 0,
+      "readAt": "Sun, 18 Jan 2026 00:00:00 +0000",
+      "bookId": "41580312",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1535737556l/41580312._SY475_.jpg",
+      "averageRating": 4.38,
+      "bookPublished": "1971",
+      "numPages": 116,
+      "source": "rss"
+    },
+    {
       "title": "Just Kids",
       "author": "Patti Smith",
       "rating": 4,
@@ -34,7 +47,7 @@
       "bookId": "12702554",
       "isbn": "1429995203",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1726616058l/12702554._SY475_.jpg",
-      "averageRating": 3.99,
+      "averageRating": 3.98,
       "bookPublished": "2002",
       "numPages": 125,
       "source": "rss"
@@ -60,7 +73,7 @@
       "bookId": "214195417",
       "isbn": "1982122811",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717908825l/214195417._SY475_.jpg",
-      "averageRating": 3.96,
+      "averageRating": 3.95,
       "bookPublished": "2025",
       "numPages": 364,
       "source": "rss"
@@ -203,7 +216,7 @@
       "bookId": "217203110",
       "isbn": "1982112840",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1734718045l/217203110._SY475_.jpg",
-      "averageRating": 4.5,
+      "averageRating": 4.49,
       "bookPublished": "2025",
       "numPages": 435,
       "source": "rss"
@@ -223,6 +236,19 @@
     },
     {
       "title": "Elder Race",
+      "author": "Adrian Tchaikovsky",
+      "rating": 4,
+      "readAt": "Mon, 19 May 2025 00:00:00 GMT",
+      "bookId": "56815367",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1614008013l/56815367.jpg",
+      "averageRating": 4.09,
+      "bookPublished": "2021",
+      "numPages": 204,
+      "source": "csv"
+    },
+    {
+      "title": "Elder Race (Elder Race #1)",
       "author": "Adrian Tchaikovsky",
       "rating": 4,
       "readAt": "Mon, 19 May 2025 00:00:00 +0000",
@@ -268,7 +294,7 @@
       "bookId": "19452425",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386983547l/19452425.jpg",
-      "averageRating": 4.25,
+      "averageRating": 4.26,
       "bookPublished": "1995",
       "numPages": 228,
       "source": "rss"
@@ -294,7 +320,7 @@
       "bookId": "123811874",
       "isbn": "1538765500",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680179150l/123811874._SY475_.jpg",
-      "averageRating": 4.47,
+      "averageRating": 4.48,
       "bookPublished": "1998",
       "numPages": 434,
       "source": "rss"
@@ -645,7 +671,7 @@
       "bookId": "208944365",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1708515061l/208944365._SY475_.jpg",
-      "averageRating": 4.32,
+      "averageRating": 4.31,
       "bookPublished": "2021",
       "numPages": 151,
       "source": "rss"
@@ -697,7 +723,7 @@
       "bookId": "123251520",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1678913606l/123251520._SY475_.jpg",
-      "averageRating": 4.4,
+      "averageRating": 4.39,
       "bookPublished": "1866",
       "numPages": 298,
       "source": "rss"
@@ -840,7 +866,7 @@
       "bookId": "60457992",
       "isbn": "1945492627",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645371720l/60457992._SY475_.jpg",
-      "averageRating": 4.03,
+      "averageRating": 4.02,
       "bookPublished": "1995",
       "numPages": 175,
       "source": "rss"
@@ -1113,7 +1139,7 @@
       "bookId": "58181475",
       "isbn": "0593330994",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1622167785l/58181475._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.18,
       "bookPublished": "2021",
       "numPages": 333,
       "source": "rss"
@@ -1204,7 +1230,7 @@
       "bookId": "34845395",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1492010803l/34845395._SY475_.jpg",
-      "averageRating": 4.42,
+      "averageRating": 4.43,
       "bookPublished": "1969",
       "numPages": 317,
       "source": "rss"
@@ -1213,27 +1239,27 @@
       "title": "The Sirens of Titan",
       "author": "Kurt Vonnegut Jr.",
       "rating": 3,
-      "readAt": "Thu, 24 Mar 2022 00:00:00 +0000",
+      "readAt": "Thu, 24 Mar 2022 00:00:00 GMT",
       "bookId": "6588742",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1621066898l/6588742._SY475_.jpg",
       "averageRating": 4.15,
-      "bookPublished": "1959",
+      "bookPublished": "2007",
       "numPages": 338,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "How to Be Perfect: The Correct Answer to Every Moral Question",
       "author": "Michael Schur",
       "rating": 4,
-      "readAt": "Thu, 3 Mar 2022 00:00:00 +0000",
+      "readAt": "Thu, 03 Mar 2022 00:00:00 GMT",
       "bookId": "59027374",
-      "isbn": "1982159332",
+      "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1632080578l/59027374._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.14,
       "bookPublished": "2022",
       "numPages": 304,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "Children of Time (Children of Time, #1)",
@@ -4835,7 +4861,20 @@
       "bookPublished": "2005",
       "numPages": 220,
       "source": "rss"
+    },
+    {
+      "title": "What We Can Know",
+      "author": "Ian McEwan",
+      "rating": 4,
+      "readAt": "",
+      "bookId": "223855577",
+      "isbn": "0593804732",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
+      "averageRating": 4.21,
+      "bookPublished": "2025",
+      "numPages": 338,
+      "source": "rss"
     }
   ],
-  "lastUpdated": "2026-01-12T09:35:43.893Z"
+  "lastUpdated": "2026-01-19T09:37:58.736Z"
 }
