@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Know My Name: A Memoir",
+      "author": "Chanel Miller",
+      "rating": 5,
+      "readAt": "Sat, 31 Jan 2026 00:00:00 +0000",
+      "bookId": "49944910",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1567616805l/49944910._SX318_SY475_.jpg",
+      "averageRating": 4.65,
+      "bookPublished": "2019",
+      "numPages": 366,
+      "source": "rss"
+    },
+    {
       "title": "Be Here Now",
       "author": "Ram Dass",
       "rating": 0,
@@ -60,7 +73,7 @@
       "bookId": "199897944",
       "isbn": "1668034360",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1698835404l/199897944._SY475_.jpg",
-      "averageRating": 4.19,
+      "averageRating": 4.18,
       "bookPublished": "2024",
       "numPages": 272,
       "source": "rss"
@@ -73,7 +86,7 @@
       "bookId": "214195417",
       "isbn": "1982122811",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717908825l/214195417._SY475_.jpg",
-      "averageRating": 3.94,
+      "averageRating": 3.92,
       "bookPublished": "2025",
       "numPages": 364,
       "source": "rss"
@@ -190,7 +203,7 @@
       "bookId": "199698485",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717970538l/199698485._SY475_.jpg",
-      "averageRating": 4.12,
+      "averageRating": 4.11,
       "bookPublished": "2024",
       "numPages": 490,
       "source": "rss"
@@ -294,7 +307,7 @@
       "bookId": "19452425",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386983547l/19452425.jpg",
-      "averageRating": 4.27,
+      "averageRating": 4.26,
       "bookPublished": "1995",
       "numPages": 228,
       "source": "rss"
@@ -320,7 +333,7 @@
       "bookId": "123811874",
       "isbn": "1538765500",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680179150l/123811874._SY475_.jpg",
-      "averageRating": 4.47,
+      "averageRating": 4.48,
       "bookPublished": "1998",
       "numPages": 434,
       "source": "rss"
@@ -424,7 +437,7 @@
       "bookId": "211050274",
       "isbn": "0593230396",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1718939285l/211050274._SY475_.jpg",
-      "averageRating": 4.59,
+      "averageRating": 4.58,
       "bookPublished": "2024",
       "numPages": 237,
       "source": "rss"
@@ -710,7 +723,7 @@
       "bookId": "59016923",
       "isbn": "0802158757",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631916775l/59016923._SX318_.jpg",
-      "averageRating": 4.14,
+      "averageRating": 4.13,
       "bookPublished": "2021",
       "numPages": 70,
       "source": "rss"
@@ -751,7 +764,7 @@
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1499781540l/35652511._SY475_.jpg",
       "averageRating": 3.99,
       "bookPublished": "1759",
-      "numPages": 122,
+      "numPages": 115,
       "source": "rss"
     },
     {
@@ -996,7 +1009,7 @@
       "bookId": "57363023",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1615333370l/57363023._SY475_.jpg",
-      "averageRating": 4.18,
+      "averageRating": 4.17,
       "bookPublished": "2013",
       "numPages": 433,
       "source": "rss"
@@ -1009,7 +1022,7 @@
       "bookId": "54971400",
       "isbn": "0593192176",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1597592944l/54971400._SY475_.jpg",
-      "averageRating": 4.3,
+      "averageRating": 4.31,
       "bookPublished": "2018",
       "numPages": 272,
       "source": "rss"
@@ -1037,7 +1050,7 @@
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320544155l/14572.jpg",
       "averageRating": 4.31,
       "bookPublished": "1992",
-      "numPages": 134,
+      "numPages": 157,
       "source": "rss"
     },
     {
@@ -1101,7 +1114,7 @@
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645483248l/60318890._SY475_.jpg",
       "averageRating": 4.45,
-      "bookPublished": "2022",
+      "bookPublished": "2021",
       "numPages": 671,
       "source": "rss"
     },
@@ -1165,7 +1178,7 @@
       "bookId": "57801678",
       "isbn": "0593320875",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1622213907l/57801678.jpg",
-      "averageRating": 3.94,
+      "averageRating": 3.95,
       "bookPublished": "2021",
       "numPages": 496,
       "source": "rss"
@@ -1226,14 +1239,14 @@
       "title": "I Know Why the Caged Bird Sings",
       "author": "Maya Angelou",
       "rating": 4,
-      "readAt": "Fri, 15 Apr 2022 00:00:00 +0000",
+      "readAt": "Fri, 15 Apr 2022 00:00:00 GMT",
       "bookId": "34845395",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1492010803l/34845395._SY475_.jpg",
-      "averageRating": 4.42,
-      "bookPublished": "1969",
+      "averageRating": 4.3,
+      "bookPublished": "2009",
       "numPages": 317,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "The Sirens of Titan",
@@ -4870,11 +4883,11 @@
       "bookId": "223855577",
       "isbn": "0593804732",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
-      "averageRating": 4.21,
+      "averageRating": 4.2,
       "bookPublished": "2025",
       "numPages": 338,
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-01-26T09:37:57.418Z"
+  "lastUpdated": "2026-02-02T09:54:48.306Z"
 }
