@@ -663,6 +663,14 @@ p a {
   color: var(--color-text-primary);
 }
 
+.external-link-icon {
+  width: 11px;
+  height: 11px;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  margin-left: -4px;
+}
+
 .work-dates {
   font-size: var(--font-size-small);
   font-weight: 400;
