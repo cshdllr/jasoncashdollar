@@ -138,6 +138,22 @@ function cleanField(field) {
 }
 
 /**
+ * Decode common HTML entities
+ */
+function decodeHTMLEntities(text) {
+  if (!text) return text;
+  return text
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec))
+    .replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
+}
+
+/**
  * Simple XML parser to extract book data from RSS feed
  */
 function parseRSSFeed(xmlData) {
@@ -150,9 +166,9 @@ function parseRSSFeed(xmlData) {
   items.forEach((itemMatch) => {
     const itemContent = itemMatch[1];
     
-    // Extract fields using regex
-    const title = extractTag(itemContent, 'title');
-    const author = extractTag(itemContent, 'author_name');
+    // Extract fields using regex and decode HTML entities
+    const title = decodeHTMLEntities(extractTag(itemContent, 'title'));
+    const author = decodeHTMLEntities(extractTag(itemContent, 'author_name'));
     const rating = parseInt(extractTag(itemContent, 'user_rating')) || 0;
     const readAt = extractTag(itemContent, 'user_read_at');
     const bookId = extractTag(itemContent, 'book_id');
