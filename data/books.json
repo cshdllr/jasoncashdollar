@@ -60,7 +60,7 @@
       "bookId": "12702554",
       "isbn": "1429995203",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1726616058l/12702554._SY475_.jpg",
-      "averageRating": 3.98,
+      "averageRating": 3.99,
       "bookPublished": "2002",
       "numPages": 125,
       "source": "rss"
@@ -86,7 +86,7 @@
       "bookId": "214195417",
       "isbn": "1982122811",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717908825l/214195417._SY475_.jpg",
-      "averageRating": 3.91,
+      "averageRating": 3.9,
       "bookPublished": "2025",
       "numPages": 364,
       "source": "rss"
@@ -412,7 +412,7 @@
       "isbn": "0374602409",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1609129724l/56442303._SY475_.jpg",
       "averageRating": 4.26,
-      "bookPublished": "1967",
+      "bookPublished": "1971",
       "numPages": 371,
       "source": "rss"
     },
@@ -489,7 +489,7 @@
       "bookId": "60429621",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645021313l/60429621._SY475_.jpg",
-      "averageRating": 4.09,
+      "averageRating": 4.1,
       "bookPublished": "2022",
       "numPages": 312,
       "source": "rss"
@@ -524,14 +524,14 @@
       "title": "Jonathan Strange & Mr Norrell",
       "author": "Susanna Clarke",
       "rating": 5,
-      "readAt": "Wed, 31 Jul 2024 00:00:00 GMT",
+      "readAt": "Wed, 31 Jul 2024 00:00:00 +0000",
       "bookId": "53108625",
       "isbn": "",
-      "imageUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1586543926i/53108625.jpg",
-      "averageRating": 3.87,
-      "bookPublished": "2010",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1586543926l/53108625._SY475_.jpg",
+      "averageRating": 4.07,
+      "bookPublished": "2004",
       "numPages": 865,
-      "source": "csv"
+      "source": "rss"
     },
     {
       "title": "Tom Lake",
@@ -1165,7 +1165,7 @@
       "bookId": "57801678",
       "isbn": "0593320875",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1622213907l/57801678.jpg",
-      "averageRating": 3.95,
+      "averageRating": 3.94,
       "bookPublished": "2021",
       "numPages": 496,
       "source": "rss"
@@ -4870,11 +4870,11 @@
       "bookId": "223855577",
       "isbn": "0593804732",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
-      "averageRating": 4.2,
+      "averageRating": 4.19,
       "bookPublished": "2025",
       "numPages": 338,
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-02-05T05:05:30.030Z"
+  "lastUpdated": "2026-02-09T10:05:23.170Z"
 }
