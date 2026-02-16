@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Vigil",
+      "author": "George Saunders",
+      "rating": 4,
+      "readAt": "Sat, 14 Feb 2026 00:00:00 +0000",
+      "bookId": "239039076",
+      "isbn": "0525509631",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753238089l/239039076._SY475_.jpg",
+      "averageRating": 3.89,
+      "bookPublished": "2026",
+      "numPages": 177,
+      "source": "rss"
+    },
+    {
       "title": "Know My Name: A Memoir",
       "author": "Chanel Miller",
       "rating": 5,
@@ -60,7 +73,7 @@
       "bookId": "12702554",
       "isbn": "1429995203",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1726616058l/12702554._SY475_.jpg",
-      "averageRating": 3.99,
+      "averageRating": 3.98,
       "bookPublished": "2002",
       "numPages": 125,
       "source": "rss"
@@ -112,7 +125,7 @@
       "bookId": "214985934",
       "isbn": "1681378736",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733308068l/214985934._SX318_.jpg",
-      "averageRating": 3.87,
+      "averageRating": 3.88,
       "bookPublished": "2022",
       "numPages": 125,
       "source": "rss"
@@ -307,7 +320,7 @@
       "bookId": "19452425",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386983547l/19452425.jpg",
-      "averageRating": 4.26,
+      "averageRating": 4.25,
       "bookPublished": "1995",
       "numPages": 228,
       "source": "rss"
@@ -489,7 +502,7 @@
       "bookId": "60429621",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645021313l/60429621._SY475_.jpg",
-      "averageRating": 4.1,
+      "averageRating": 4.09,
       "bookPublished": "2022",
       "numPages": 312,
       "source": "rss"
@@ -775,7 +788,7 @@
       "bookId": "61867769",
       "isbn": "1250208440",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1659718691l/61867769._SY475_.jpg",
-      "averageRating": 3.96,
+      "averageRating": 3.97,
       "bookPublished": "2022",
       "numPages": 202,
       "source": "rss"
@@ -983,7 +996,7 @@
       "bookId": "60317128",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1703071145l/60317128._SY475_.jpg",
-      "averageRating": 4.58,
+      "averageRating": 4.57,
       "bookPublished": "2022",
       "numPages": 550,
       "source": "rss"
@@ -1213,14 +1226,14 @@
       "title": "The Book: On the Taboo Against Knowing Who You Are",
       "author": "Alan W. Watts",
       "rating": 2,
-      "readAt": "Thu, 28 Apr 2022 00:00:00 +0000",
+      "readAt": "Thu, 28 Apr 2022 00:00:00 GMT",
       "bookId": "53400015",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1589268181l/53400015._SY475_.jpg",
-      "averageRating": 4.24,
-      "bookPublished": "1966",
+      "averageRating": 4.21,
+      "bookPublished": "",
       "numPages": 178,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "I Know Why the Caged Bird Sings",
@@ -4876,5 +4889,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-02-09T10:05:23.170Z"
+  "lastUpdated": "2026-02-16T09:57:59.009Z"
 }
