@@ -138,6 +138,7 @@ p a {
   text-decoration: underline;
   text-decoration-style: wavy;
   text-decoration-color: var(--color-text-secondary);
+  text-underline-offset: 2px;
 }
 
 /* Breadcrumb Header for Sub-pages */
@@ -217,6 +218,7 @@ p a {
   text-decoration: underline;
   text-decoration-style: wavy;
   text-decoration-color: var(--color-text-secondary);
+  text-underline-offset: 2px;
 }
 
 .page-title {
@@ -650,6 +652,7 @@ p a {
   text-decoration: underline;
   text-decoration-style: wavy;
   text-decoration-color: var(--color-text-secondary);
+  text-underline-offset: 2px;
 }
 
 .work-logo {
