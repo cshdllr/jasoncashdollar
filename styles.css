@@ -682,13 +682,21 @@ p a {
   margin-left: -4px;
 }
 
+.work-dot-leader {
+  flex: 1;
+  border-bottom: 2px dotted var(--color-border);
+  margin: 0 12px;
+  align-self: center;
+  min-width: 20px;
+}
+
 .work-dates {
   font-size: var(--font-size-small);
   font-weight: 400;
   color: var(--color-text-secondary);
   font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-  margin-left: auto;
+  flex-shrink: 0;
 }
 
 /* ===== MOBILE BREAKPOINT ===== */
