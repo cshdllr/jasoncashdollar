@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Martyr!",
+      "author": "Kaveh Akbar",
+      "rating": 4,
+      "readAt": "Sun, 15 Mar 2026 00:00:00 +0000",
+      "bookId": "139401966",
+      "isbn": "0593537629",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1683819081l/139401966._SX318_.jpg",
+      "averageRating": 4.11,
+      "bookPublished": "2024",
+      "numPages": 313,
+      "source": "rss"
+    },
+    {
       "title": "The True True Story of Raja the Gullible (and His Mother): A Novel (National Book Award Winner)",
       "author": "Rabih Alameddine",
       "rating": 4,
@@ -8,7 +21,7 @@
       "bookId": "230400297",
       "isbn": "0802166482",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743008097l/230400297._SY475_.jpg",
-      "averageRating": 4.34,
+      "averageRating": 4.33,
       "bookPublished": "2025",
       "numPages": 282,
       "source": "rss"
@@ -21,7 +34,7 @@
       "bookId": "239039076",
       "isbn": "0525509631",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753238089l/239039076._SY475_.jpg",
-      "averageRating": 3.81,
+      "averageRating": 3.8,
       "bookPublished": "2026",
       "numPages": 177,
       "source": "rss"
@@ -164,7 +177,7 @@
       "bookId": "68043118",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1672834554l/68043118._SY475_.jpg",
-      "averageRating": 4.39,
+      "averageRating": 4.38,
       "bookPublished": "2016",
       "numPages": 321,
       "source": "rss"
@@ -333,7 +346,7 @@
       "bookId": "19452425",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386983547l/19452425.jpg",
-      "averageRating": 4.25,
+      "averageRating": 4.24,
       "bookPublished": "1995",
       "numPages": 228,
       "source": "rss"
@@ -359,7 +372,7 @@
       "bookId": "123811874",
       "isbn": "1538765500",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680179150l/123811874._SY475_.jpg",
-      "averageRating": 4.48,
+      "averageRating": 4.47,
       "bookPublished": "1998",
       "numPages": 434,
       "source": "rss"
@@ -697,7 +710,7 @@
       "bookId": "208944365",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1708515061l/208944365._SY475_.jpg",
-      "averageRating": 4.31,
+      "averageRating": 4.3,
       "bookPublished": "2021",
       "numPages": 151,
       "source": "rss"
@@ -710,7 +723,7 @@
       "bookId": "52702097",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1624092003l/52702097._SY475_.jpg",
-      "averageRating": 4.23,
+      "averageRating": 4.22,
       "bookPublished": "2020",
       "numPages": 246,
       "source": "rss"
@@ -801,7 +814,7 @@
       "bookId": "61867769",
       "isbn": "1250208440",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1659718691l/61867769._SY475_.jpg",
-      "averageRating": 3.97,
+      "averageRating": 3.96,
       "bookPublished": "2022",
       "numPages": 202,
       "source": "rss"
@@ -905,7 +918,7 @@
       "bookId": "39712929",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1624995248l/39712929._SY475_.jpg",
-      "averageRating": 4.02,
+      "averageRating": 4.01,
       "bookPublished": "2013",
       "numPages": 271,
       "source": "rss"
@@ -1165,7 +1178,7 @@
       "bookId": "58181475",
       "isbn": "0593330994",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1622167785l/58181475._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.18,
       "bookPublished": "2021",
       "numPages": 333,
       "source": "rss"
@@ -1213,14 +1226,14 @@
       "title": "The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life",
       "author": "Mark Manson",
       "rating": 2,
-      "readAt": "Thu, 19 May 2022 00:00:00 +0000",
+      "readAt": "Thu, 19 May 2022 00:00:00 GMT",
       "bookId": "29965800",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1480903131l/29965800.jpg",
-      "averageRating": 4.11,
+      "averageRating": 3.87,
       "bookPublished": "2016",
       "numPages": 229,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "Sea of Tranquility",
@@ -1607,7 +1620,7 @@
       "bookId": "45889029",
       "isbn": "0374720150",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1598342469l/45889029._SY475_.jpg",
-      "averageRating": 4.07,
+      "averageRating": 4.08,
       "bookPublished": "1000",
       "numPages": 178,
       "source": "rss"
@@ -4902,5 +4915,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-03-09T09:55:26.067Z"
+  "lastUpdated": "2026-03-16T10:08:00.944Z"
 }
