@@ -29,63 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Simple intersection observer for fade-in animations
-    if (window.IntersectionObserver) {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        // Get all project sections
-        const projectSections = document.querySelectorAll('.projects');
-        
-        projectSections.forEach((section) => {
-            // Get section header and project cards/work items within this section
-            const sectionHeader = section.querySelector('.section-header');
-            const animatedItems = section.querySelectorAll('.project-card, .work-item');
-            
-            // Set initial styles for section header
-            if (sectionHeader) {
-                sectionHeader.style.opacity = '0';
-                sectionHeader.style.transform = 'translateY(20px)';
-                sectionHeader.style.transition = 'opacity 0.6s ease 0s, transform 0.6s ease 0s';
-            }
-            
-            // Set initial styles for animated items in this section
-            animatedItems.forEach((item, itemIndex) => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                // Use itemIndex within this section for stagger delay, starting after header
-                item.style.transition = `opacity 0.6s ease ${(itemIndex + 1) * 0.1}s, transform 0.6s ease ${(itemIndex + 1) * 0.1}s`;
-            });
-            
-            // Create observer for this section
-            const sectionObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Animate section header first (0s delay)
-                        if (sectionHeader) {
-                            sectionHeader.style.opacity = '1';
-                            sectionHeader.style.transform = 'translateY(0)';
-                        }
-                        
-                        // Animate all items in this section with staggered delays
-                        animatedItems.forEach((item) => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        });
-                        
-                        // Stop observing once animated
-                        sectionObserver.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe the section (or header if available)
-            sectionObserver.observe(sectionHeader || section);
-        });
-    }
-    
     // Keyboard navigation enhancement
     document.addEventListener('keydown', function(e) {
         // Escape key to return to top
