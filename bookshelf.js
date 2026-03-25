@@ -10,6 +10,29 @@ document.addEventListener('DOMContentLoaded', async function() {
     let currentView = 'cards'; // Default view
     
     /**
+     * Remove duplicate books (same Goodreads id or same title+author+read date).
+     * Keeps the first occurrence so merge/import order wins.
+     */
+    function dedupeBooks(books) {
+        const seen = new Set();
+        const out = [];
+        for (const book of books) {
+            const id = book.bookId != null && String(book.bookId).trim() !== ''
+                ? `id:${String(book.bookId).trim()}`
+                : null;
+            const key = id || [
+                (book.title || '').trim().toLowerCase(),
+                (book.author || '').trim().toLowerCase(),
+                book.readAt || ''
+            ].join('|');
+            if (seen.has(key)) continue;
+            seen.add(key);
+            out.push(book);
+        }
+        return out;
+    }
+    
+    /**
      * Get the best available cover image URL for a book
      * Prioritizes Goodreads URLs since they're most reliable
      */
@@ -80,7 +103,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
         
         const data = await response.json();
-        const books = data.books;
+        const books = dedupeBooks(data.books || []);
         
         if (!books || books.length === 0) {
             showEmptyState();

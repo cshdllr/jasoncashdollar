@@ -228,6 +228,20 @@ function extractTag(content, tagName) {
 }
 
 /**
+ * Stable merge key: Goodreads bookId when present (same book can appear under
+ * different title strings in CSV vs RSS). Otherwise title + author.
+ */
+function bookMergeKey(book) {
+  const id = book.bookId != null && String(book.bookId).trim() !== '';
+  if (id) {
+    return `id:${String(book.bookId).trim()}`;
+  }
+  const t = (book.title || '').toLowerCase().trim();
+  const a = (book.author || '').toLowerCase().trim();
+  return `ta:${t}_${a}`;
+}
+
+/**
  * Merge CSV books with RSS books, preserving existing Goodreads imageUrls
  * Priority: RSS > existing books.json > CSV
  */
@@ -236,13 +250,12 @@ function mergeBooks(csvBooks, rssBooks, existingBooks = []) {
   
   // First, add existing books to preserve their imageUrls
   existingBooks.forEach(book => {
-    const key = `${book.title.toLowerCase()}_${book.author.toLowerCase()}`;
-    bookMap.set(key, book);
+    bookMap.set(bookMergeKey(book), book);
   });
   
   // Add/update with CSV books (but preserve existing imageUrl if CSV doesn't have one)
   csvBooks.forEach(book => {
-    const key = `${book.title.toLowerCase()}_${book.author.toLowerCase()}`;
+    const key = bookMergeKey(book);
     const existing = bookMap.get(key);
     
     if (existing && existing.imageUrl && !book.imageUrl) {
@@ -255,7 +268,7 @@ function mergeBooks(csvBooks, rssBooks, existingBooks = []) {
   
   // RSS books always take precedence (they have the best data)
   rssBooks.forEach(book => {
-    const key = `${book.title.toLowerCase()}_${book.author.toLowerCase()}`;
+    const key = bookMergeKey(book);
     bookMap.set(key, book);
   });
   
