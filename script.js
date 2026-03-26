@@ -1,3 +1,15 @@
+// When opened as a local file, fix links so they resolve correctly
+if (window.location.protocol === 'file:') {
+    document.querySelectorAll('a[href]').forEach(function(a) {
+        var href = a.getAttribute('href');
+        if (href === '/') {
+            a.setAttribute('href', 'index.html');
+        } else if (href && !href.includes('.') && !href.includes('/') && !href.includes(':') && !href.startsWith('#') && href.length > 0) {
+            a.setAttribute('href', href + '.html');
+        }
+    });
+}
+
 // Portfolio JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for internal links
