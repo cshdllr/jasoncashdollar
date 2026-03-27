@@ -320,11 +320,15 @@ p a {
 
 /* Project Images */
 .project-image-full {
-  width: 100%;
-  height: auto;
-  max-height: 454px;
-  object-fit: contain;
   display: block;
+  max-width: 100%;
+  width: auto;
+  max-height: 454px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+  object-position: center;
   border-radius: var(--border-radius-large);
 }
 
@@ -334,6 +338,22 @@ p a {
   align-items: center;
   background-color: var(--color-background-media);
   border-radius: var(--border-radius-large);
+}
+
+/* Number Crunch: full-width media, natural height (no shared max-height cap) */
+.project-main--number-crunch .project-image-full {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  max-height: none;
+  height: auto;
+  object-fit: unset;
+  object-position: center;
+}
+
+.project-main--number-crunch video.project-image-full {
+  max-height: none;
 }
 
 .project-image-grid {
@@ -754,11 +774,33 @@ p a {
   /* Images/videos align with text margins */
   .project-image-centered,
   .project-image-grid,
-  .project-image-grid-three,
+  .project-image-grid-three {
+    margin-left: var(--content-margin);
+    margin-right: var(--content-margin);
+    max-width: calc(100% - var(--content-margin) * 2);
+  }
+
   .project-image-full {
     margin-left: var(--content-margin);
     margin-right: var(--content-margin);
+    max-width: calc(100% - var(--content-margin) * 2);
+  }
+
+  /* Avoid double horizontal inset when media sits inside a wrapper or grid */
+  .project-image-centered .project-image-full,
+  .project-image-grid .project-image-grid-item {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+
+  /* Number Crunch: align media with text gutters on small screens */
+  .project-main--number-crunch .project-image-full,
+  .project-main--number-crunch video.project-image-full {
+    margin-left: var(--content-margin);
+    margin-right: var(--content-margin);
     width: calc(100% - var(--content-margin) * 2);
+    max-width: calc(100% - var(--content-margin) * 2);
   }
 
   /* Bookshelf header responsive layout */
