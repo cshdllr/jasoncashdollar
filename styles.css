@@ -356,6 +356,23 @@ p a {
   max-height: none;
 }
 
+/* Color Research: full-width media without using project-image-full on elements */
+.project-main--color-research img,
+.project-main--color-research video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-large);
+}
+
+/* Override global `video { max-height: 454px }` so aspect ratio is preserved and frames are not cropped */
+.project-main--color-research video {
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+
 .project-image-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -797,6 +814,14 @@ p a {
   /* Number Crunch: align media with text gutters on small screens */
   .project-main--number-crunch .project-image-full,
   .project-main--number-crunch video.project-image-full {
+    margin-left: var(--content-margin);
+    margin-right: var(--content-margin);
+    width: calc(100% - var(--content-margin) * 2);
+    max-width: calc(100% - var(--content-margin) * 2);
+  }
+
+  .project-main--color-research img,
+  .project-main--color-research video {
     margin-left: var(--content-margin);
     margin-right: var(--content-margin);
     width: calc(100% - var(--content-margin) * 2);
