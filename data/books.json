@@ -34,7 +34,7 @@
       "bookId": "239039076",
       "isbn": "0525509631",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753238089l/239039076._SY475_.jpg",
-      "averageRating": 3.79,
+      "averageRating": 3.78,
       "bookPublished": "2026",
       "numPages": 177,
       "source": "rss"
@@ -112,7 +112,7 @@
       "bookId": "199897944",
       "isbn": "1668034360",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1698835404l/199897944._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.16,
       "bookPublished": "2024",
       "numPages": 272,
       "source": "rss"
@@ -125,7 +125,7 @@
       "bookId": "214195417",
       "isbn": "1982122811",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717908825l/214195417._SY475_.jpg",
-      "averageRating": 3.88,
+      "averageRating": 3.87,
       "bookPublished": "2025",
       "numPages": 364,
       "source": "rss"
@@ -177,7 +177,7 @@
       "bookId": "68043118",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1672834554l/68043118._SY475_.jpg",
-      "averageRating": 4.39,
+      "averageRating": 4.38,
       "bookPublished": "2016",
       "numPages": 321,
       "source": "rss"
@@ -216,7 +216,7 @@
       "bookId": "61033655",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1651701268l/61033655._SY475_.jpg",
-      "averageRating": 4.07,
+      "averageRating": 4.08,
       "bookPublished": "2022",
       "numPages": 233,
       "source": "rss"
@@ -287,17 +287,17 @@
       "source": "rss"
     },
     {
-      "title": "Elder Race",
+      "title": "Elder Race (Elder Race #1)",
       "author": "Adrian Tchaikovsky",
       "rating": 4,
-      "readAt": "Mon, 19 May 2025 00:00:00 GMT",
+      "readAt": "Mon, 19 May 2025 00:00:00 +0000",
       "bookId": "56815367",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1614008013l/56815367.jpg",
-      "averageRating": 4.09,
+      "averageRating": 4.26,
       "bookPublished": "2021",
       "numPages": 204,
-      "source": "csv"
+      "source": "rss"
     },
     {
       "title": "James",
@@ -307,7 +307,7 @@
       "bookId": "179550498",
       "isbn": "0385550375",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1691197651l/179550498._SY475_.jpg",
-      "averageRating": 4.57,
+      "averageRating": 4.56,
       "bookPublished": "2024",
       "numPages": 304,
       "source": "rss"
@@ -320,7 +320,7 @@
       "bookId": "208932385",
       "isbn": "0374602646",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1716387539l/208932385._SY475_.jpg",
-      "averageRating": 3.83,
+      "averageRating": 3.82,
       "bookPublished": "2024",
       "numPages": 464,
       "source": "rss"
@@ -359,7 +359,7 @@
       "bookId": "123811874",
       "isbn": "1538765500",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680179150l/123811874._SY475_.jpg",
-      "averageRating": 4.47,
+      "averageRating": 4.48,
       "bookPublished": "1998",
       "numPages": 434,
       "source": "rss"
@@ -424,7 +424,7 @@
       "bookId": "197828937",
       "isbn": "0593190289",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1695914086l/197828937._SY475_.jpg",
-      "averageRating": 3.36,
+      "averageRating": 3.35,
       "bookPublished": "2024",
       "numPages": 333,
       "source": "rss"
@@ -554,7 +554,7 @@
       "bookId": "53108625",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1586543926l/53108625._SY475_.jpg",
-      "averageRating": 4.07,
+      "averageRating": 4.06,
       "bookPublished": "2004",
       "numPages": 865,
       "source": "rss"
@@ -762,7 +762,7 @@
       "bookId": "59039413",
       "isbn": "0593420330",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1632139749l/59039413._SY475_.jpg",
-      "averageRating": 3.96,
+      "averageRating": 3.97,
       "bookPublished": "2022",
       "numPages": 415,
       "source": "rss"
@@ -1178,7 +1178,7 @@
       "bookId": "58596754",
       "isbn": "0593160231",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1648594524l/58596754.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.16,
       "bookPublished": "2022",
       "numPages": 368,
       "source": "rss"
@@ -1584,19 +1584,6 @@
       "averageRating": 3.64,
       "bookPublished": "2020",
       "numPages": 290,
-      "source": "csv"
-    },
-    {
-      "title": "Beowulf: A New Translation",
-      "author": "Beowulf Poet",
-      "rating": 3,
-      "readAt": "Fri, 27 Nov 2020 00:00:00 GMT",
-      "bookId": "45889029",
-      "isbn": "",
-      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1598342469l/45889029._SY475_.jpg",
-      "averageRating": 3.5,
-      "bookPublished": "2020",
-      "numPages": 178,
       "source": "csv"
     },
     {
@@ -4896,11 +4883,24 @@
       "bookId": "223855577",
       "isbn": "0593804732",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.16,
       "bookPublished": "2025",
       "numPages": 338,
       "source": "rss"
+    },
+    {
+      "title": "This Time Tomorrow",
+      "author": "Emma Straub",
+      "rating": 0,
+      "readAt": "",
+      "bookId": "59089704",
+      "isbn": "052553900X",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1635860014l/59089704.jpg",
+      "averageRating": 3.78,
+      "bookPublished": "2022",
+      "numPages": 310,
+      "source": "rss"
     }
   ],
-  "lastUpdated": "2026-03-23T10:05:07.366Z"
+  "lastUpdated": "2026-03-30T10:19:35.053Z"
 }
