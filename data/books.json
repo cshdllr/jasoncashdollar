@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "On the Calculation of Volume I",
+      "author": "Solvej Balle",
+      "rating": 3,
+      "readAt": "Thu, 2 Apr 2026 00:00:00 +0000",
+      "bookId": "216625982",
+      "isbn": "0811237265",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730134103l/216625982._SY475_.jpg",
+      "averageRating": 3.8,
+      "bookPublished": "2020",
+      "numPages": 164,
+      "source": "rss"
+    },
+    {
       "title": "Martyr!",
       "author": "Kaveh Akbar",
       "rating": 4,
@@ -125,7 +138,7 @@
       "bookId": "214195417",
       "isbn": "1982122811",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717908825l/214195417._SY475_.jpg",
-      "averageRating": 3.87,
+      "averageRating": 3.86,
       "bookPublished": "2025",
       "numPages": 364,
       "source": "rss"
@@ -151,7 +164,7 @@
       "bookId": "214985934",
       "isbn": "1681378736",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733308068l/214985934._SX318_.jpg",
-      "averageRating": 3.87,
+      "averageRating": 3.86,
       "bookPublished": "2022",
       "numPages": 125,
       "source": "rss"
@@ -333,7 +346,7 @@
       "bookId": "19452425",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386983547l/19452425.jpg",
-      "averageRating": 4.24,
+      "averageRating": 4.25,
       "bookPublished": "1995",
       "numPages": 228,
       "source": "rss"
@@ -359,7 +372,7 @@
       "bookId": "123811874",
       "isbn": "1538765500",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680179150l/123811874._SY475_.jpg",
-      "averageRating": 4.48,
+      "averageRating": 4.47,
       "bookPublished": "1998",
       "numPages": 434,
       "source": "rss"
@@ -970,7 +983,7 @@
       "bookId": "62962424",
       "isbn": "0593186656",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1665463858l/62962424._SY475_.jpg",
-      "averageRating": 4.47,
+      "averageRating": 4.46,
       "bookPublished": "2023",
       "numPages": 267,
       "source": "rss"
@@ -1165,7 +1178,7 @@
       "bookId": "58181475",
       "isbn": "0593330994",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1622167785l/58181475._SY475_.jpg",
-      "averageRating": 4.18,
+      "averageRating": 4.17,
       "bookPublished": "2021",
       "numPages": 333,
       "source": "rss"
@@ -1200,14 +1213,14 @@
       "title": "The Year of Magical Thinking",
       "author": "Joan Didion",
       "rating": 5,
-      "readAt": "Wed, 1 Jun 2022 00:00:00 +0000",
+      "readAt": "Wed, 01 Jun 2022 00:00:00 GMT",
       "bookId": "5496844",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1576985564l/5496844._SY475_.jpg",
-      "averageRating": 4.07,
-      "bookPublished": "2005",
+      "averageRating": 3.93,
+      "bookPublished": "2007",
       "numPages": 242,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life",
@@ -4902,5 +4915,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-03-30T10:19:35.053Z"
+  "lastUpdated": "2026-04-06T10:12:13.258Z"
 }
