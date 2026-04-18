@@ -441,6 +441,10 @@ p a {
     opacity 0.2s ease;
 }
 
+.link-button::after {
+  content: ' ↗';
+}
+
 .link-button:hover {
   background-color: var(--color-background-tertiary);
   opacity: 0.9;
