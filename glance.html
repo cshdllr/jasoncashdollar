@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Cashdollar / Glance</title>
+    <meta name="description" content="A Chrome extension that makes it easy to inspect the design properties of any website.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jasoncashdollar.github.io/jasoncashdollar/glance">
+    <meta property="og:title" content="Glance - Jason Cashdollar">
+    <meta property="og:description" content="A Chrome extension that makes it easy to inspect the design properties of any website.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jasoncashdollar.github.io/jasoncashdollar/glance">
+    <meta property="twitter:title" content="Glance - Jason Cashdollar">
+    <meta property="twitter:description" content="A Chrome extension that makes it easy to inspect the design properties of any website.">
+
+    <link rel="icon" href="images/jason.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="analytics.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-name">Jason Cashdollar</a> / <span class="breadcrumb-project">Glance</span>
+            </div>
+        </header>
+
+        <main class="project-main">
+            <div class="project-header">
+                <h1 class="page-title">Glance</h1>
+                <a href="https://github.com/cshdllr/glance" target="_blank" rel="noopener noreferrer" class="link-button">Get extension</a>
+            </div>
+
+            <section class="project-section">
+                <div class="video-container">
+                    <video id="glance-video" src="images/glance/glance.mp4" class="project-image-full" autoplay loop muted playsinline></video>
+                    <div class="video-controls">
+                        <button type="button" class="video-control-button" id="glance-audio-toggle" aria-label="Unmute">
+                            <span aria-hidden="true">Unmute</span>
+                        </button>
+                        <button type="button" class="video-control-button" id="glance-restart" aria-label="Restart">
+                            <span aria-hidden="true">Restart</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="project-section">
+                <p class="section-text">Glance is a Chrome extension that makes it easy to inspect the design properties of any website. It surfaces colors, typography, spacing, and other visual details in a clean overlay.</p>
+                <p class="section-text">I built it as an easier way to parse the information the inspector already exposes, tailored to how designers actually look at a page.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        (function () {
+            const video = document.getElementById('glance-video');
+            const audioToggle = document.getElementById('glance-audio-toggle');
+            const restart = document.getElementById('glance-restart');
+            if (!video || !audioToggle || !restart) return;
+
+            const updateLabel = () => {
+                const label = video.muted ? 'Unmute' : 'Mute';
+                audioToggle.setAttribute('aria-label', label);
+                audioToggle.querySelector('span').textContent = label;
+            };
+
+            audioToggle.addEventListener('click', () => {
+                video.muted = !video.muted;
+                updateLabel();
+            });
+
+            restart.addEventListener('click', () => {
+                video.currentTime = 0;
+                video.play();
+            });
+
+            updateLabel();
+        })();
+    </script>
+</body>
+</html>

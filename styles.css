@@ -450,6 +450,49 @@ p a {
   opacity: 0.9;
 }
 
+/* Hover-reveal controls over a video */
+.video-container {
+  position: relative;
+}
+
+.video-controls {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  transition: opacity 0.15s ease;
+}
+
+@media (hover: hover) {
+  .video-controls {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .video-container:hover .video-controls {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.video-control-button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  border: 0;
+  padding: 6px 12px;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.video-control-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 /* ===== BOOKSHELF PAGE STYLES ===== */
 
 /* Bookshelf Main Layout */
