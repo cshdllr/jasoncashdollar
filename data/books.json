@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "On the Calculation of Volume II",
+      "author": "Solvej Balle",
+      "rating": 3,
+      "readAt": "Tue, 21 Apr 2026 00:00:00 +0000",
+      "bookId": "216626186",
+      "isbn": "0811237281",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730135211l/216626186._SY475_.jpg",
+      "averageRating": 4.17,
+      "bookPublished": "2020",
+      "numPages": 188,
+      "source": "rss"
+    },
+    {
       "title": "On the Calculation of Volume I",
       "author": "Solvej Balle",
       "rating": 3,
@@ -34,7 +47,7 @@
       "bookId": "230400297",
       "isbn": "0802166482",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743008097l/230400297._SY475_.jpg",
-      "averageRating": 4.31,
+      "averageRating": 4.3,
       "bookPublished": "2025",
       "numPages": 282,
       "source": "rss"
@@ -138,7 +151,7 @@
       "bookId": "214195417",
       "isbn": "1982122811",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717908825l/214195417._SY475_.jpg",
-      "averageRating": 3.86,
+      "averageRating": 3.85,
       "bookPublished": "2025",
       "numPages": 364,
       "source": "rss"
@@ -164,7 +177,7 @@
       "bookId": "214985934",
       "isbn": "1681378736",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733308068l/214985934._SX318_.jpg",
-      "averageRating": 3.85,
+      "averageRating": 3.86,
       "bookPublished": "2022",
       "numPages": 125,
       "source": "rss"
@@ -261,14 +274,14 @@
       "source": "rss"
     },
     {
-      "title": "The Screwtape Letters",
+      "title": "The Screwtape Letters (Screwtape, #1)",
       "author": "C.S. Lewis",
       "rating": 3,
       "readAt": "Fri, 25 Jul 2025 00:00:00 +0000",
       "bookId": "8130077",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1760782828l/8130077._SY475_.jpg",
-      "averageRating": 4.36,
+      "averageRating": 4.35,
       "bookPublished": "1942",
       "numPages": 222,
       "source": "rss"
@@ -372,7 +385,7 @@
       "bookId": "123811874",
       "isbn": "1538765500",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680179150l/123811874._SY475_.jpg",
-      "averageRating": 4.48,
+      "averageRating": 4.47,
       "bookPublished": "1998",
       "numPages": 434,
       "source": "rss"
@@ -626,7 +639,7 @@
     },
     {
       "title": "Turtles All the Way Down",
-      "author": "John Green",
+      "author": "John  Green",
       "rating": 3,
       "readAt": "Thu, 30 May 2024 00:00:00 +0000",
       "bookId": "35498621",
@@ -814,7 +827,7 @@
       "bookId": "61867769",
       "isbn": "1250208440",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1659718691l/61867769._SY475_.jpg",
-      "averageRating": 3.97,
+      "averageRating": 3.96,
       "bookPublished": "2022",
       "numPages": 202,
       "source": "rss"
@@ -905,7 +918,7 @@
       "bookId": "60457992",
       "isbn": "1945492627",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645371720l/60457992._SY475_.jpg",
-      "averageRating": 3.99,
+      "averageRating": 3.98,
       "bookPublished": "1995",
       "numPages": 175,
       "source": "rss"
@@ -957,7 +970,7 @@
       "bookId": "57139780",
       "isbn": "0735222371",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1613848180l/57139780._SY475_.jpg",
-      "averageRating": 4.36,
+      "averageRating": 4.35,
       "bookPublished": "2021",
       "numPages": 576,
       "source": "rss"
@@ -983,7 +996,7 @@
       "bookId": "62962424",
       "isbn": "0593186656",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1665463858l/62962424._SY475_.jpg",
-      "averageRating": 4.46,
+      "averageRating": 4.47,
       "bookPublished": "2023",
       "numPages": 267,
       "source": "rss"
@@ -1055,7 +1068,7 @@
     },
     {
       "title": "The Anthropocene Reviewed: Essays on a Human-Centered Planet",
-      "author": "John Green",
+      "author": "John  Green",
       "rating": 4,
       "readAt": "Sat, 28 Jan 2023 00:00:00 +0000",
       "bookId": "55223004",
@@ -1187,14 +1200,14 @@
       "title": "Unlikely Animals",
       "author": "Annie  Hartnett",
       "rating": 4,
-      "readAt": "Thu, 14 Jul 2022 00:00:00 +0000",
+      "readAt": "Thu, 14 Jul 2022 00:00:00 GMT",
       "bookId": "58596754",
-      "isbn": "0593160231",
+      "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1648594524l/58596754.jpg",
-      "averageRating": 4.16,
+      "averageRating": 4.06,
       "bookPublished": "2022",
       "numPages": 368,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "The Every",
@@ -4896,9 +4909,9 @@
       "bookId": "223855577",
       "isbn": "0593804732",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
-      "averageRating": 4.15,
+      "averageRating": 4.14,
       "bookPublished": "2025",
-      "numPages": 338,
+      "numPages": 321,
       "source": "rss"
     },
     {
@@ -4915,5 +4928,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-04-20T10:51:21.405Z"
+  "lastUpdated": "2026-04-27T11:06:46.408Z"
 }
