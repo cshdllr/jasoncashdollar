@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Writers & Lovers",
+      "author": "Lily King",
+      "rating": 4,
+      "readAt": "Fri, 1 May 2026 00:00:00 +0000",
+      "bookId": "50395093",
+      "isbn": "0802148557",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1728819159l/50395093._SY475_.jpg",
+      "averageRating": 4.18,
+      "bookPublished": "2020",
+      "numPages": 333,
+      "source": "rss"
+    },
+    {
       "title": "On the Calculation of Volume II",
       "author": "Solvej Balle",
       "rating": 3,
@@ -21,7 +34,7 @@
       "bookId": "216625982",
       "isbn": "0811237265",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730134103l/216625982._SY475_.jpg",
-      "averageRating": 3.8,
+      "averageRating": 3.81,
       "bookPublished": "2020",
       "numPages": 164,
       "source": "rss"
@@ -47,7 +60,7 @@
       "bookId": "230400297",
       "isbn": "0802166482",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743008097l/230400297._SY475_.jpg",
-      "averageRating": 4.3,
+      "averageRating": 4.29,
       "bookPublished": "2025",
       "numPages": 282,
       "source": "rss"
@@ -60,7 +73,7 @@
       "bookId": "239039076",
       "isbn": "0525509631",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753238089l/239039076._SY475_.jpg",
-      "averageRating": 3.74,
+      "averageRating": 3.73,
       "bookPublished": "2026",
       "numPages": 177,
       "source": "rss"
@@ -177,7 +190,7 @@
       "bookId": "214985934",
       "isbn": "1681378736",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733308068l/214985934._SX318_.jpg",
-      "averageRating": 3.86,
+      "averageRating": 3.85,
       "bookPublished": "2022",
       "numPages": 125,
       "source": "rss"
@@ -216,7 +229,7 @@
       "bookId": "38213103",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1517007631l/38213103.jpg",
-      "averageRating": 4.38,
+      "averageRating": 4.37,
       "bookPublished": "2015",
       "numPages": 465,
       "source": "rss"
@@ -502,7 +515,7 @@
       "bookId": "63429926",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1722705685l/63429926._SY475_.jpg",
-      "averageRating": 4.57,
+      "averageRating": 4.56,
       "bookPublished": "2023",
       "numPages": 802,
       "source": "rss"
@@ -762,7 +775,7 @@
       "bookId": "59016923",
       "isbn": "0802158757",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631916775l/59016923._SX318_.jpg",
-      "averageRating": 4.13,
+      "averageRating": 4.12,
       "bookPublished": "2021",
       "numPages": 70,
       "source": "rss"
@@ -827,7 +840,7 @@
       "bookId": "61867769",
       "isbn": "1250208440",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1659718691l/61867769._SY475_.jpg",
-      "averageRating": 3.96,
+      "averageRating": 3.97,
       "bookPublished": "2022",
       "numPages": 202,
       "source": "rss"
@@ -879,7 +892,7 @@
       "bookId": "769016",
       "isbn": "0380811960",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1442201568l/769016._SY475_.jpg",
-      "averageRating": 4.26,
+      "averageRating": 4.25,
       "bookPublished": "1980",
       "numPages": 286,
       "source": "rss"
@@ -996,7 +1009,7 @@
       "bookId": "62962424",
       "isbn": "0593186656",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1665463858l/62962424._SY475_.jpg",
-      "averageRating": 4.47,
+      "averageRating": 4.46,
       "bookPublished": "2023",
       "numPages": 267,
       "source": "rss"
@@ -1213,14 +1226,14 @@
       "title": "The Every",
       "author": "Dave Eggers",
       "rating": 2,
-      "readAt": "Fri, 1 Jul 2022 00:00:00 +0000",
+      "readAt": "Fri, 01 Jul 2022 00:00:00 GMT",
       "bookId": "57801678",
-      "isbn": "0593320875",
+      "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1622213907l/57801678.jpg",
-      "averageRating": 3.94,
+      "averageRating": 3.69,
       "bookPublished": "2021",
       "numPages": 496,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "The Year of Magical Thinking",
@@ -4909,7 +4922,7 @@
       "bookId": "223855577",
       "isbn": "0593804732",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
-      "averageRating": 4.14,
+      "averageRating": 4.13,
       "bookPublished": "2025",
       "numPages": 321,
       "source": "rss"
@@ -4928,5 +4941,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-04-27T11:06:46.408Z"
+  "lastUpdated": "2026-05-04T11:06:39.271Z"
 }
