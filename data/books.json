@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Heart the Lover",
+      "author": "Lily King",
+      "rating": 5,
+      "readAt": "Sun, 10 May 2026 00:00:00 +0000",
+      "bookId": "229804861",
+      "isbn": "0802165184",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1745514824l/229804861._SY475_.jpg",
+      "averageRating": 4.35,
+      "bookPublished": "2025",
+      "numPages": 0,
+      "source": "rss"
+    },
+    {
       "title": "Writers & Lovers",
       "author": "Lily King",
       "rating": 4,
@@ -8,7 +21,7 @@
       "bookId": "50395093",
       "isbn": "0802148557",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1728819159l/50395093._SY475_.jpg",
-      "averageRating": 4.18,
+      "averageRating": 4.17,
       "bookPublished": "2020",
       "numPages": 333,
       "source": "rss"
@@ -21,7 +34,7 @@
       "bookId": "216626186",
       "isbn": "0811237281",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730135211l/216626186._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.18,
       "bookPublished": "2020",
       "numPages": 188,
       "source": "rss"
@@ -60,7 +73,7 @@
       "bookId": "230400297",
       "isbn": "0802166482",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743008097l/230400297._SY475_.jpg",
-      "averageRating": 4.29,
+      "averageRating": 4.3,
       "bookPublished": "2025",
       "numPages": 282,
       "source": "rss"
@@ -73,7 +86,7 @@
       "bookId": "239039076",
       "isbn": "0525509631",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753238089l/239039076._SY475_.jpg",
-      "averageRating": 3.73,
+      "averageRating": 3.72,
       "bookPublished": "2026",
       "numPages": 177,
       "source": "rss"
@@ -424,7 +437,7 @@
       "bookId": "181347561",
       "isbn": "0593448812",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1695795610l/181347561._SY475_.jpg",
-      "averageRating": 4.15,
+      "averageRating": 4.14,
       "bookPublished": "2024",
       "numPages": 327,
       "source": "rss"
@@ -567,7 +580,7 @@
       "bookId": "54789386",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1740778215l/54789386._SY475_.jpg",
-      "averageRating": 4.33,
+      "averageRating": 4.32,
       "bookPublished": "2005",
       "numPages": 322,
       "source": "rss"
@@ -697,7 +710,7 @@
       "bookId": "13537037",
       "isbn": "0062201891",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1331556153l/13537037.jpg",
-      "averageRating": 4.31,
+      "averageRating": 4.3,
       "bookPublished": "2011",
       "numPages": 416,
       "source": "rss"
@@ -959,7 +972,7 @@
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1638033318l/59710157._SY475_.jpg",
       "averageRating": 4.51,
       "bookPublished": "2022",
-      "numPages": 362,
+      "numPages": 360,
       "source": "rss"
     },
     {
@@ -1174,14 +1187,14 @@
       "title": "This Time Tomorrow",
       "author": "Emma Straub",
       "rating": 2,
-      "readAt": "Tue, 11 Oct 2022 00:00:00 +0000",
+      "readAt": "Tue, 11 Oct 2022 00:00:00 GMT",
       "bookId": "62674734",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1663720154l/62674734._SY475_.jpg",
-      "averageRating": 3.72,
+      "averageRating": 3.8,
       "bookPublished": "2022",
       "numPages": 0,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "The Ministry for the Future",
@@ -4941,5 +4954,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-05-04T11:06:39.271Z"
+  "lastUpdated": "2026-05-11T12:12:33.120Z"
 }
