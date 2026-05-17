@@ -40,6 +40,22 @@ const BREADCRUMB_MENU_SECTIONS = [
     }
 ];
 
+function initBreadcrumbNameThumb() {
+    const nameLink = document.querySelector('.breadcrumb-name');
+    if (!nameLink || nameLink.querySelector('.breadcrumb-name-thumb')) return;
+    const text = nameLink.textContent;
+    nameLink.textContent = '';
+    const thumb = document.createElement('img');
+    thumb.className = 'breadcrumb-name-thumb';
+    thumb.src = 'images/jason.png';
+    thumb.alt = text;
+    const label = document.createElement('span');
+    label.className = 'breadcrumb-name-text';
+    label.textContent = text;
+    nameLink.appendChild(thumb);
+    nameLink.appendChild(label);
+}
+
 function initBreadcrumbMenu() {
     const projectSpan = document.querySelector('.breadcrumb-project');
     if (!projectSpan) return;
@@ -128,6 +144,7 @@ function initBreadcrumbMenu() {
 
 // Portfolio JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    initBreadcrumbNameThumb();
     initBreadcrumbMenu();
 
     // Smooth scrolling for internal links

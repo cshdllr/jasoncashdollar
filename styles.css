@@ -171,6 +171,9 @@ p a {
 .breadcrumb {
   font-size: 18px;
   line-height: 1.4;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .header:has(.breadcrumb) {
@@ -183,6 +186,21 @@ p a {
   color: var(--color-text-primary);
   text-decoration: none;
   padding-right: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumb-name-thumb {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.breadcrumb-name-text {
+  display: none;
 }
 
 .breadcrumb-project {
@@ -329,8 +347,8 @@ p a {
   }
 
   .breadcrumb-name {
-    padding: 8px 12px 8px 0;
-    margin: -8px 0;
+    padding: 4px 12px 4px 0;
+    margin: -4px 0;
   }
 
   .breadcrumb-menu-item {
