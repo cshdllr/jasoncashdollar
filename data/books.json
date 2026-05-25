@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Angel Down",
+      "author": "Daniel Kraus",
+      "rating": 5,
+      "readAt": "Wed, 20 May 2026 00:00:00 +0000",
+      "bookId": "220195748",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1728328088l/220195748._SY475_.jpg",
+      "averageRating": 4.13,
+      "bookPublished": "2025",
+      "numPages": 304,
+      "source": "rss"
+    },
+    {
       "title": "Heart the Lover",
       "author": "Lily King",
       "rating": 5,
@@ -86,7 +99,7 @@
       "bookId": "239039076",
       "isbn": "0525509631",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753238089l/239039076._SY475_.jpg",
-      "averageRating": 3.71,
+      "averageRating": 3.7,
       "bookPublished": "2026",
       "numPages": 177,
       "source": "rss"
@@ -203,7 +216,7 @@
       "bookId": "214985934",
       "isbn": "1681378736",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733308068l/214985934._SX318_.jpg",
-      "averageRating": 3.85,
+      "averageRating": 3.84,
       "bookPublished": "2022",
       "numPages": 125,
       "source": "rss"
@@ -567,7 +580,7 @@
       "bookId": "60429621",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645021313l/60429621._SY475_.jpg",
-      "averageRating": 4.09,
+      "averageRating": 4.08,
       "bookPublished": "2022",
       "numPages": 312,
       "source": "rss"
@@ -1200,14 +1213,14 @@
       "title": "The Ministry for the Future",
       "author": "Kim Stanley Robinson",
       "rating": 3,
-      "readAt": "Thu, 22 Sep 2022 00:00:00 +0000",
+      "readAt": "Sun, 31 Jul 2022 00:00:00 GMT",
       "bookId": "59355202",
-      "isbn": "0316300160",
+      "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1634332691l/59355202._SY475_.jpg",
-      "averageRating": 4.04,
-      "bookPublished": "2020",
+      "averageRating": 3.87,
+      "bookPublished": "2021",
       "numPages": 577,
-      "source": "rss"
+      "source": "csv"
     },
     {
       "title": "Hell of a Book",
@@ -4935,7 +4948,7 @@
       "bookId": "223855577",
       "isbn": "0593804732",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
-      "averageRating": 4.12,
+      "averageRating": 4.11,
       "bookPublished": "2025",
       "numPages": 321,
       "source": "rss"
@@ -4954,5 +4967,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-05-18T12:34:22.830Z"
+  "lastUpdated": "2026-05-25T12:33:54.565Z"
 }
