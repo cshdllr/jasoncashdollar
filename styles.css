@@ -413,7 +413,7 @@ p a {
 .project-title:hover {
   text-decoration: underline;
   text-decoration-style: wavy;
-  text-decoration-color: var(--color-text-secondary);
+  text-decoration-color: var(--squiggle, var(--color-text-secondary));
   text-underline-offset: 2px;
 }
 
