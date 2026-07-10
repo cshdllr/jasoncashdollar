@@ -141,6 +141,20 @@ p a {
   width: 100%;
 }
 
+.header-identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .name {
   font-size: var(--font-size-large);
   font-weight: 700;
@@ -359,30 +373,6 @@ p a {
 /* Main Content */
 .main {
   flex: 1;
-}
-
-/* Hero Section */
-.hero {
-  max-width: 600px;
-  margin: 0 var(--content-margin) 60px var(--content-margin);
-  text-wrap: pretty;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.hero-photo {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.hero-description {
-  font-size: var(--font-size-large);
-  font-weight: 400;
-  line-height: 1.5;
 }
 
 /* Projects Section */
@@ -1014,12 +1004,6 @@ p a {
     padding-right: var(--content-margin);
     margin-left: 0;
     margin-right: 0;
-  }
-
-  /* Hero stacks vertically with photo on top */
-  .hero {
-    flex-direction: column-reverse;
-    align-items: flex-start;
   }
 
   /* Project cards stack: description drops below the title */
