@@ -228,17 +228,19 @@ function extractTag(content, tagName) {
 }
 
 /**
- * Stable merge key: Goodreads bookId when present (same book can appear under
- * different title strings in CSV vs RSS). Otherwise title + author.
+ * Merge/identity key: normalized title + author. Keying on the book itself
+ * (rather than the Goodreads bookId) means the same book collapses to one entry
+ * even when Goodreads returns it under multiple editions with different bookIds
+ * or different read dates. Title is lowercased, whitespace-collapsed, and a
+ * trailing "(Series #1)"-style suffix is stripped so editions still match.
  */
 function bookMergeKey(book) {
-  const id = book.bookId != null && String(book.bookId).trim() !== '';
-  if (id) {
-    return `id:${String(book.bookId).trim()}`;
-  }
-  const t = (book.title || '').toLowerCase().trim();
-  const a = (book.author || '').toLowerCase().trim();
-  return `ta:${t}_${a}`;
+  const norm = (s) => (s || '')
+    .toLowerCase()
+    .replace(/\s*\([^)]*\)\s*$/, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return `ta:${norm(book.title)}_${norm(book.author)}`;
 }
 
 /**

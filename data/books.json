@@ -1184,19 +1184,6 @@
       "source": "csv"
     },
     {
-      "title": "This Time Tomorrow",
-      "author": "Emma Straub",
-      "rating": 0,
-      "readAt": "Fri, 23 Sep 2022 00:00:00 GMT",
-      "bookId": "59089704",
-      "isbn": "",
-      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1635860014l/59089704.jpg",
-      "averageRating": 3.8,
-      "bookPublished": "2022",
-      "numPages": 310,
-      "source": "csv"
-    },
-    {
       "title": "The Ministry for the Future",
       "author": "Kim Stanley Robinson",
       "rating": 3,

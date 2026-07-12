@@ -10,21 +10,30 @@ document.addEventListener('DOMContentLoaded', async function() {
     let currentView = 'cards'; // Default view
     
     /**
-     * Remove duplicate books (same Goodreads id or same title+author+read date).
-     * Keeps the first occurrence so merge/import order wins.
+     * Normalized title|author key used to identify a book. Lowercased, whitespace
+     * collapsed, and a trailing "(Series #1)"-style suffix removed so the same book
+     * matches across Goodreads editions.
+     */
+    function bookIdentityKey(book) {
+        const norm = (s) => (s || '')
+            .toLowerCase()
+            .replace(/\s*\([^)]*\)\s*$/, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+        return `${norm(book.title)}|${norm(book.author)}`;
+    }
+
+    /**
+     * Remove duplicate books. A book is identified by its title + author, so the
+     * same book never shows twice even if Goodreads has it under multiple editions
+     * (different bookId) or with different read dates. Keeps the first occurrence;
+     * books arrive sorted newest-read first, so the most recent read wins.
      */
     function dedupeBooks(books) {
         const seen = new Set();
         const out = [];
         for (const book of books) {
-            const id = book.bookId != null && String(book.bookId).trim() !== ''
-                ? `id:${String(book.bookId).trim()}`
-                : null;
-            const key = id || [
-                (book.title || '').trim().toLowerCase(),
-                (book.author || '').trim().toLowerCase(),
-                book.readAt || ''
-            ].join('|');
+            const key = bookIdentityKey(book);
             if (seen.has(key)) continue;
             seen.add(key);
             out.push(book);
