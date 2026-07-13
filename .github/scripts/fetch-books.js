@@ -170,7 +170,14 @@ function parseRSSFeed(xmlData) {
     const title = decodeHTMLEntities(extractTag(itemContent, 'title'));
     const author = decodeHTMLEntities(extractTag(itemContent, 'author_name'));
     const rating = parseInt(extractTag(itemContent, 'user_rating')) || 0;
-    const readAt = extractTag(itemContent, 'user_read_at');
+    // Goodreads sometimes leaves "date read" blank even for finished books, which
+    // would sort them to 1970 and drop them out of the year list. Fall back to
+    // when the book was first shelved/logged (date created), then date added,
+    // then the item's pubDate, so undated reads land near when they happened.
+    const readAt = extractTag(itemContent, 'user_read_at')
+      || extractTag(itemContent, 'user_date_created')
+      || extractTag(itemContent, 'user_date_added')
+      || extractTag(itemContent, 'pubDate');
     const bookId = extractTag(itemContent, 'book_id');
     const isbn = extractTag(itemContent, 'isbn');
     const averageRating = parseFloat(extractTag(itemContent, 'average_rating')) || 0;

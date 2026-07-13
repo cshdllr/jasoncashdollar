@@ -157,6 +157,19 @@
       "source": "rss"
     },
     {
+      "title": "What We Can Know",
+      "author": "Ian McEwan",
+      "rating": 4,
+      "readAt": "Wed, 10 Dec 2025 14:28:27 -0800",
+      "bookId": "223855577",
+      "isbn": "0593804732",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
+      "averageRating": 4.11,
+      "bookPublished": "2025",
+      "numPages": 321,
+      "source": "rss"
+    },
+    {
       "title": "Train Dreams",
       "author": "Denis Johnson",
       "rating": 3,
@@ -4939,19 +4952,6 @@
       "bookPublished": "2006",
       "numPages": 247,
       "source": "csv"
-    },
-    {
-      "title": "What We Can Know",
-      "author": "Ian McEwan",
-      "rating": 4,
-      "readAt": "",
-      "bookId": "223855577",
-      "isbn": "0593804732",
-      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
-      "averageRating": 4.11,
-      "bookPublished": "2025",
-      "numPages": 321,
-      "source": "rss"
     }
   ],
   "lastUpdated": "2026-07-06T12:49:59.469Z"
