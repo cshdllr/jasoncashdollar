@@ -1186,14 +1186,14 @@
     {
       "title": "This Time Tomorrow",
       "author": "Emma Straub",
-      "rating": 2,
-      "readAt": "Tue, 11 Oct 2022 00:00:00 GMT",
-      "bookId": "62674734",
+      "rating": 0,
+      "readAt": "Fri, 23 Sep 2022 00:00:00 GMT",
+      "bookId": "59089704",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1663720154l/62674734._SY475_.jpg",
       "averageRating": 3.8,
       "bookPublished": "2022",
-      "numPages": 0,
+      "numPages": 310,
       "source": "csv"
     },
     {
@@ -4954,5 +4954,5 @@
       "source": "csv"
     }
   ],
-  "lastUpdated": "2026-07-06T12:49:59.469Z"
+  "lastUpdated": "2026-07-13T12:07:54.452Z"
 }
