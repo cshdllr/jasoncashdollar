@@ -1016,6 +1016,11 @@ p a {
     row-gap: 2px;
   }
 
+  /* More breathing room between stacked projects (kept on the 4px grid) */
+  .projects {
+    gap: 20px;
+  }
+
   /* Images/videos align with text margins */
   .project-image-centered,
   .project-image-grid,
