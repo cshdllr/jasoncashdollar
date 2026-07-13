@@ -983,7 +983,7 @@ p a {
 }
 
 .work-dates {
-  font-size: var(--font-size-small);
+  font-size: 15px;
   font-weight: 400;
   color: var(--color-text-secondary);
   font-family:
