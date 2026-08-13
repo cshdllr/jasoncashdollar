@@ -7,11 +7,13 @@ The bookshelf feature automatically syncs your read books from Goodreads and dis
 ## How It Works
 
 ### 1. Automatic Data Fetching
-- **GitHub Actions Workflow** (`.github/workflows/update-bookshelf.yml`) runs every Monday at 9:00 AM UTC
+- **GitHub Actions Workflow** (`.github/workflows/update-bookshelf.yml`) runs every Monday at 9:17 AM UTC
 - Can also be triggered manually from the Actions tab on GitHub
 - Fetches your Goodreads RSS feed and parses book data
+- Retries temporary feed failures and fails loudly on HTTP errors or empty feeds
 - Saves book information to `data/books.json`
-- Automatically commits and pushes changes if new books are detected
+- Automatically commits and pushes only when the book list actually changes
+- Triggers the GitHub Pages deployment after every successful bookshelf sync
 
 ### 2. Book Data
 The following information is extracted for each book:
@@ -78,7 +80,7 @@ Click the view toggle icons at the top of the bookshelf to switch between:
 Edit `.github/workflows/update-bookshelf.yml` and modify the cron schedule:
 ```yaml
 schedule:
-  - cron: '0 9 * * 1'  # Every Monday at 9am UTC
+  - cron: '17 9 * * 1'  # Every Monday at 9:17am UTC
 ```
 
 Common schedules:
@@ -92,8 +94,8 @@ Bookshelf-specific styles are in `styles.css` under the `/* ===== BOOKSHELF PAGE
 ## Dependencies
 
 ### GitHub Actions
-- **Node.js 20** - For running the fetch script
-- Uses built-in Node.js `https` module (no external npm packages required)
+- **Current Node.js LTS** - For running the fetch script
+- Uses only built-in Node.js modules (no external npm packages required)
 
 ## Troubleshooting
 
@@ -101,6 +103,10 @@ Bookshelf-specific styles are in `styles.css` under the `/* ===== BOOKSHELF PAGE
 1. Check if the workflow ran successfully in GitHub Actions tab
 2. Verify your Goodreads RSS feed URL is correct in `.github/scripts/fetch-books.js`
 3. Make sure the repository has write permissions for GitHub Actions
+
+The importer sends the identifying HTTP headers Goodreads requires, follows redirects,
+and treats blocked, malformed, or unexpectedly empty feeds as failures. This prevents a
+timestamp-only commit from making a broken sync look successful.
 
 ### Images Not Loading
 - Goodreads images are served from their CDN
@@ -135,4 +141,3 @@ Potential improvements you could add:
 - Book reviews/notes from Goodreads
 - Link to Goodreads book page
 - Reading statistics and charts
-

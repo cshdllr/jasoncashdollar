@@ -1,30 +1,87 @@
+const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const RSS_FEED_URL = 'https://www.goodreads.com/review/list_rss/7275511?key=FDAhzaFkwW1x8rhr_M0sD54b28PYpbMSXyLrOUIB_FLLkctm&shelf=read';
+const RSS_FEED_URL = process.env.GOODREADS_RSS_URL
+  || 'https://www.goodreads.com/review/list_rss/7275511?key=FDAhzaFkwW1x8rhr_M0sD54b28PYpbMSXyLrOUIB_FLLkctm&shelf=read';
 const CSV_PATH = path.join(process.cwd(), 'data', 'goodreads_library.csv');
+const REQUEST_TIMEOUT_MS = 15_000;
+const MAX_REDIRECTS = 5;
+const MAX_FETCH_ATTEMPTS = 3;
 
 /**
  * Fetch the RSS feed from Goodreads
  */
-function fetchRSSFeed(url) {
+function fetchRSSFeed(url, redirectsRemaining = MAX_REDIRECTS) {
   return new Promise((resolve, reject) => {
-    https.get(url, (res) => {
+    const parsedUrl = new URL(url);
+    const client = parsedUrl.protocol === 'http:' ? http : https;
+    const request = client.get(parsedUrl, {
+      headers: {
+        // Goodreads returns HTTP 403 to unidentified Node.js requests.
+        'User-Agent': 'JasonCashdollarBookshelfSync/1.0 (+https://jasoncashdollar.com)',
+        'Accept': 'application/rss+xml, application/xml;q=0.9, text/xml;q=0.8'
+      }
+    }, (res) => {
+      const statusCode = res.statusCode || 0;
+
+      if (statusCode >= 300 && statusCode < 400 && res.headers.location) {
+        res.resume();
+
+        if (redirectsRemaining === 0) {
+          reject(new Error('Goodreads RSS request exceeded the redirect limit'));
+          return;
+        }
+
+        const redirectUrl = new URL(res.headers.location, parsedUrl).toString();
+        resolve(fetchRSSFeed(redirectUrl, redirectsRemaining - 1));
+        return;
+      }
+
+      if (statusCode < 200 || statusCode >= 300) {
+        res.resume();
+        reject(new Error(`Goodreads RSS request failed with HTTP ${statusCode}`));
+        return;
+      }
+
       let data = '';
+      res.setEncoding('utf8');
       
       res.on('data', (chunk) => {
         data += chunk;
       });
       
-      res.on('end', () => {
-        resolve(data);
-      });
+      res.on('end', () => resolve(data));
+      res.on('error', reject);
       
-    }).on('error', (err) => {
-      reject(err);
     });
+
+    request.setTimeout(REQUEST_TIMEOUT_MS, () => {
+      request.destroy(new Error(`Goodreads RSS request timed out after ${REQUEST_TIMEOUT_MS / 1000} seconds`));
+    });
+    request.on('error', reject);
   });
+}
+
+async function fetchRSSFeedWithRetry(url, attempts = MAX_FETCH_ATTEMPTS) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      return await fetchRSSFeed(url);
+    } catch (error) {
+      lastError = error;
+
+      if (attempt < attempts) {
+        const delayMs = 1_000 * (2 ** (attempt - 1));
+        console.warn(`RSS request attempt ${attempt} failed: ${error.message}. Retrying...`);
+        await new Promise(resolve => setTimeout(resolve, delayMs));
+      }
+    }
+  }
+
+  throw lastError;
 }
 
 /**
@@ -160,15 +217,15 @@ function parseRSSFeed(xmlData) {
   const books = [];
   
   // Match all <item> blocks
-  const itemRegex = /<item>([\s\S]*?)<\/item>/g;
+  const itemRegex = /<item(?:\s[^>]*)?>([\s\S]*?)<\/item>/gi;
   const items = [...xmlData.matchAll(itemRegex)];
   
   items.forEach((itemMatch) => {
     const itemContent = itemMatch[1];
     
     // Extract fields using regex and decode HTML entities
-    const title = decodeHTMLEntities(extractTag(itemContent, 'title'));
-    const author = decodeHTMLEntities(extractTag(itemContent, 'author_name'));
+    const title = cleanTextField(extractTag(itemContent, 'title'));
+    const author = cleanTextField(extractTag(itemContent, 'author_name'));
     const rating = parseInt(extractTag(itemContent, 'user_rating')) || 0;
     // Goodreads sometimes leaves "date read" blank even for finished books, which
     // would sort them to 1970 and drop them out of the year list. Fall back to
@@ -210,6 +267,10 @@ function parseRSSFeed(xmlData) {
   });
   
   return books;
+}
+
+function cleanTextField(text) {
+  return decodeHTMLEntities(text).replace(/\s+/g, ' ').trim();
 }
 
 /**
@@ -319,11 +380,22 @@ async function main() {
     
     // Fetch RSS feed
     console.log('Fetching Goodreads RSS feed...');
-    const xmlData = await fetchRSSFeed(RSS_FEED_URL);
+    const xmlData = await fetchRSSFeedWithRetry(RSS_FEED_URL);
+
+    if (!/<rss(?:\s|>)/i.test(xmlData)) {
+      throw new Error('Goodreads returned a response that is not an RSS feed');
+    }
     
     console.log('Parsing RSS feed...');
     const rssBooks = parseRSSFeed(xmlData);
     console.log(`Found ${rssBooks.length} books in RSS feed`);
+
+    // A read shelf with hundreds of saved books should never return zero. Treat
+    // that as an upstream or parser failure instead of silently writing a fresh
+    // timestamp and making the workflow look healthy.
+    if (rssBooks.length === 0) {
+      throw new Error('Goodreads RSS feed contained no readable book entries');
+    }
     
     // Merge the data (preserving existing imageUrls)
     console.log('Merging CSV, RSS, and existing book data...');
@@ -334,6 +406,13 @@ async function main() {
     console.log(`  - From RSS: ${rssBooks.length}`);
     console.log(`  - Merged result: ${books.length}`);
     
+    const booksChanged = JSON.stringify(books) !== JSON.stringify(existingBooks);
+
+    if (!booksChanged) {
+      console.log('No book changes detected; leaving books.json unchanged');
+      return;
+    }
+
     // Create data directory if it doesn't exist
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true });
@@ -362,5 +441,14 @@ async function main() {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
 
+module.exports = {
+  fetchRSSFeed,
+  fetchRSSFeedWithRetry,
+  parseRSSFeed,
+  mergeBooks,
+  bookMergeKey
+};
