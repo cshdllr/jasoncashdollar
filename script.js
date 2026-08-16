@@ -143,10 +143,42 @@ function initBreadcrumbMenu() {
     });
 }
 
+function initWorkHistory() {
+    const entries = Array.from(document.querySelectorAll('.work-entry'));
+    if (!entries.length) return;
+
+    function setOpen(entry, isOpen) {
+        const trigger = entry.querySelector('.work-item');
+        const panel = entry.querySelector('.work-description-reveal');
+        entry.classList.toggle('is-open', isOpen);
+        trigger.setAttribute('aria-expanded', String(isOpen));
+        panel.setAttribute('aria-hidden', String(!isOpen));
+    }
+
+    entries.forEach(entry => {
+        const trigger = entry.querySelector('.work-item');
+
+        trigger.addEventListener('click', function() {
+            const shouldOpen = !entry.classList.contains('is-open');
+            entries.forEach(otherEntry => setOpen(otherEntry, false));
+            if (shouldOpen) setOpen(entry, true);
+        });
+
+        trigger.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && entry.classList.contains('is-open')) {
+                event.stopPropagation();
+                setOpen(entry, false);
+                trigger.focus();
+            }
+        });
+    });
+}
+
 // Portfolio JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     initBreadcrumbNameThumb();
     initBreadcrumbMenu();
+    initWorkHistory();
 
     // Smooth scrolling for internal links
     const internalLinks = document.querySelectorAll('a[href^="#"]');
