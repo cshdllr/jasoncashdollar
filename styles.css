@@ -167,8 +167,8 @@ p a {
 }
 
 .header-photo {
-  width: 56px;
-  height: 56px;
+  width: var(--space-8);
+  height: var(--space-8);
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
@@ -192,7 +192,7 @@ p a {
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-compact);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   text-decoration: none;
 }
 
