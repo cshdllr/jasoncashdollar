@@ -398,7 +398,7 @@ p a {
 
 /* Home page section label */
 .section-label {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-medium);
   font-weight: var(--font-weight-medium);
   letter-spacing: var(--tracking-body);
   line-height: var(--line-height-compact);
