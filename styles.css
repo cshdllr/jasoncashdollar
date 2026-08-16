@@ -211,8 +211,9 @@ p a {
 }
 
 .header:has(.breadcrumb) {
-  padding-top: var(--space-5);
-  padding-bottom: var(--space-5);
+  max-width: var(--home-content-width);
+  padding-top: var(--space-15);
+  padding-bottom: var(--space-15);
 }
 
 .breadcrumb-name {
@@ -226,8 +227,8 @@ p a {
 
 .breadcrumb-name-thumb {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: var(--space-8);
+  height: var(--space-8);
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
@@ -478,13 +479,14 @@ p a {
 /* Project Page Layout */
 .project-main {
   flex: 1;
-  padding: var(--space-15) 0;
-  max-width: 1000px;
+  width: 100%;
+  max-width: var(--home-content-width);
+  padding: 0 0 var(--space-15);
   margin: 0 auto;
 }
 
 .project-header {
-  margin: 0 var(--content-margin) var(--space-20);
+  margin: 0 0 var(--space-20);
 }
 
 .project-header .page-title {
@@ -499,14 +501,14 @@ p a {
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-body);
-  margin: 0 var(--content-margin) var(--space-2);
+  margin: 0 0 var(--space-2);
 }
 
 .section-text {
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
-  margin: 0 var(--content-margin) var(--space-8);
+  margin: 0 0 var(--space-8);
 }
 
 .section-list {
@@ -528,10 +530,10 @@ p a {
 .project-image-grid,
 .project-image-grid-three,
 .project-image-placeholder {
-  width: calc(100% - var(--content-margin) * 2);
-  max-width: calc(100% - var(--content-margin) * 2);
-  margin-left: var(--content-margin);
-  margin-right: var(--content-margin);
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .project-image-full {
@@ -548,15 +550,6 @@ p a {
   align-items: center;
   background-color: var(--color-background-media);
   border-radius: var(--border-radius-large);
-}
-
-.project-image-centered .project-image-full,
-.video-container .project-image-full,
-.project-image-grid .project-image-placeholder {
-  width: 100%;
-  max-width: 100%;
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .project-image-grid {
@@ -612,7 +605,7 @@ p a {
   color: var(--color-text-secondary);
   text-align: center;
   font-style: italic;
-  margin: 0 var(--content-margin);
+  margin: 0;
   padding-top: var(--space-2);
 }
 
@@ -1031,6 +1024,11 @@ p a {
   }
 
   .home-page .main {
+    padding-left: var(--content-margin);
+    padding-right: var(--content-margin);
+  }
+
+  .project-main {
     padding-left: var(--content-margin);
     padding-right: var(--content-margin);
   }
