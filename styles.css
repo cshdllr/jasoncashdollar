@@ -42,6 +42,7 @@
   --space-20: 80px;
   --space-30: 120px;
   --content-margin: var(--space-20);
+  --home-content-width: 560px;
   --home-primary-column: 180px;
   --home-column-gap: var(--space-5);
   --work-logo-size: var(--space-6);
@@ -384,8 +385,19 @@ p a {
 }
 
 /* Main Content */
+.home-page .container {
+  max-width: var(--home-content-width);
+}
+
+.home-page .header {
+  max-width: none;
+  margin: 0;
+}
+
 .main {
   flex: 1;
+  width: 100%;
+  margin: 0;
 }
 
 /* Projects Section */
@@ -403,7 +415,7 @@ p a {
   letter-spacing: var(--tracking-body);
   line-height: var(--line-height-compact);
   color: var(--color-text-secondary);
-  margin: 0 var(--content-margin) var(--space-1);
+  margin: 0 0 var(--space-1);
 }
 
 .project-card {
@@ -411,7 +423,7 @@ p a {
   grid-template-columns: var(--home-primary-column) 1fr;
   column-gap: var(--home-column-gap);
   align-items: baseline;
-  margin: 0 var(--content-margin);
+  margin: 0;
   text-decoration: none;
   color: inherit;
 }
@@ -428,6 +440,8 @@ p a {
   color: var(--color-text-secondary);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-compact);
+  justify-self: end;
+  text-align: right;
 }
 
 .page-title {
@@ -924,7 +938,7 @@ p a {
   grid-template-columns: var(--home-primary-column) 1fr;
   column-gap: var(--home-column-gap);
   align-items: center;
-  margin: 0 var(--content-margin);
+  margin: 0;
 }
 
 .work-link {
@@ -982,6 +996,8 @@ p a {
   color: var(--color-text-secondary);
   font-family: var(--font-family-sans);
   font-variant-numeric: tabular-nums;
+  justify-self: end;
+  text-align: right;
 }
 
 /* ===== MOBILE BREAKPOINT ===== */
@@ -1001,6 +1017,11 @@ p a {
     margin-right: 0;
   }
 
+  .home-page .main {
+    padding-left: var(--content-margin);
+    padding-right: var(--content-margin);
+  }
+
   /* Project cards stack: description drops below the title */
   .project-card {
     grid-template-columns: 1fr;
@@ -1011,6 +1032,12 @@ p a {
   .work-item {
     grid-template-columns: 1fr;
     row-gap: var(--space-1);
+  }
+
+  .project-description,
+  .work-dates {
+    justify-self: start;
+    text-align: left;
   }
 
   /* More breathing room between stacked projects (kept on the 4px grid) */
