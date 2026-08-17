@@ -60,7 +60,7 @@
       "bookId": "239719395",
       "isbn": "1538709112",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1754467690l/239719395._SY475_.jpg",
-      "averageRating": 4.21,
+      "averageRating": 4.2,
       "bookPublished": "",
       "numPages": 332,
       "source": "rss"
@@ -177,7 +177,7 @@
       "bookId": "239039076",
       "isbn": "0525509631",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753238089l/239039076._SY475_.jpg",
-      "averageRating": 3.68,
+      "averageRating": 3.67,
       "bookPublished": "2026",
       "numPages": 177,
       "source": "rss"
@@ -307,7 +307,7 @@
       "bookId": "214985934",
       "isbn": "1681378736",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733308068l/214985934._SX318_.jpg",
-      "averageRating": 3.84,
+      "averageRating": 3.85,
       "bookPublished": "2022",
       "numPages": 125,
       "source": "rss"
@@ -372,7 +372,7 @@
       "bookId": "61033655",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1651701268l/61033655._SY475_.jpg",
-      "averageRating": 4.08,
+      "averageRating": 4.09,
       "bookPublished": "2022",
       "numPages": 233,
       "source": "rss"
@@ -489,7 +489,7 @@
       "bookId": "19452425",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386983547l/19452425.jpg",
-      "averageRating": 4.28,
+      "averageRating": 4.27,
       "bookPublished": "1995",
       "numPages": 228,
       "source": "rss"
@@ -736,7 +736,7 @@
       "bookId": "45697427",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1557421017l/45697427._SY475_.jpg",
-      "averageRating": 4.23,
+      "averageRating": 4.22,
       "bookPublished": "2016",
       "numPages": 343,
       "source": "rss"
@@ -931,7 +931,7 @@
       "bookId": "35652511",
       "isbn": "1542098548",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1499781540l/35652511._SY475_.jpg",
-      "averageRating": 3.99,
+      "averageRating": 3.98,
       "bookPublished": "1759",
       "numPages": 115,
       "source": "rss"
@@ -5045,5 +5045,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-08-13T20:45:01.812Z"
+  "lastUpdated": "2026-08-17T09:58:13.113Z"
 }
