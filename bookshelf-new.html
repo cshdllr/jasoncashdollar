@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Cashdollar / Bookshelf</title>
+    <meta name="description" content="Books I've read, tracked automatically from my Goodreads profile.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jasoncashdollar.github.io/jasoncashdollar/bookshelf-new">
+    <meta property="og:title" content="Bookshelf - Jason Cashdollar">
+    <meta property="og:description" content="Books I've read, tracked automatically from my Goodreads profile.">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jasoncashdollar.github.io/jasoncashdollar/bookshelf-new">
+    <meta property="twitter:title" content="Bookshelf - Jason Cashdollar">
+    <meta property="twitter:description" content="Books I've read, tracked automatically from my Goodreads profile.">
+
+    <link rel="icon" href="images/jason.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bookshelf-new.css">
+    <script src="analytics.js"></script>
+</head>
+<body class="bookshelf-new-page">
+    <div class="container bookshelf-container">
+        <header class="header">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-name">Jason Cashdollar</a> / <span class="breadcrumb-project">Bookshelf</span>
+            </div>
+        </header>
+
+        <main class="bookshelf-main">
+            <div class="bookshelf-header">
+                <div class="bookshelf-title-row">
+                    <h1 class="page-title">Bookshelf</h1>
+                    <div class="view-toggles">
+                        <div class="view-toggle-indicator"></div>
+                        <button class="view-toggle" data-view="grid" aria-label="Grid view">
+                            <img src="icons/grid.png" alt="">
+                        </button>
+                        <button class="view-toggle active" data-view="cards" aria-label="Cards view">
+                            <img src="icons/cards.png" alt="">
+                        </button>
+                        <button class="view-toggle" data-view="list" aria-label="List view">
+                            <img src="icons/list.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-list-container" id="text-list-container" hidden></div>
+            <div class="grid-covers-container" id="grid-covers-container" hidden></div>
+            <div class="vertical-covers-container" id="vertical-covers-container" hidden></div>
+
+            <div class="loading-state" id="loading-state">
+                <p>Loading books...</p>
+            </div>
+
+            <div class="empty-state" id="empty-state" hidden>
+                <p>No books found. Check back later!</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="bookshelf-new.js"></script>
+</body>
+</html>

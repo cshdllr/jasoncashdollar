@@ -1,0 +1,273 @@
+/* Experimental bookshelf interactions. Scoped so bookshelf.html is unchanged. */
+
+.bookshelf-new-page .book-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bookshelf-new-page .book-object {
+  --book-rotate-x: 0deg;
+  --book-rotate-y: 0deg;
+  --book-shine-x: 50%;
+  --book-shine-y: 30%;
+  display: block;
+  position: relative;
+  perspective: 900px;
+}
+
+.bookshelf-new-page .book-object__book {
+  display: block;
+  position: relative;
+  transform: translate3d(0, 0, 0) rotateX(var(--book-rotate-x)) rotateY(var(--book-rotate-y));
+  transform-style: preserve-3d;
+  transform-origin: 50% 70%;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 220ms ease;
+  will-change: transform;
+}
+
+.bookshelf-new-page .book-object__image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px 5px 5px 3px;
+  box-shadow:
+    -1px 0 0 rgba(0, 0, 0, 0.18),
+    0 3px 8px rgba(0, 0, 0, 0.16),
+    0 12px 24px rgba(0, 0, 0, 0.08);
+  display: block;
+  transition: box-shadow 220ms ease;
+}
+
+/* The right and bottom faces create the page block. */
+.bookshelf-new-page .book-object__book::before,
+.bookshelf-new-page .book-object__book::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bookshelf-new-page .book-object__book::before {
+  top: 5px;
+  right: -7px;
+  bottom: 1px;
+  width: 9px;
+  border-radius: 0 3px 3px 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #f2eee4 0,
+      #f2eee4 2px,
+      #d8d1c3 2.5px,
+      #f7f3ea 3px
+    );
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.12);
+  transform: skewY(36deg);
+  transform-origin: left top;
+}
+
+.bookshelf-new-page .book-object__book::after {
+  right: -4px;
+  bottom: -7px;
+  left: 5px;
+  height: 9px;
+  border-radius: 0 0 3px 3px;
+  background:
+    repeating-linear-gradient(
+      to right,
+      #f5f1e8 0,
+      #f5f1e8 3px,
+      #d8d1c3 3.5px,
+      #faf7f0 4px
+    );
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.12);
+  transform: skewX(36deg);
+  transform-origin: left top;
+}
+
+/* The highlight also darkens the hinge, making the flat cover read as a spine. */
+.bookshelf-new-page .book-object__shine {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 3px 5px 5px 3px;
+  background:
+    radial-gradient(
+      circle at var(--book-shine-x) var(--book-shine-y),
+      rgba(255, 255, 255, 0.34),
+      rgba(255, 255, 255, 0) 34%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.3) 0,
+      rgba(0, 0, 0, 0.08) 3%,
+      rgba(255, 255, 255, 0.08) 5%,
+      rgba(255, 255, 255, 0) 14%,
+      rgba(0, 0, 0, 0.08) 100%
+    );
+  opacity: 0.48;
+  transition: opacity 220ms ease;
+}
+
+.bookshelf-new-page .book-object--grid .book-object__book {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+}
+
+.bookshelf-new-page .book-object--card {
+  width: 80px;
+  flex: 0 0 80px;
+}
+
+.bookshelf-new-page .book-object--card .book-object__book {
+  width: 80px;
+  height: 120px;
+}
+
+.bookshelf-new-page .grid-covers-grid {
+  gap: var(--space-6);
+  padding-right: 8px;
+  padding-bottom: var(--space-8);
+}
+
+.bookshelf-new-page .grid-cover-link {
+  display: block;
+  border-radius: 4px;
+}
+
+.bookshelf-new-page .grid-cover-link:hover .book-object__book,
+.bookshelf-new-page .grid-cover-link:focus-visible .book-object__book {
+  transform: translate3d(0, -8px, 18px) rotateX(var(--book-rotate-x)) rotateY(var(--book-rotate-y));
+  filter: saturate(1.04);
+}
+
+.bookshelf-new-page .grid-cover-link:hover .book-object__image,
+.bookshelf-new-page .grid-cover-link:focus-visible .book-object__image,
+.bookshelf-new-page .vertical-cover-item:hover .book-object__image,
+.bookshelf-new-page .vertical-cover-item:focus-visible .book-object__image {
+  box-shadow:
+    -2px 1px 1px rgba(0, 0, 0, 0.2),
+    0 10px 16px rgba(0, 0, 0, 0.18),
+    0 22px 36px rgba(0, 0, 0, 0.12);
+}
+
+.bookshelf-new-page .grid-cover-link:hover .book-object__shine,
+.bookshelf-new-page .grid-cover-link:focus-visible .book-object__shine,
+.bookshelf-new-page .vertical-cover-item:hover .book-object__shine,
+.bookshelf-new-page .vertical-cover-item:focus-visible .book-object__shine {
+  opacity: 0.76;
+}
+
+.bookshelf-new-page .grid-cover-link:focus-visible,
+.bookshelf-new-page .vertical-cover-item:focus-visible,
+.bookshelf-new-page .text-list-book:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 6px;
+}
+
+.bookshelf-new-page .vertical-covers-grid {
+  gap: var(--space-2);
+}
+
+.bookshelf-new-page .vertical-cover-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin: 0 calc(var(--space-3) * -1);
+  padding: var(--space-3);
+  border-radius: var(--border-radius-medium);
+  transition: background-color 180ms ease;
+}
+
+.bookshelf-new-page .vertical-cover-item:hover,
+.bookshelf-new-page .vertical-cover-item:focus-visible {
+  background-color: var(--color-background-tertiary);
+}
+
+.bookshelf-new-page .vertical-cover-item .book-object__book {
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 220ms ease;
+}
+
+.bookshelf-new-page .vertical-cover-item:hover .book-object__book,
+.bookshelf-new-page .vertical-cover-item:focus-visible .book-object__book {
+  transform: translate3d(0, -4px, 14px) rotateX(var(--book-rotate-x)) rotateY(var(--book-rotate-y));
+}
+
+.bookshelf-new-page .vertical-cover-info {
+  transition: transform 180ms ease;
+}
+
+.bookshelf-new-page .vertical-cover-title,
+.bookshelf-new-page .vertical-cover-author {
+  display: block;
+}
+
+.bookshelf-new-page .vertical-cover-item:hover .vertical-cover-info,
+.bookshelf-new-page .vertical-cover-item:focus-visible .vertical-cover-info {
+  transform: translateX(3px);
+}
+
+.bookshelf-new-page .vertical-cover-title,
+.bookshelf-new-page .text-list-book-title {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 180ms ease;
+}
+
+.bookshelf-new-page .vertical-cover-item:hover .vertical-cover-title,
+.bookshelf-new-page .vertical-cover-item:focus-visible .vertical-cover-title,
+.bookshelf-new-page .text-list-book:hover .text-list-book-title,
+.bookshelf-new-page .text-list-book:focus-visible .text-list-book-title {
+  text-decoration-color: currentColor;
+}
+
+.bookshelf-new-page .text-list-book {
+  display: block;
+  margin: 0 calc(var(--space-2) * -1) var(--space-1);
+  padding: var(--space-2);
+  border-radius: var(--border-radius-small);
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.bookshelf-new-page .text-list-book:hover,
+.bookshelf-new-page .text-list-book:focus-visible {
+  background-color: var(--color-background-tertiary);
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bookshelf-new-page .book-object__book,
+  .bookshelf-new-page .book-object__image,
+  .bookshelf-new-page .book-object__shine,
+  .bookshelf-new-page .vertical-cover-item,
+  .bookshelf-new-page .vertical-cover-info,
+  .bookshelf-new-page .text-list-book {
+    transition: none;
+  }
+
+  .bookshelf-new-page .grid-cover-link:hover .book-object__book,
+  .bookshelf-new-page .grid-cover-link:focus-visible .book-object__book,
+  .bookshelf-new-page .vertical-cover-item:hover .book-object__book,
+  .bookshelf-new-page .vertical-cover-item:focus-visible .book-object__book,
+  .bookshelf-new-page .text-list-book:hover,
+  .bookshelf-new-page .text-list-book:focus-visible {
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .bookshelf-new-page .grid-covers-grid {
+    gap: var(--space-5);
+  }
+
+  .bookshelf-new-page .vertical-cover-item {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
