@@ -4,8 +4,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     const gridCoversContainer = document.getElementById('grid-covers-container');
     const textListContainer = document.getElementById('text-list-container');
     const verticalCoversContainer = document.getElementById('vertical-covers-container');
+    const ratingFilter = document.getElementById('rating-filter');
 
     let booksData = [];
+    let currentView = 'cards';
+    let showFiveStarBooks = false;
 
     function bookIdentityKey(book) {
         const normalize = (value) => (value || '')
@@ -95,6 +98,19 @@ document.addEventListener('DOMContentLoaded', async function() {
         return link;
     }
 
+    function getVisibleBooks() {
+        if (!showFiveStarBooks) return booksData;
+        return booksData.filter((book) => Number(book.rating) === 5);
+    }
+
+    function initializeRatingFilter() {
+        ratingFilter.addEventListener('click', function() {
+            showFiveStarBooks = !showFiveStarBooks;
+            this.setAttribute('aria-pressed', String(showFiveStarBooks));
+            switchView(currentView);
+        });
+    }
+
     function initializeViewToggles() {
         document.querySelectorAll('.view-toggle').forEach((toggle) => {
             toggle.addEventListener('click', function() {
@@ -122,6 +138,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     function switchView(view) {
+        currentView = view;
+
         document.querySelectorAll('.view-toggle').forEach((toggle) => {
             toggle.classList.toggle('active', toggle.dataset.view === view);
         });
@@ -158,7 +176,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         textListContainer.replaceChildren();
         const booksByYear = new Map();
 
-        booksData.forEach((book) => {
+        getVisibleBooks().forEach((book) => {
             if (!book.readAt) return;
             const year = new Date(book.readAt).getFullYear();
             if (!booksByYear.has(year)) booksByYear.set(year, []);
@@ -208,7 +226,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const coversList = document.createElement('div');
         coversList.className = 'vertical-covers-grid';
 
-        booksData.forEach((book) => {
+        getVisibleBooks().forEach((book) => {
             const item = createBookLink(book, 'vertical-cover-item');
             item.appendChild(createBookObject(book, 'card'));
 
@@ -259,7 +277,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const coversGrid = document.createElement('div');
         coversGrid.className = 'grid-covers-grid';
 
-        booksData.forEach((book) => {
+        getVisibleBooks().forEach((book) => {
             const link = createBookLink(book, 'grid-cover-link');
             link.appendChild(createBookObject(book, 'grid'));
             coversGrid.appendChild(link);
@@ -281,6 +299,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
 
         initializeViewToggles();
+        initializeRatingFilter();
         switchView('cards');
         window.addEventListener('resize', updateToggleIndicator);
     } catch (error) {

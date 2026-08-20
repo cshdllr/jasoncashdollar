@@ -5,6 +5,42 @@
   text-decoration: none;
 }
 
+.bookshelf-new-page .rating-filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-width: 64px;
+  height: 48px;
+  padding: 0 var(--space-3);
+  color: var(--color-text-secondary);
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  font: inherit;
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.bookshelf-new-page .rating-filter:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-background-tertiary);
+}
+
+.bookshelf-new-page .rating-filter[aria-pressed="true"] {
+  color: var(--color-background);
+  background-color: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+}
+
+.bookshelf-new-page .rating-filter:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 3px;
+}
+
 .bookshelf-new-page .book-object {
   display: block;
   position: relative;
@@ -169,6 +205,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .bookshelf-new-page .rating-filter,
   .bookshelf-new-page .book-object__book,
   .bookshelf-new-page .book-object__image,
   .bookshelf-new-page .vertical-cover-item,
@@ -188,6 +225,10 @@
 }
 
 @media (max-width: 600px) {
+  .bookshelf-new-page .rating-filter {
+    height: 44px;
+  }
+
   .bookshelf-new-page .grid-covers-grid {
     gap: var(--space-5);
   }
