@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     const gridCoversContainer = document.getElementById('grid-covers-container');
     const textListContainer = document.getElementById('text-list-container');
     const verticalCoversContainer = document.getElementById('vertical-covers-container');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     let booksData = [];
 
@@ -75,12 +74,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         const bookElement = document.createElement('span');
         bookElement.className = 'book-object__book';
 
-        const shine = document.createElement('span');
-        shine.className = 'book-object__shine';
-        shine.setAttribute('aria-hidden', 'true');
+        const spine = document.createElement('span');
+        spine.className = 'book-object__spine';
+        spine.setAttribute('aria-hidden', 'true');
 
         bookElement.appendChild(createBookImage(book));
-        bookElement.appendChild(shine);
+        bookElement.appendChild(spine);
         object.appendChild(bookElement);
 
         return object;
@@ -94,38 +93,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         link.rel = 'noopener noreferrer';
         link.setAttribute('aria-label', `${book.title} by ${book.author}`);
         return link;
-    }
-
-    function enableBookTilt(container) {
-        if (reduceMotion.matches) return;
-
-        container.querySelectorAll('.book-object').forEach((object) => {
-            let animationFrame;
-
-            object.addEventListener('pointermove', (event) => {
-                if (event.pointerType === 'touch') return;
-
-                const bounds = object.getBoundingClientRect();
-                const x = (event.clientX - bounds.left) / bounds.width;
-                const y = (event.clientY - bounds.top) / bounds.height;
-
-                cancelAnimationFrame(animationFrame);
-                animationFrame = requestAnimationFrame(() => {
-                    object.style.setProperty('--book-rotate-x', `${(0.5 - y) * 8}deg`);
-                    object.style.setProperty('--book-rotate-y', `${(x - 0.5) * 11}deg`);
-                    object.style.setProperty('--book-shine-x', `${x * 100}%`);
-                    object.style.setProperty('--book-shine-y', `${y * 100}%`);
-                });
-            });
-
-            object.addEventListener('pointerleave', () => {
-                cancelAnimationFrame(animationFrame);
-                object.style.setProperty('--book-rotate-x', '0deg');
-                object.style.setProperty('--book-rotate-y', '0deg');
-                object.style.setProperty('--book-shine-x', '50%');
-                object.style.setProperty('--book-shine-y', '30%');
-            });
-        });
     }
 
     function initializeViewToggles() {
@@ -284,7 +251,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
 
         verticalCoversContainer.appendChild(coversList);
-        enableBookTilt(coversList);
     }
 
     function renderGridCovers() {
@@ -300,7 +266,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
 
         gridCoversContainer.appendChild(coversGrid);
-        enableBookTilt(coversGrid);
     }
 
     try {
