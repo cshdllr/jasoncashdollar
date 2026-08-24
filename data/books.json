@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "The Things We Never Say",
+      "author": "Elizabeth Strout",
+      "rating": 3,
+      "readAt": "Sat, 22 Aug 2026 00:00:00 +0000",
+      "bookId": "242082841",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1759325056l/242082841._SY475_.jpg",
+      "averageRating": 4.3,
+      "bookPublished": "2026",
+      "numPages": 207,
+      "source": "rss"
+    },
+    {
       "title": "The Correspondent",
       "author": "Virginia Evans",
       "rating": 5,
@@ -21,7 +34,7 @@
       "bookId": "238514980",
       "isbn": "0593804228",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753931868l/238514980._SY475_.jpg",
-      "averageRating": 4.04,
+      "averageRating": 4.03,
       "bookPublished": "2026",
       "numPages": 391,
       "source": "rss"
@@ -60,7 +73,7 @@
       "bookId": "239719395",
       "isbn": "1538709112",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1754467690l/239719395._SY475_.jpg",
-      "averageRating": 4.2,
+      "averageRating": 4.21,
       "bookPublished": "",
       "numPages": 332,
       "source": "rss"
@@ -307,7 +320,7 @@
       "bookId": "214985934",
       "isbn": "1681378736",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733308068l/214985934._SX318_.jpg",
-      "averageRating": 3.85,
+      "averageRating": 3.84,
       "bookPublished": "2022",
       "numPages": 125,
       "source": "rss"
@@ -853,7 +866,7 @@
       "bookId": "208944365",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1708515061l/208944365._SY475_.jpg",
-      "averageRating": 4.31,
+      "averageRating": 4.3,
       "bookPublished": "2021",
       "numPages": 151,
       "source": "rss"
@@ -1191,7 +1204,7 @@
       "bookId": "54971400",
       "isbn": "0593192176",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1597592944l/54971400._SY475_.jpg",
-      "averageRating": 4.3,
+      "averageRating": 4.29,
       "bookPublished": "2018",
       "numPages": 272,
       "source": "rss"
@@ -1207,19 +1220,6 @@
       "averageRating": 4.31,
       "bookPublished": "2021",
       "numPages": 304,
-      "source": "rss"
-    },
-    {
-      "title": "Peace Is Every Step: The Path of Mindfulness in Everyday Life",
-      "author": "Thich Nhat Hanh",
-      "rating": 4,
-      "readAt": "Tue, 24 Jan 2023 00:00:00 +0000",
-      "bookId": "14572",
-      "isbn": "0553351397",
-      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320544155l/14572.jpg",
-      "averageRating": 4.31,
-      "bookPublished": "1992",
-      "numPages": 157,
       "source": "rss"
     },
     {
@@ -1441,6 +1441,19 @@
       "averageRating": 4.14,
       "bookPublished": "2022",
       "numPages": 304,
+      "source": "csv"
+    },
+    {
+      "title": "Peace Is Every Step: The Path of Mindfulness in Everyday Life",
+      "author": "Thich Nhat Hanh",
+      "rating": 4,
+      "readAt": "Fri, 25 Feb 2022 00:00:00 GMT",
+      "bookId": "14572",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320544155l/14572.jpg",
+      "averageRating": 4.31,
+      "bookPublished": "1992",
+      "numPages": 134,
       "source": "csv"
     },
     {
@@ -5045,5 +5058,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-08-17T09:58:13.113Z"
+  "lastUpdated": "2026-08-24T10:04:52.568Z"
 }
