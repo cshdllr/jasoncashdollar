@@ -20,6 +20,7 @@
     
     <link rel="icon" href="images/jason.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bookshelf-coverflow.css">
     <script src="analytics.js"></script>
 </head>
 <body>
@@ -34,20 +35,39 @@
             <div class="bookshelf-header">
                 <div class="bookshelf-title-row">
                     <h1 class="page-title">Bookshelf</h1>
-                    <div class="view-toggles">
+                    <div class="view-toggles" role="group" aria-label="Library view">
                         <div class="view-toggle-indicator"></div>
-                        <button class="view-toggle" data-view="grid" aria-label="Grid view">
-                            <img src="icons/grid.png" alt="" />
+                        <button class="view-toggle" type="button" data-view="grid" aria-pressed="false" title="Grid view" aria-label="Grid view">
+                            <svg class="library-view-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="3.5" width="6" height="7" rx="1.25"/>
+                                <rect x="14.5" y="3.5" width="6" height="7" rx="1.25"/>
+                                <rect x="3.5" y="13.5" width="6" height="7" rx="1.25"/>
+                                <rect x="14.5" y="13.5" width="6" height="7" rx="1.25"/>
+                            </svg>
                         </button>
-                        <button class="view-toggle active" data-view="cards" aria-label="Cards view">
-                            <img src="icons/cards.png" alt="" />
+                        <button class="view-toggle active" type="button" data-view="cards" aria-pressed="true" title="Cards view" aria-label="Cards view">
+                            <svg class="library-view-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="4" width="5" height="6" rx="1.25"/>
+                                <rect x="3.5" y="14" width="5" height="6" rx="1.25"/>
+                                <path d="M12 7h8.5M12 17h8.5"/>
+                            </svg>
                         </button>
-                        <button class="view-toggle" data-view="list" aria-label="List view">
-                            <img src="icons/list.png" alt="" />
+                        <button class="view-toggle" type="button" data-view="list" aria-pressed="false" title="List view" aria-label="List view">
+                            <svg class="library-view-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M3.5 5h17M3.5 9h10.5M3.5 15h17M3.5 19h10.5"/>
+                            </svg>
+                        </button>
+                        <button class="view-toggle" type="button" data-view="coverflow" aria-label="Cover Flow view" aria-pressed="false" title="Cover Flow view">
+                            <svg class="library-view-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="7.5" y="4" width="9" height="16" rx="1.25"/>
+                                <path d="m4.5 6.5-3 1.5v8l3 1.5v-11Zm15 0 3 1.5v8l-3 1.5v-11Z"/>
+                            </svg>
                         </button>
                     </div>
                 </div>
             </div>
+
+            <section class="coverflow-container" id="coverflow-container" hidden></section>
 
             <!-- Text List View -->
             <div class="text-list-container" id="text-list-container" style="display: none;">
@@ -78,6 +98,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="bookshelf-coverflow.js"></script>
     <script src="bookshelf.js"></script>
 </body>
 </html>

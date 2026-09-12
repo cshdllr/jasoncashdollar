@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     const gridCoversContainer = document.getElementById('grid-covers-container');
     const textListContainer = document.getElementById('text-list-container');
     const verticalCoversContainer = document.getElementById('vertical-covers-container');
+    const coverflowContainer = document.getElementById('coverflow-container');
+    const coverflow = createBookshelfCoverflow(coverflowContainer, createBookImage);
     
     let booksData = [];
     let currentView = 'cards'; // Default view
@@ -97,6 +99,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 this.src = placeholderSvg;
             } else if (!fallbackAttempted) {
                 // Unexpected error, show placeholder
+                fallbackAttempted = true;
                 this.src = placeholderSvg;
             }
         };
@@ -185,6 +188,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Update active toggle button
         const viewToggles = document.querySelectorAll('.view-toggle');
         viewToggles.forEach(toggle => {
+            toggle.setAttribute('aria-pressed', String(toggle.dataset.view === view));
             if (toggle.dataset.view === view) {
                 toggle.classList.add('active');
             } else {
@@ -199,9 +203,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         textListContainer.style.display = 'none';
         verticalCoversContainer.style.display = 'none';
         gridCoversContainer.style.display = 'none';
+        coverflowContainer.hidden = true;
         
         // Show the selected view
         switch(view) {
+            case 'coverflow':
+                coverflowContainer.hidden = false;
+                coverflow.render(booksData);
+                break;
             case 'list':
                 renderTextList();
                 textListContainer.style.display = 'block';
@@ -229,6 +238,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         gridCoversContainer.style.display = 'none';
         textListContainer.style.display = 'none';
         verticalCoversContainer.style.display = 'none';
+        coverflowContainer.hidden = true;
     }
     
     /**
@@ -380,4 +390,3 @@ document.addEventListener('DOMContentLoaded', async function() {
         gridCoversContainer.appendChild(coversGrid);
     }
 });
-

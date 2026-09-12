@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     const textListContainer = document.getElementById('text-list-container');
     const verticalCoversContainer = document.getElementById('vertical-covers-container');
     const ratingFilter = document.getElementById('rating-filter');
+    const coverflowContainer = document.getElementById('coverflow-container');
+    const coverflow = createBookshelfCoverflow(coverflowContainer, createBookImage);
 
     let booksData = [];
     let currentView = 'cards';
@@ -142,6 +144,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         document.querySelectorAll('.view-toggle').forEach((toggle) => {
             toggle.classList.toggle('active', toggle.dataset.view === view);
+            toggle.setAttribute('aria-pressed', String(toggle.dataset.view === view));
         });
 
         updateToggleIndicator();
@@ -149,8 +152,21 @@ document.addEventListener('DOMContentLoaded', async function() {
         textListContainer.hidden = true;
         verticalCoversContainer.hidden = true;
         gridCoversContainer.hidden = true;
+        coverflowContainer.hidden = true;
+        emptyState.hidden = true;
 
-        if (view === 'list') {
+        if (getVisibleBooks().length === 0) {
+            emptyState.querySelector('p').textContent = showFiveStarBooks
+                ? 'No 5-star books found.'
+                : 'No books found. Check back later!';
+            showEmptyState();
+            return;
+        }
+
+        if (view === 'coverflow') {
+            coverflowContainer.hidden = false;
+            coverflow.render(getVisibleBooks());
+        } else if (view === 'list') {
             renderTextList();
             textListContainer.hidden = false;
         } else if (view === 'grid') {
@@ -170,6 +186,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         gridCoversContainer.hidden = true;
         textListContainer.hidden = true;
         verticalCoversContainer.hidden = true;
+        coverflowContainer.hidden = true;
     }
 
     function renderTextList() {
