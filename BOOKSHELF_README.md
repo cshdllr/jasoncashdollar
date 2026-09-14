@@ -32,7 +32,7 @@ The bookshelf offers four viewing modes:
 - **Grid View**: Shows book covers only in a responsive grid layout
 - **Cards View** (default): Shows book covers with title, author, rating, and read date
 - **List View**: Text-only display grouped by year with titles, authors, and ratings
-- **Cover Flow View**: Browse angled covers by dragging, swiping, scrolling horizontally, or using Shift + mouse wheel. Covers follow your movement and settle on the nearest book. Arrow keys browse too, and Home/End jump to the first/last book. Open the selected cover or title on Goodreads; Enter opens it when the cover area is focused.
+- **Cover Flow View**: Browse angled covers by dragging, swiping, scrolling horizontally, or using Shift + mouse wheel. Covers follow your movement, coast after a flick, and spring into place. Pulling past either end adds gentle resistance and springs back; reduced-motion mode skips momentum. Arrow keys browse too, and Home/End jump to the first/last book. Open the selected cover or title on Goodreads; Enter opens it when the cover area is focused.
 
 Cover Flow keeps your selection when you switch layouts. It is also available on `bookshelf-new.html`, where it supports the five-star filter.
 

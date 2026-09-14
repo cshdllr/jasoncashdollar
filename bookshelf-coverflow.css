@@ -76,7 +76,7 @@
   background: var(--color-background-secondary);
   cursor: grab;
   transform: translate(-50%, -50%)
-    translateX(calc(var(--offset) * var(--cover-step) + var(--direction) * var(--cover-spread)))
+    translateX(calc(var(--offset) * var(--cover-step) + var(--direction) * var(--cover-spread) + var(--overscroll, 0px)))
     translateZ(calc(var(--distance) * -44px))
     rotateY(calc(var(--direction) * -52deg))
     scale(calc(1 + var(--focus, 0) * 0.24));

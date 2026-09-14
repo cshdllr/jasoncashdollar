@@ -5,6 +5,9 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
     let bookPosition = 0;
     let gesture = null;
     let settleTimer = null;
+    let animationFrame = null;
+    let wheelPosition = null;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let displayedBook = null;
     let displayedPosition = '';
     let suppressClickUntil = 0;
@@ -32,8 +35,10 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
     function update() {
         const book = books[activeIndex];
         // Keep only the surrounding covers in the DOM, even for a large library.
-        const first = Math.max(0, Math.floor(bookPosition) - 4);
-        const last = Math.min(books.length - 1, Math.ceil(bookPosition) + 4);
+        const visiblePosition = clamp(bookPosition);
+        stage.style.setProperty('--overscroll', `${-(bookPosition - visiblePosition) * pixelsPerBook()}px`);
+        const first = Math.max(0, Math.floor(visiblePosition) - 4);
+        const last = Math.min(books.length - 1, Math.ceil(visiblePosition) + 4);
         covers.forEach((cover, index) => {
             if (index < first || index > last) {
                 cover.remove();
@@ -65,7 +70,7 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
                 stage.appendChild(cover);
             }
 
-            const offset = index - bookPosition;
+            const offset = index - visiblePosition;
             const selected = index === activeIndex;
             cover.style.setProperty('--offset', offset);
             cover.style.setProperty('--distance', Math.abs(offset));
@@ -109,23 +114,97 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
         return parseFloat(getComputedStyle(stage).getPropertyValue('--cover-width')) * 0.8;
     }
 
+    function clamp(position) {
+        return Math.max(0, Math.min(Math.max(0, books.length - 1), position));
+    }
+
+    // Increasing resistance beyond either end, limited to part of one cover.
+    function rubberBand(position) {
+        const edge = clamp(position);
+        const excess = position - edge;
+        return edge + Math.sign(excess) * 0.65 * (1 - Math.exp(-Math.abs(excess) / 1.3));
+    }
+
+    function unbend(position) {
+        const edge = clamp(position);
+        const excess = position - edge;
+        return edge - Math.sign(excess) * 1.3 * Math.log(1 - Math.min(0.649, Math.abs(excess)) / 0.65);
+    }
+
     function moveTo(position) {
-        bookPosition = Math.max(0, Math.min(books.length - 1, position));
-        activeIndex = Math.round(bookPosition);
+        bookPosition = position;
+        activeIndex = Math.round(clamp(position));
         update();
     }
 
-    function select(index) {
+    function stopMotion() {
         clearTimeout(settleTimer);
         settleTimer = null;
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+        wheelPosition = null;
+    }
+
+    function releasePointer() {
+        if (!gesture) return;
+        const id = gesture.id;
+        gesture = null;
+        if (stage.hasPointerCapture(id)) stage.releasePointerCapture(id);
+    }
+
+    function select(index) {
+        stopMotion();
+        releasePointer();
         // Commit the last drag position before enabling the snap transition.
         if (stage.classList.contains('is-interacting')) stage.getBoundingClientRect();
         stage.classList.remove('is-interacting', 'is-dragging');
-        moveTo(index);
+        moveTo(clamp(index));
     }
 
-    function settle() {
-        select(Math.round(bookPosition));
+    function settle(velocity = 0) {
+        stopMotion();
+        stage.classList.remove('is-dragging');
+        if (reducedMotion.matches || container.hidden || books.length < 2) {
+            select(Math.round(clamp(bookPosition)));
+            return;
+        }
+        // Project a short glide from the release speed, then spring to a book.
+        // A trackpad already supplies momentum, so wheel settling uses zero speed.
+        let speed = Math.max(-12, Math.min(12, velocity));
+        const outside = bookPosition !== clamp(bookPosition);
+        const target = outside ? clamp(bookPosition) : clamp(Math.round(bookPosition + speed * 0.22));
+        if (outside) speed *= 0.35;
+        stage.classList.add('is-interacting');
+        let lastTime = performance.now();
+        const startedAt = lastTime;
+        function frame(now) {
+            if (container.hidden || document.hidden || reducedMotion.matches) {
+                select(Math.round(clamp(bookPosition)));
+                return;
+            }
+            // Small time steps keep the spring stable even after a slow frame.
+            let remaining = Math.min((now - lastTime) / 1000, 0.05);
+            lastTime = now;
+            let position = bookPosition;
+            while (remaining > 0) {
+                const dt = Math.min(remaining, 1 / 120);
+                const atEdge = position !== clamp(position);
+                const destination = atEdge ? clamp(position) : target;
+                speed += ((destination - position) * (atEdge ? 180 : 100) - speed * (atEdge ? 24 : 20)) * dt;
+                position += speed * dt;
+                const limited = Math.max(-0.65, Math.min(books.length - 1 + 0.65, position));
+                if (limited !== position) speed = 0;
+                position = limited;
+                remaining -= dt;
+            }
+            moveTo(position);
+            if ((Math.abs(position - target) < 0.002 && Math.abs(speed) < 0.02) || now - startedAt > 2000) {
+                select(target);
+            } else {
+                animationFrame = requestAnimationFrame(frame);
+            }
+        }
+        animationFrame = requestAnimationFrame(frame);
     }
 
     container.addEventListener('keydown', (event) => {
@@ -144,8 +223,14 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
 
     stage.addEventListener('pointerdown', (event) => {
         if (!event.isPrimary || event.button !== 0 || books.length === 0) return;
-        settle();
-        gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, lastX: event.clientX, dragging: false };
+        const interrupted = animationFrame !== null || settleTimer !== null;
+        stopMotion();
+        stage.classList.remove('is-dragging');
+        gesture = {
+            id: event.pointerId, x: event.clientX, y: event.clientY,
+            lastX: event.clientX, lastTime: performance.now(), velocity: 0,
+            position: unbend(bookPosition), dragging: false, interrupted
+        };
     });
     stage.addEventListener('pointermove', (event) => {
         if (!gesture || gesture.id !== event.pointerId) return;
@@ -158,18 +243,25 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
             stage.focus({ preventScroll: true });
             stage.classList.add('is-interacting', 'is-dragging');
         }
-        moveTo(bookPosition - (event.clientX - gesture.lastX) / pixelsPerBook());
+        const now = performance.now();
+        const elapsed = Math.max(1, now - gesture.lastTime);
+        const delta = -(event.clientX - gesture.lastX) / pixelsPerBook();
+        const blend = 1 - Math.exp(-elapsed / 40);
+        gesture.velocity += (delta * 1000 / elapsed - gesture.velocity) * blend;
+        gesture.position += delta;
+        moveTo(rubberBand(gesture.position));
         gesture.lastX = event.clientX;
+        gesture.lastTime = now;
     });
 
     function finishGesture(event) {
         if (!gesture || gesture.id !== event.pointerId) return;
-        const dragged = gesture.dragging;
-        gesture = null;
-        if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId);
-        if (dragged) {
+        const { dragging, interrupted, velocity, lastTime } = gesture;
+        releasePointer();
+        if (dragging || interrupted) {
             suppressClickUntil = performance.now() + 400;
-            settle();
+            const releaseSpeed = event.type === 'pointerup' && performance.now() - lastTime < 100 ? velocity : 0;
+            settle(releaseSpeed);
         }
     }
 
@@ -181,11 +273,17 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
         if (event.target === stage) finishGesture(event);
     });
     stage.addEventListener('pointerleave', () => {
-        if (gesture && !gesture.dragging) gesture = null;
+        if (gesture && !gesture.dragging) finishGesture({ pointerId: gesture.id });
     });
     window.addEventListener('blur', () => {
-        if (gesture) finishGesture({ pointerId: gesture.id });
+        select(Math.round(clamp(bookPosition)));
     });
+    reducedMotion.addEventListener('change', () => {
+        if (reducedMotion.matches) select(Math.round(clamp(bookPosition)));
+    });
+    new MutationObserver(() => {
+        if (container.hidden) select(Math.round(clamp(bookPosition)));
+    }).observe(container, { attributes: true, attributeFilter: ['hidden'] });
 
     stage.addEventListener('wheel', (event) => {
         if (event.ctrlKey || event.metaKey || gesture || books.length < 2) return;
@@ -195,11 +293,13 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
         const delta = horizontal ? event.deltaX : event.deltaY;
         if (!delta) return;
         event.preventDefault();
-        clearTimeout(settleTimer);
+        const rawPosition = wheelPosition === null ? unbend(bookPosition) : wheelPosition;
+        stopMotion();
         stage.classList.add('is-interacting');
         const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? stage.clientWidth : 1;
-        moveTo(bookPosition + delta * unit / pixelsPerBook());
-        settleTimer = setTimeout(settle, 140);
+        wheelPosition = rawPosition + delta * unit / pixelsPerBook();
+        moveTo(rubberBand(wheelPosition));
+        settleTimer = setTimeout(() => settle(), 140);
     }, { passive: false });
     stage.addEventListener('click', (event) => {
         if (performance.now() < suppressClickUntil) {
@@ -210,8 +310,8 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
 
     return {
         render(visibleBooks) {
-            if (gesture) finishGesture({ pointerId: gesture.id });
-            clearTimeout(settleTimer);
+            releasePointer();
+            stopMotion();
             stage.classList.remove('is-interacting', 'is-dragging');
             const selectedBook = books[activeIndex];
             const changed = books.length !== visibleBooks.length || books.some((book, index) => book !== visibleBooks[index]);
