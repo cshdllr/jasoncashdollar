@@ -8,7 +8,7 @@
       "bookId": "242082841",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1759325056l/242082841._SY475_.jpg",
-      "averageRating": 4.3,
+      "averageRating": 4.29,
       "bookPublished": "2026",
       "numPages": 207,
       "source": "rss"
@@ -73,7 +73,7 @@
       "bookId": "239719395",
       "isbn": "1538709112",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1754467690l/239719395._SY475_.jpg",
-      "averageRating": 4.2,
+      "averageRating": 4.22,
       "bookPublished": "",
       "numPages": 332,
       "source": "rss"
@@ -99,7 +99,7 @@
       "bookId": "220195748",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1783790767l/220195748._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.16,
       "bookPublished": "2025",
       "numPages": 304,
       "source": "rss"
@@ -183,6 +183,19 @@
       "source": "rss"
     },
     {
+      "title": "The True True Story of Raja the Gullible (and His Mother)",
+      "author": "Rabih Alameddine",
+      "rating": 4,
+      "readAt": "Mon, 2 Mar 2026 00:00:00 +0000",
+      "bookId": "230400297",
+      "isbn": "0802166482",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743008097l/230400297._SY475_.jpg",
+      "averageRating": 4.27,
+      "bookPublished": "2025",
+      "numPages": 282,
+      "source": "rss"
+    },
+    {
       "title": "Vigil",
       "author": "George Saunders",
       "rating": 4,
@@ -255,7 +268,7 @@
       "bookId": "223855577",
       "isbn": "0593804732",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739072780l/223855577._SY475_.jpg",
-      "averageRating": 4.08,
+      "averageRating": 4.07,
       "bookPublished": "2025",
       "numPages": 321,
       "source": "rss"
@@ -346,7 +359,7 @@
       "bookId": "68043118",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1672834554l/68043118._SY475_.jpg",
-      "averageRating": 4.37,
+      "averageRating": 4.38,
       "bookPublished": "2016",
       "numPages": 321,
       "source": "rss"
@@ -892,7 +905,7 @@
       "bookId": "85148114",
       "isbn": "0593422961",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1674605326l/85148114._SY475_.jpg",
-      "averageRating": 4.23,
+      "averageRating": 4.22,
       "bookPublished": "2023",
       "numPages": 400,
       "source": "rss"
@@ -944,7 +957,7 @@
       "bookId": "35652511",
       "isbn": "1542098548",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1499781540l/35652511._SY475_.jpg",
-      "averageRating": 3.99,
+      "averageRating": 3.98,
       "bookPublished": "1759",
       "numPages": 115,
       "source": "rss"
@@ -5058,5 +5071,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-09-07T15:04:05.667Z"
+  "lastUpdated": "2026-09-14T15:53:51.039Z"
 }
