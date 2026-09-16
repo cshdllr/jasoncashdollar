@@ -12,26 +12,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     let currentView = 'cards';
     let showFiveStarBooks = false;
 
-    function bookIdentityKey(book) {
-        const normalize = (value) => (value || '')
-            .toLowerCase()
-            .replace(/\s*\([^)]*\)\s*$/, '')
-            .replace(/\s+/g, ' ')
-            .trim();
-
-        return `${normalize(book.title)}|${normalize(book.author)}`;
-    }
-
-    function dedupeBooks(books) {
-        const seen = new Set();
-
-        return books.filter((book) => {
-            const key = bookIdentityKey(book);
-            if (seen.has(key)) return false;
-            seen.add(key);
-            return true;
-        });
-    }
+    const { dedupeBooks } = BookshelfIdentity;
 
     function getCoverImageUrl(book) {
         if (book.imageUrl) return book.imageUrl;
@@ -96,7 +77,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         link.href = getGoodreadsUrl(book);
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
-        link.setAttribute('aria-label', `${book.title} by ${book.author}`);
+        link.setAttribute('aria-label', `${book.title} by ${book.author} on Goodreads (opens in a new tab)`);
         return link;
     }
 

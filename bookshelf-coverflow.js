@@ -7,6 +7,8 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
     let settleTimer = null;
     let animationFrame = null;
     let wheelPosition = null;
+    let wheelEdge = 0;
+    let lastWheelTime = 0;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let displayedBook = null;
     let displayedPosition = '';
@@ -77,6 +79,9 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
             cover.style.setProperty('--direction', Math.max(-1, Math.min(1, offset)));
             cover.style.setProperty('--focus', 1 - Math.min(1, Math.abs(offset)));
             cover.style.zIndex = 100 - Math.round(Math.abs(offset) * 10);
+            const fadedOut = Math.abs(offset) >= 4;
+            cover.style.pointerEvents = fadedOut ? 'none' : '';
+            cover.setAttribute('aria-hidden', String(fadedOut));
             cover.classList.toggle('is-active', selected);
             cover.setAttribute('aria-label', `${selected ? 'Open' : 'Select'} ${books[index].title} by ${books[index].author}${selected ? ' on Goodreads (opens in a new tab)' : ''}`);
             cover.setAttribute('aria-pressed', String(selected));
@@ -111,7 +116,9 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
     }
 
     function pixelsPerBook() {
-        return parseFloat(getComputedStyle(stage).getPropertyValue('--cover-width')) * 0.8;
+        // Read the resolved width: the custom property now contains clamp/calc.
+        const cover = stage.querySelector('.coverflow-cover');
+        return (cover ? parseFloat(getComputedStyle(cover).width) : 200) * 0.8;
     }
 
     function clamp(position) {
@@ -211,6 +218,7 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
         if (event.altKey || event.ctrlKey || event.metaKey) return;
         const destinations = { ArrowLeft: activeIndex - 1, ArrowRight: activeIndex + 1, Home: 0, End: books.length - 1 };
         if (Object.prototype.hasOwnProperty.call(destinations, event.key)) {
+            wheelEdge = 0;
             event.preventDefault();
             // Keep focus stable when a cover leaves the visible window.
             stage.focus({ preventScroll: true });
@@ -223,6 +231,7 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
 
     stage.addEventListener('pointerdown', (event) => {
         if (!event.isPrimary || event.button !== 0 || books.length === 0) return;
+        wheelEdge = 0;
         const interrupted = animationFrame !== null || settleTimer !== null;
         stopMotion();
         stage.classList.remove('is-dragging');
@@ -293,13 +302,28 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
         const delta = horizontal ? event.deltaX : event.deltaY;
         if (!delta) return;
         event.preventDefault();
-        const rawPosition = wheelPosition === null ? unbend(bookPosition) : wheelPosition;
+        const now = performance.now();
+        const direction = Math.sign(delta);
+        const continuing = now - lastWheelTime < 180;
+        lastWheelTime = now;
+        // Let one edge bounce finish while the same wheel gesture trails off.
+        // Momentum events must not cancel the spring or build invisible overscroll.
+        if (continuing && wheelEdge === direction) return;
+        const reversing = wheelEdge !== 0 && wheelEdge !== direction;
+        wheelEdge = 0;
+        const rawPosition = reversing ? clamp(bookPosition)
+            : wheelPosition === null ? unbend(bookPosition) : wheelPosition;
         stopMotion();
         stage.classList.add('is-interacting');
         const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? stage.clientWidth : 1;
         wheelPosition = rawPosition + delta * unit / pixelsPerBook();
         moveTo(rubberBand(wheelPosition));
-        settleTimer = setTimeout(() => settle(), 140);
+        if (wheelPosition !== clamp(wheelPosition)) {
+            wheelEdge = direction;
+            settle();
+        } else {
+            settleTimer = setTimeout(() => settle(), 140);
+        }
     }, { passive: false });
     stage.addEventListener('click', (event) => {
         if (performance.now() < suppressClickUntil) {
@@ -310,6 +334,7 @@ window.createBookshelfCoverflow = function(container, createBookImage) {
 
     return {
         render(visibleBooks) {
+            wheelEdge = 0;
             releasePointer();
             stopMotion();
             stage.classList.remove('is-interacting', 'is-dragging');

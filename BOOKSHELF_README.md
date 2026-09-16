@@ -36,7 +36,12 @@ The bookshelf offers four viewing modes:
 
 Cover Flow keeps your selection when you switch layouts. It is also available on `bookshelf-new.html`, where it supports the five-star filter.
 
+Book titles in every view, and covers in Grid and Cards, open the matching Goodreads book page in a new tab. In Cover Flow, click a neighboring cover to select it, then click the centered cover or title to open Goodreads.
+
 All views are fully responsive and adapt beautifully to desktop, tablet, and mobile devices.
+
+### Duplicate prevention
+The importer and both bookshelf pages share `bookshelf-identity.js`. Entries match by Goodreads book ID even if Goodreads changes the title or author. Different editions can also match by normalized title and author, ignoring a small set of publishing labels such as “A Novel.” Meaningful subtitles and numbered series volumes remain distinct. RSS metadata takes priority over saved data, then CSV; missing covers and read dates can be filled from older sources. Regression tests run before every scheduled sync.
 
 ## Files
 

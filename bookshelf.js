@@ -11,42 +11,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     let booksData = [];
     let currentView = 'cards'; // Default view
     
-    /**
-     * Normalized title|author key used to identify a book. Lowercased, whitespace
-     * collapsed, and a trailing "(Series #1)"-style suffix removed so the same book
-     * matches across Goodreads editions.
-     */
-    function bookIdentityKey(book) {
-        const norm = (s) => (s || '')
-            .toLowerCase()
-            .replace(/\s*\([^)]*\)\s*$/, '')
-            .replace(/\s+/g, ' ')
-            .trim();
-        return `${norm(book.title)}|${norm(book.author)}`;
+    const { dedupeBooks } = BookshelfIdentity;
+
+    function createBookLink(book, className) {
+        const link = document.createElement('a');
+        link.className = `book-link ${className}`;
+        link.href = `https://www.goodreads.com/book/show/${encodeURIComponent(book.bookId)}`;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', `${book.title} by ${book.author} on Goodreads (opens in a new tab)`);
+        return link;
     }
 
-    /**
-     * Remove duplicate books. A book is identified by its title + author, so the
-     * same book never shows twice even if Goodreads has it under multiple editions
-     * (different bookId) or with different read dates. Keeps the first occurrence;
-     * books arrive sorted newest-read first, so the most recent read wins.
-     */
-    function dedupeBooks(books) {
-        const seen = new Set();
-        const out = [];
-        for (const book of books) {
-            const key = bookIdentityKey(book);
-            if (seen.has(key)) continue;
-            seen.add(key);
-            out.push(book);
-        }
-        return out;
-    }
-    
-    /**
-     * Get the best available cover image URL for a book
-     * Prioritizes Goodreads URLs since they're most reliable
-     */
     function getCoverImageUrl(book) {
         // Primary: Use Goodreads imageUrl if available (most reliable)
         if (book.imageUrl) {
@@ -274,8 +250,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             yearSection.appendChild(yearHeader);
             
             booksByYear[year].forEach(book => {
-                const bookEntry = document.createElement('div');
-                bookEntry.className = 'text-list-book';
+                const bookEntry = createBookLink(book, 'text-list-book');
                 
                 const title = document.createElement('span');
                 title.className = 'text-list-book-title';
@@ -314,8 +289,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         coversGrid.className = 'vertical-covers-grid';
         
         booksData.forEach(book => {
-            const coverItem = document.createElement('div');
-            coverItem.className = 'vertical-cover-item';
+            const coverItem = createBookLink(book, 'vertical-cover-item');
             
             // Book cover image
             const img = createBookImage(book, 'vertical-cover-image');
@@ -379,8 +353,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         coversGrid.className = 'grid-covers-grid';
         
         booksData.forEach(book => {
-            const coverItem = document.createElement('div');
-            coverItem.className = 'grid-cover-item';
+            const coverItem = createBookLink(book, 'grid-cover-item');
             
             const img = createBookImage(book, 'grid-cover-image');
             coverItem.appendChild(img);

@@ -84,3 +84,59 @@ test('parseRSSFeed parses fields and normalizes whitespace', () => {
   assert.equal(books[0].readAt, 'Fri, 1 May 2026 00:00:00 +0000');
   assert.equal(books[0].imageUrl, 'https://example.com/cover.jpg');
 });
+
+const { mergeBooks } = require('./fetch-books');
+const { dedupeBooks, groupBooks } = require('../../bookshelf-identity');
+
+test('title and author changes cannot duplicate the same Goodreads book', () => {
+  const oldRaja = { bookId: '230400297', title: 'The True True Story of Raja the Gullible (and His Mother): A Novel (National Book Award Winner)', author: 'Rabih Alameddine', imageUrl: 'saved-cover.jpg' };
+  const newRaja = { ...oldRaja, title: 'The True True Story of Raja the Gullible (and His Mother)', imageUrl: '', rating: 0 };
+  const oldBeowulf = { bookId: '45889029', title: 'Beowulf: A New Translation', author: 'Beowulf Poet' };
+  const newBeowulf = { ...oldBeowulf, author: 'Unknown' };
+  const result = mergeBooks([], [newRaja, newBeowulf], [oldRaja, oldBeowulf]);
+  assert.equal(result.length, 2);
+  assert.equal(result[0].title, newRaja.title);
+  assert.equal(result[0].imageUrl, 'saved-cover.jpg');
+  assert.equal(result[0].rating, 0);
+  assert.equal(result[1].author, 'Unknown');
+  assert.equal(dedupeBooks([oldRaja, newRaja, oldBeowulf, newBeowulf]).length, 2);
+  assert.deepEqual(mergeBooks([], [newRaja, newBeowulf], result), result);
+});
+
+test('different editions match normalized titles and authors, including publishing labels', () => {
+  const first = { bookId: '1', title: 'Example: A Novel (National Book Award Winner)', author: 'An Author' };
+  const second = { bookId: '2', title: ' EXAMPLE ', author: 'an  author' };
+  assert.equal(dedupeBooks([first, second]).length, 1);
+  assert.equal(dedupeBooks([{ title: 'Writer’s Life', author: 'A' }, { title: "Writer's Life", author: 'A' }]).length, 1);
+});
+
+test('distinct authors, subtitles and numbered series volumes are preserved', () => {
+  const books = [
+    { title: 'Home', author: 'A' }, { title: 'Home', author: 'B' },
+    { title: 'Volume (Series #1)', author: 'A' }, { title: 'Volume (Series #2)', author: 'A' },
+    { title: 'Study: Part One', author: 'A' }, { title: 'Study: Part Two', author: 'A' },
+    { bookId: '', title: '', author: 'A' }, { bookId: '', title: '', author: 'A' }
+  ];
+  assert.equal(dedupeBooks(books).length, books.length);
+});
+
+test('identity links join renamed books and alternate editions without leaving duplicates', () => {
+  const books = [
+    { bookId: '1', title: 'Old title', author: 'A' },
+    { bookId: '2', title: 'New title', author: 'A' },
+    { bookId: '1', title: 'New title', author: 'A' }
+  ];
+  assert.equal(groupBooks(books).length, 1);
+  assert.equal(dedupeBooks(books)[0], books[0]);
+});
+
+test('source priority and newest-first order survive merging without mutating inputs', () => {
+  const saved = { bookId: '1', title: 'Book', author: 'A', rating: 5, readAt: '2026-01-01', imageUrl: 'cover.jpg' };
+  const csv = { ...saved, rating: 2, imageUrl: '' };
+  const newest = { bookId: '2', title: 'New book', author: 'A', readAt: '2026-09-01' };
+  const result = mergeBooks([csv], [newest], [saved]);
+  assert.equal(result[0].bookId, '2');
+  assert.equal(result[1].rating, 5);
+  assert.equal(result[1].imageUrl, 'cover.jpg');
+  assert.equal(csv.imageUrl, '');
+});

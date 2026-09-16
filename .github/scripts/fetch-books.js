@@ -2,6 +2,7 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const { bookMergeKey, groupBooks } = require('../../bookshelf-identity');
 
 const RSS_FEED_URL = process.env.GOODREADS_RSS_URL
   || 'https://www.goodreads.com/review/list_rss/7275511?key=FDAhzaFkwW1x8rhr_M0sD54b28PYpbMSXyLrOUIB_FLLkctm&shelf=read';
@@ -295,63 +296,18 @@ function extractTag(content, tagName) {
   return '';
 }
 
-/**
- * Merge/identity key: normalized title + author. Keying on the book itself
- * (rather than the Goodreads bookId) means the same book collapses to one entry
- * even when Goodreads returns it under multiple editions with different bookIds
- * or different read dates. Title is lowercased, whitespace-collapsed, and a
- * trailing "(Series #1)"-style suffix is stripped so editions still match.
- */
-function bookMergeKey(book) {
-  const norm = (s) => (s || '')
-    .toLowerCase()
-    .replace(/\s*\([^)]*\)\s*$/, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-  return `ta:${norm(book.title)}_${norm(book.author)}`;
-}
-
-/**
- * Merge CSV books with RSS books, preserving existing Goodreads imageUrls
- * Priority: RSS > existing books.json > CSV
- */
+/** Merge by stable ID or equivalent title/author; RSS > saved data > CSV. */
 function mergeBooks(csvBooks, rssBooks, existingBooks = []) {
-  const bookMap = new Map();
-  
-  // First, add existing books to preserve their imageUrls
-  existingBooks.forEach(book => {
-    bookMap.set(bookMergeKey(book), book);
-  });
-  
-  // Add/update with CSV books (but preserve existing imageUrl if CSV doesn't have one)
-  csvBooks.forEach(book => {
-    const key = bookMergeKey(book);
-    const existing = bookMap.get(key);
-    
-    if (existing && existing.imageUrl && !book.imageUrl) {
-      // Preserve existing Goodreads imageUrl
-      book.imageUrl = existing.imageUrl;
+  const mergedBooks = groupBooks([...rssBooks, ...existingBooks, ...csvBooks]).map(group => {
+    const book = { ...group[0] };
+    // Older sources may still have a cover, ISBN, or read date absent from RSS.
+    for (const field of ['imageUrl', 'isbn', 'readAt']) {
+      if (!book[field]) book[field] = group.find(candidate => candidate[field])?.[field] || '';
     }
-    
-    bookMap.set(key, book);
+    return book;
   });
-  
-  // RSS books always take precedence (they have the best data)
-  rssBooks.forEach(book => {
-    const key = bookMergeKey(book);
-    bookMap.set(key, book);
-  });
-  
-  // Convert back to array and sort by read date (newest first)
-  const mergedBooks = Array.from(bookMap.values());
-  
-  mergedBooks.sort((a, b) => {
-    const dateA = a.readAt ? new Date(a.readAt) : new Date(0);
-    const dateB = b.readAt ? new Date(b.readAt) : new Date(0);
-    return dateB - dateA; // Newest first
-  });
-  
-  return mergedBooks;
+  const readTime = book => Date.parse(book.readAt) || 0;
+  return mergedBooks.sort((a, b) => readTime(b) - readTime(a));
 }
 
 /**
