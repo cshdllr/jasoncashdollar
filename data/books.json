@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Land",
+      "author": "Maggie O'Farrell",
+      "rating": 4,
+      "readAt": "Mon, 14 Sep 2026 00:00:00 +0000",
+      "bookId": "241292360",
+      "isbn": "0593320654",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1764215673l/241292360._SY475_.jpg",
+      "averageRating": 4.35,
+      "bookPublished": "2026",
+      "numPages": 385,
+      "source": "rss"
+    },
+    {
       "title": "The Things We Never Say",
       "author": "Elizabeth Strout",
       "rating": 3,
@@ -34,7 +47,7 @@
       "bookId": "238514980",
       "isbn": "0593804228",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753931868l/238514980._SY475_.jpg",
-      "averageRating": 4.02,
+      "averageRating": 4.01,
       "bookPublished": "2026",
       "numPages": 391,
       "source": "rss"
@@ -73,7 +86,7 @@
       "bookId": "239719395",
       "isbn": "1538709112",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1754467690l/239719395._SY475_.jpg",
-      "averageRating": 4.22,
+      "averageRating": 4.23,
       "bookPublished": "",
       "numPages": 332,
       "source": "rss"
@@ -112,7 +125,7 @@
       "bookId": "229804861",
       "isbn": "0802165184",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1745514824l/229804861._SY475_.jpg",
-      "averageRating": 4.32,
+      "averageRating": 4.31,
       "bookPublished": "2025",
       "numPages": 0,
       "source": "rss"
@@ -294,7 +307,7 @@
       "bookId": "214195417",
       "isbn": "1982122811",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717908825l/214195417._SY475_.jpg",
-      "averageRating": 3.82,
+      "averageRating": 3.83,
       "bookPublished": "2025",
       "numPages": 364,
       "source": "rss"
@@ -905,7 +918,7 @@
       "bookId": "59016923",
       "isbn": "0802158757",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631916775l/59016923._SX318_.jpg",
-      "averageRating": 4.12,
+      "averageRating": 4.11,
       "bookPublished": "2021",
       "numPages": 70,
       "source": "rss"
@@ -1301,19 +1314,6 @@
       "source": "csv"
     },
     {
-      "title": "The Ministry for the Future",
-      "author": "Kim Stanley Robinson",
-      "rating": 3,
-      "readAt": "Sun, 31 Jul 2022 00:00:00 GMT",
-      "bookId": "59355202",
-      "isbn": "",
-      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1634332691l/59355202._SY475_.jpg",
-      "averageRating": 3.87,
-      "bookPublished": "2021",
-      "numPages": 577,
-      "source": "csv"
-    },
-    {
       "title": "Hell of a Book",
       "author": "Jason Mott",
       "rating": 4,
@@ -1325,6 +1325,19 @@
       "bookPublished": "2021",
       "numPages": 333,
       "source": "rss"
+    },
+    {
+      "title": "The Ministry for the Future",
+      "author": "Kim Stanley Robinson",
+      "rating": 3,
+      "readAt": "Sun, 31 Jul 2022 00:00:00 GMT",
+      "bookId": "59355202",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1634332691l/59355202._SY475_.jpg",
+      "averageRating": 3.87,
+      "bookPublished": "2021",
+      "numPages": 577,
+      "source": "csv"
     },
     {
       "title": "Unlikely Animals",
@@ -5045,5 +5058,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-09-14T15:53:51.039Z"
+  "lastUpdated": "2026-09-21T15:54:04.942Z"
 }
