@@ -23,6 +23,7 @@ const BREADCRUMB_MENU_SECTIONS = [
     {
         label: 'Personal projects',
         items: [
+            { slug: 'pixelmon', label: 'Pixélmon' },
             { slug: 'slimeballbench', label: 'SlimeBallBench' },
             { slug: 'days', label: 'DAYS iOS app' },
             { slug: 'numbercrunch', label: 'Number Crunch' },
