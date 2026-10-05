@@ -43,6 +43,8 @@
   --space-30: 120px;
   --content-margin: var(--space-20);
   --home-content-width: 560px;
+  --site-header-top: 64px;
+  --site-header-bottom: 48px;
   --home-primary-column: 180px;
   --home-column-gap: var(--space-5);
   --work-logo-size: var(--space-6);
@@ -400,6 +402,8 @@ p a {
 }
 
 .home-page .header {
+  padding-top: var(--site-header-top);
+  padding-bottom: var(--site-header-bottom);
   max-width: none;
   margin: 0;
 }
@@ -1047,6 +1051,8 @@ p a {
 @media (max-width: 768px) {
   :root {
     --content-margin: var(--space-6);
+    --site-header-top: 40px;
+    --site-header-bottom: 40px;
   }
 
   /* Header stacks vertically with padding */
@@ -1060,16 +1066,18 @@ p a {
     margin-right: 0;
   }
 
-  .header-identity {
+  .home-page .header { gap: var(--space-4); }
+
+  .home-page .header-identity {
     width: 100%;
     justify-content: space-between;
   }
 
-  .header-photo {
+  .home-page .header-photo {
     order: 2;
   }
 
-  .name {
+  .home-page .name {
     order: 1;
   }
 

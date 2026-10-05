@@ -212,8 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Keyboard navigation enhancement
     document.addEventListener('keydown', function(e) {
-        // Escape key to return to top (unless the breadcrumb menu is open)
-        if (e.key === 'Escape' && !document.querySelector('.breadcrumb-project.is-open')) {
+        // An open modal owns Escape, including when focus is on browser video controls.
+        if (e.key === 'Escape' && !document.querySelector('.breadcrumb-project.is-open, dialog[open]')) {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'

@@ -1,0 +1,330 @@
+[
+  {
+    "slug": "instagram-fundraisers",
+    "title": "Instagram",
+    "description": "0→1 nonprofit fundraisers",
+    "excludeMedia": [
+      "images/ig-fundraisers/ig-f8-zuckerberg.jpg"
+    ],
+    "mediaDescriptions": {
+      "images/ig-fundraisers/ig-video-1.mp4": [
+        "Creating a fundraiser Story"
+      ],
+      "images/ig-fundraisers/ig-video-2.mp4": [
+        "Donating to a fundraiser Story"
+      ],
+      "images/ig-fundraisers/ig-video-3.mp4": [
+        "A home for your fundraiser"
+      ],
+      "images/ig-fundraisers/ig-profile donations.png": [
+        "Donating from a nonprofit profile"
+      ]
+    },
+    "previewTitle": "Instagram fundraisers",
+    "previewLinks": [],
+    "mediaStyle": {
+      "video": {
+        "background": "#f1f1f1"
+      }
+    }
+  },
+  {
+    "slug": "facebook-fundraisers",
+    "title": "Facebook",
+    "description": "Nonprofit and personal fundraisers",
+    "previewTitle": "Facebook fundraisers",
+    "mediaDescriptions": {
+      "images/fb-fundraisers/fb-fundraiser-center.png": [
+        "Browsing fundraisers"
+      ],
+      "images/fb-fundraisers/fb-fundraiser-creation.png": [
+        "Creating a fundraiser"
+      ],
+      "images/fb-fundraisers/fb-giving-tuesday.png": [
+        "Giving Tuesday"
+      ]
+    },
+    "previewLinks": []
+  },
+  {
+    "slug": "ameelio-mail",
+    "title": "Ameelio",
+    "description": "Photo sharing to incarcerated loved ones",
+    "previewTitle": "Ameelio",
+    "mediaDescriptions": {
+      "images/ameelio/ameelio-mail-redesign.png": [
+        "Sharing photos with loved ones"
+      ],
+      "images/ameelio/ameelio-connect.png": [
+        "Scheduling a call"
+      ],
+      "images/ameelio/ameelio-messaging.png": [
+        "Staying connected through messages"
+      ]
+    },
+    "previewLinks": []
+  },
+  {
+    "slug": "pixelmon",
+    "useOriginalImages": true,
+    "title": "Pixélmon",
+    "description": "RPG for design, PM, and engineering",
+    "previewTitle": "Pixélmon",
+    "mediaDescriptions": {
+      "images/pixelmon/pixelmon-cover.mp4": [
+        "A tiny workplace adventure"
+      ],
+      "images/pixelmon/pixelmon-gameplay.mp4": [
+        "Exploring the village"
+      ],
+      "images/pixelmon/pixelmon-buy-in.png": [
+        "Getting buy-in"
+      ],
+      "images/pixelmon/pixelmon-coffee.png": [
+        "Taking a coffee break"
+      ],
+      "images/pixelmon/pixelmon-editor.png": [
+        "Building the world"
+      ]
+    },
+    "previewLinks": [
+      {
+        "href": "https://www.pixelmon.fun/",
+        "label": "Play game"
+      }
+    ],
+    "mediaStyle": {
+      "image": {
+        "background": "#101010"
+      },
+      "video": {
+        "background": "#101010",
+        "viewerFit": "cover"
+      }
+    }
+  },
+  {
+    "slug": "slimeballbench",
+    "title": "SlimeBallBench",
+    "description": "AI benchmarking tool",
+    "previewTitle": "SlimeBallBench",
+    "mediaDescriptions": {
+      "images/slimeballbench/slimeballbench.mp4": [
+        "AI models playing slime soccer"
+      ]
+    },
+    "previewLinks": [
+      {
+        "href": "https://slimeballbench.com/",
+        "label": "Watch matches"
+      }
+    ],
+    "mediaStyle": {
+      "video": {
+        "viewerFit": "cover"
+      }
+    }
+  },
+  {
+    "slug": "days",
+    "title": "DAYS",
+    "description": "iOS app for celebrating milestones",
+    "previewTitle": "DAYS",
+    "mediaDescriptions": {
+      "images/days/days-teaser.mp4": [
+        "Celebrating hidden milestones"
+      ],
+      "images/days/days.png": [
+        "Tracking dates and milestones"
+      ]
+    },
+    "previewLinks": [
+      {
+        "href": "https://apps.apple.com/us/app/days-your-hidden-milestones/id6748106360",
+        "label": "Get app"
+      }
+    ],
+    "mediaStyle": {
+      "image": {
+        "background": "#000"
+      },
+      "video": {
+        "background": "#000"
+      }
+    }
+  },
+  {
+    "slug": "glance",
+    "title": "Glance",
+    "description": "Browser extension for design details",
+    "previewTitle": "Glance",
+    "mediaDescriptions": {
+      "images/glance/glance.mp4": [
+        "Inspecting a website’s design"
+      ],
+      "images/glance/glance-matej-example.png": [
+        "Colors, typography, and spacing"
+      ]
+    },
+    "previewLinks": [
+      {
+        "href": "https://github.com/cshdllr/glance",
+        "label": "Get extension"
+      }
+    ],
+    "mediaStyle": {
+      "video": {
+        "viewerFit": "contain",
+        "background": "#286fec"
+      }
+    }
+  },
+  {
+    "slug": "numbercrunch",
+    "title": "Number Crunch",
+    "description": "Daily number game",
+    "previewTitle": "Number Crunch",
+    "mediaDescriptions": {
+      "images/number-crunch/number-crunch-cover.png": [
+        "A daily number game"
+      ],
+      "images/number-crunch/number-crunch-gameplay.mp4": [
+        "Playing through a game"
+      ],
+      "images/number-crunch/number-crunch-results.png": [
+        "Comparing daily scores"
+      ],
+      "images/number-crunch/number-crunch-crown.png": [
+        "Earning the crown"
+      ]
+    },
+    "previewLinks": [
+      {
+        "href": "https://numbercrunch.fun",
+        "label": "Play game"
+      }
+    ],
+    "mediaStyle": {
+      "video": {
+        "background": "#000"
+      }
+    }
+  },
+  {
+    "slug": "onemillionrockpaperscissors",
+    "title": "One million RPS",
+    "description": "Rock, paper, scissors on a big scale",
+    "previewTitle": "One million RPS",
+    "mediaDescriptions": {
+      "images/rock-paper-scissors/rockpaperscissors.mp4": [
+        "Rock, paper, scissors at scale"
+      ]
+    },
+    "previewLinks": [
+      {
+        "href": "https://onemillionrps.com",
+        "label": "Play game"
+      }
+    ],
+    "mediaStyle": {
+      "video": {
+        "viewerFit": "cover",
+        "thumbnailFit": "cover"
+      }
+    }
+  },
+  {
+    "slug": "color-research",
+    "title": "Color Research",
+    "description": "Experiment to identify all hex colors",
+    "previewTitle": "Color Research",
+    "mediaDescriptions": {
+      "images/color-research/color-research-cover.png": [
+        "Discovering colors together"
+      ],
+      "images/color-research/color-research-mixing.mp4": [
+        "Mixing and naming colors"
+      ],
+      "images/color-research/color-research-collection.mp4": [
+        "Exploring the shared collection"
+      ],
+      "images/color-research/color-research-counter.mp4": [
+        "Counting colors discovered"
+      ]
+    },
+    "previewLinks": [
+      {
+        "href": "https://colorresearch.fun",
+        "label": "Discover colors"
+      }
+    ],
+    "mediaStyle": {
+      "video": {
+        "background": "#000"
+      }
+    }
+  },
+  {
+    "slug": "chrono",
+    "title": "Chrono",
+    "description": "Daily history game",
+    "previewTitle": "Chrono",
+    "mediaDescriptions": {
+      "images/chrono/chrono.mp4": [
+        "A daily history game"
+      ]
+    },
+    "previewLinks": [
+      {
+        "href": "https://chrono.quest/",
+        "label": "Play game"
+      }
+    ],
+    "mediaStyle": {
+      "video": {
+        "background": "#f1f1f1"
+      }
+    }
+  },
+  {
+    "slug": "bookshelf",
+    "title": "Bookshelf",
+    "description": "All the books I’ve read"
+  },
+  {
+    "slug": "running",
+    "title": "Running",
+    "description": "Some memorable runs",
+    "previewTitle": "Running",
+    "mediaDescriptions": {
+      "images/races/four-pass.png": [
+        "Four Pass Loop"
+      ],
+      "images/races/boston-marathon.png": [
+        "Boston Marathon"
+      ],
+      "images/races/cim.png": [
+        "California International Marathon"
+      ],
+      "images/races/broken-arrow.png": [
+        "Broken Arrow"
+      ],
+      "images/races/the-north-face.png": [
+        "The North Face 50"
+      ],
+      "images/races/quad-dipsea.png": [
+        "Quad Dipsea"
+      ],
+      "images/races/ar50.png": [
+        "American River 50"
+      ],
+      "images/races/way-too-cool.png": [
+        "Way Too Cool"
+      ],
+      "images/races/nv.png": [
+        "Napa Valley 50k"
+      ]
+    },
+    "previewLinks": []
+  }
+]

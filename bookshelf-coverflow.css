@@ -33,6 +33,48 @@
   gap: var(--space-1);
 }
 
+.bookshelf-identity {
+  flex: 1;
+}
+
+/* Match the homepage's header width, typography, and vertical rhythm. */
+.bookshelf-page .bookshelf-main {
+  padding-top: var(--site-header-top);
+}
+
+.bookshelf-page .bookshelf-header {
+  max-width: var(--home-content-width);
+  margin-bottom: var(--site-header-bottom);
+}
+
+.bookshelf-page .bookshelf-title-row {
+  margin-bottom: 0;
+}
+
+.bookshelf-page .view-toggles {
+  margin-block: -8px;
+}
+
+.bookshelf-page .text-list-container,
+.bookshelf-page .vertical-covers-container {
+  max-width: var(--home-content-width);
+}
+
+.bookshelf-home-link {
+  display: block;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.bookshelf-home-link img {
+  display: block;
+}
+
+.bookshelf-home-link:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 4px;
+}
+
 .bookshelf-container .view-toggle {
   min-width: 44px;
   min-height: 40px;
@@ -219,17 +261,12 @@
 }
 
 @media (max-width: 600px) {
-  .bookshelf-container .bookshelf-title-row {
-    gap: var(--space-3);
-  }
-
-  .bookshelf-container .bookshelf-title-row .page-title {
+  .bookshelf-container .bookshelf-identity {
     flex-basis: 100%;
-    margin-bottom: var(--space-1);
   }
 
-  .bookshelf-container .rating-filter {
-    height: 48px;
+  .bookshelf-page .view-toggles {
+    margin-block: 0;
   }
 
   .coverflow-stage {
@@ -242,12 +279,6 @@
 
   .coverflow-details {
     min-height: 104px;
-  }
-}
-
-@media (max-width: 480px) {
-  .bookshelf-container .bookshelf-header {
-    margin-bottom: var(--space-6);
   }
 }
 

@@ -1,0 +1,219 @@
+{
+  "images/ig-fundraisers/ig-profile donations.png": {
+    "src": "images/themed/ig-profile-donations.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3888,
+    "backgroundRemovedPercent": 52.63,
+    "opaquePixelsUnchanged": true
+  },
+  "images/fb-fundraisers/fb-fundraiser-center.png": {
+    "src": "images/themed/fb-fundraiser-center.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3888,
+    "backgroundRemovedPercent": 52.63,
+    "opaquePixelsUnchanged": true
+  },
+  "images/fb-fundraisers/fb-fundraiser-creation.png": {
+    "src": "images/themed/fb-fundraiser-creation.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3888,
+    "backgroundRemovedPercent": 28.95,
+    "opaquePixelsUnchanged": true
+  },
+  "images/fb-fundraisers/fb-giving-tuesday.png": {
+    "src": "images/themed/fb-giving-tuesday.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3888,
+    "backgroundRemovedPercent": 52.63,
+    "opaquePixelsUnchanged": true
+  },
+  "images/ameelio/ameelio-mail-redesign.png": {
+    "src": "images/themed/ameelio-mail-redesign.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3888,
+    "backgroundRemovedPercent": 28.95,
+    "opaquePixelsUnchanged": true
+  },
+  "images/ameelio/ameelio-connect.png": {
+    "src": "images/themed/ameelio-connect.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3704,
+    "backgroundRemovedPercent": 35.13,
+    "opaquePixelsUnchanged": true
+  },
+  "images/ameelio/ameelio-messaging.png": {
+    "src": "images/themed/ameelio-messaging.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3704,
+    "backgroundRemovedPercent": 35.13,
+    "opaquePixelsUnchanged": true
+  },
+  "images/pixelmon/pixelmon-buy-in.png": {
+    "src": "images/themed/pixelmon-buy-in.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved. Gradient surround removed.",
+    "width": 1884,
+    "height": 1060,
+    "backgroundRemovedPercent": 54.32,
+    "opaquePixelsUnchanged": true
+  },
+  "images/pixelmon/pixelmon-coffee.png": {
+    "src": "images/themed/pixelmon-coffee.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved. Gradient surround removed.",
+    "width": 1884,
+    "height": 1060,
+    "backgroundRemovedPercent": 54.18,
+    "opaquePixelsUnchanged": true
+  },
+  "images/pixelmon/pixelmon-editor.png": {
+    "src": "images/pixelmon/pixelmon-editor.png",
+    "status": "Full-screen interface",
+    "note": "The dark areas are the application interface itself, so this screenshot is preserved."
+  },
+  "images/days/days.png": {
+    "src": "images/themed/days.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 4020,
+    "backgroundRemovedPercent": 27.08,
+    "opaquePixelsUnchanged": true
+  },
+  "images/glance/glance-matej-example.png": {
+    "src": "images/glance/glance-matej-example.png",
+    "status": "Already transparent",
+    "note": "The existing transparent asset already adapts to either background."
+  },
+  "images/number-crunch/number-crunch-cover.png": {
+    "src": "images/themed/number-crunch-cover.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 3840,
+    "height": 2160,
+    "backgroundRemovedPercent": 70.0,
+    "opaquePixelsUnchanged": true
+  },
+  "images/number-crunch/number-crunch-results.png": {
+    "src": "images/themed/number-crunch-results.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 2880,
+    "height": 2160,
+    "backgroundRemovedPercent": 45.09,
+    "opaquePixelsUnchanged": true
+  },
+  "images/number-crunch/number-crunch-crown.png": {
+    "src": "images/themed/number-crunch-crown.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 2880,
+    "height": 2160,
+    "backgroundRemovedPercent": 42.18,
+    "opaquePixelsUnchanged": true
+  },
+  "images/color-research/color-research-cover.png": {
+    "src": "images/themed/color-research-cover.webp",
+    "status": "Transparent background",
+    "note": "Canvas background removed; original UI colors retained. The black Mix button has less contrast on charcoal.",
+    "width": 7680,
+    "height": 4320,
+    "backgroundRemovedPercent": 89.47,
+    "opaquePixelsUnchanged": true
+  },
+  "images/races/four-pass.png": {
+    "src": "images/themed/four-pass.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3540,
+    "backgroundRemovedPercent": 34.12,
+    "opaquePixelsUnchanged": true
+  },
+  "images/races/boston-marathon.png": {
+    "src": "images/themed/boston-marathon.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3540,
+    "backgroundRemovedPercent": 34.12,
+    "opaquePixelsUnchanged": true
+  },
+  "images/races/cim.png": {
+    "src": "images/themed/cim.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3540,
+    "backgroundRemovedPercent": 34.12,
+    "opaquePixelsUnchanged": true
+  },
+  "images/races/broken-arrow.png": {
+    "src": "images/themed/broken-arrow.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3540,
+    "backgroundRemovedPercent": 36.51,
+    "opaquePixelsUnchanged": true
+  },
+  "images/races/the-north-face.png": {
+    "src": "images/themed/the-north-face.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3540,
+    "backgroundRemovedPercent": 34.12,
+    "opaquePixelsUnchanged": true
+  },
+  "images/races/quad-dipsea.png": {
+    "src": "images/themed/quad-dipsea.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3540,
+    "backgroundRemovedPercent": 34.12,
+    "opaquePixelsUnchanged": true
+  },
+  "images/races/ar50.png": {
+    "src": "images/themed/ar50.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3540,
+    "backgroundRemovedPercent": 34.12,
+    "opaquePixelsUnchanged": true
+  },
+  "images/races/way-too-cool.png": {
+    "src": "images/themed/way-too-cool.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3540,
+    "backgroundRemovedPercent": 34.12,
+    "opaquePixelsUnchanged": true
+  },
+  "images/races/nv.png": {
+    "src": "images/themed/nv.webp",
+    "status": "Transparent background",
+    "note": "Exterior background removed; original dimensions and opaque artwork pixels preserved.",
+    "width": 6100,
+    "height": 3540,
+    "backgroundRemovedPercent": 34.12,
+    "opaquePixelsUnchanged": true
+  }
+}

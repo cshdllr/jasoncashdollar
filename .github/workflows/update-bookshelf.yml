@@ -34,11 +34,14 @@ jobs:
         run: |
           node .github/scripts/fetch-books.js
           
+      - name: Refresh homepage book previews
+        run: python3 scripts/build-previews.py --books-only
+
       - name: Commit and push if changed
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/books.json
+          git add data/books.json data/previews.js
           if git diff --staged --quiet; then
             echo "No bookshelf changes to commit"
           else

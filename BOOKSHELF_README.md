@@ -12,6 +12,7 @@ The bookshelf feature automatically syncs your read books from Goodreads and dis
 - Fetches your Goodreads RSS feed and parses book data
 - Retries temporary feed failures and fails loudly on HTTP errors or empty feeds
 - Saves book information to `data/books.json`
+- Refreshes the homepage’s recent books and total count in `data/previews.js` using `python3 scripts/build-previews.py --books-only` (no media tools required)
 - Automatically commits and pushes only when the book list actually changes
 - Triggers the GitHub Pages deployment after every successful bookshelf sync
 
@@ -34,14 +35,14 @@ The bookshelf offers four viewing modes:
 - **List View**: Text-only display grouped by year with titles, authors, and ratings
 - **Cover Flow View**: Browse angled covers by dragging, swiping, scrolling horizontally, or using Shift + mouse wheel. Covers follow your movement, coast after a flick, and spring into place. Pulling past either end adds gentle resistance and springs back; reduced-motion mode skips momentum. Arrow keys browse too, and Home/End jump to the first/last book. Open the selected cover or title on Goodreads; Enter opens it when the cover area is focused.
 
-Cover Flow keeps your selection when you switch layouts. It is also available on `bookshelf-new.html`, where it supports the five-star filter.
+Cover Flow keeps your selection when you switch layouts. The experimental Bookshelf page has been retired in favor of this single implementation.
 
 Book titles in every view, and covers in Grid and Cards, open the matching Goodreads book page in a new tab. In Cover Flow, click a neighboring cover to select it, then click the centered cover or title to open Goodreads.
 
 All views are fully responsive and adapt beautifully to desktop, tablet, and mobile devices.
 
 ### Duplicate prevention
-The importer and both bookshelf pages share `bookshelf-identity.js`. Entries match by Goodreads book ID even if Goodreads changes the title or author. Different editions can also match by normalized title and author, ignoring a small set of publishing labels such as “A Novel.” Meaningful subtitles and numbered series volumes remain distinct. RSS metadata takes priority over saved data, then CSV; missing covers and read dates can be filled from older sources. Regression tests run before every scheduled sync.
+The importer and bookshelf page share `bookshelf-identity.js`. Entries match by Goodreads book ID even if Goodreads changes the title or author. Different editions can also match by normalized title and author, ignoring a small set of publishing labels such as “A Novel.” Meaningful subtitles and numbered series volumes remain distinct. RSS metadata takes priority over saved data, then CSV; missing covers and read dates can be filled from older sources. Regression tests run before every scheduled sync.
 
 ## Files
 
@@ -49,9 +50,9 @@ The importer and both bookshelf pages share `bookshelf-identity.js`. Entries mat
 - `bookshelf.html` - Main bookshelf page
 - `bookshelf.js` - JavaScript logic for rendering different views and data loading
 - `styles.css` - Contains bookshelf-specific styles at the bottom
-- `bookshelf-coverflow.js` / `bookshelf-coverflow.css` - Shared Cover Flow behavior, styles, and responsive view controls for both bookshelf pages
+- `bookshelf-coverflow.js` / `bookshelf-coverflow.css` - Shared Cover Flow behavior, styles, and responsive view controls for the bookshelf page
 - `data/books.json` - Auto-generated book data (don't edit manually)
-- View toggle icons are inline SVGs in both bookshelf pages, with matching stroke weights and dimensions
+- View toggle icons are inline SVGs in the bookshelf page, with matching stroke weights and dimensions
 
 ### Automation Files
 - `.github/workflows/update-bookshelf.yml` - GitHub Actions workflow
@@ -75,6 +76,7 @@ Simply navigate to `bookshelf.html` on your website or click the "Bookshelf" lin
 ```bash
 cd /path/to/your/repo
 node .github/scripts/fetch-books.js
+python3 scripts/build-previews.py --books-only
 ```
 
 ## Customization
@@ -149,5 +151,4 @@ Potential improvements you could add:
 - Search/filter functionality
 - Sort by rating, date, or author
 - Book reviews/notes from Goodreads
-- Link to Goodreads book page
 - Reading statistics and charts

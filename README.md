@@ -1,80 +1,104 @@
-# Jason Cashdollar - Portfolio
+# Jason Cashdollar — Portfolio
 
-A clean, minimal portfolio website showcasing design work and projects.
+A static HTML, CSS, and JavaScript portfolio. No browser framework, animation library,
+CDN dependency, or production build is required.
 
-## 🚀 Live Site
+## Local development
 
-The site is deployed on GitHub Pages at: [https://cshdllr.github.io/jasoncashdollar/](https://cshdllr.github.io/jasoncashdollar/)
+Run `python3 scripts/serve-preview.py` and open `http://127.0.0.1:8000`.
+This local server supports byte ranges for video seeking. The homepage also opens
+from `index.html` directly; the full bookshelf fetches JSON and needs the server.
 
-## 📁 Project Structure
+## Site structure
 
+- `index.html`, `styles.css`, `script.js`: homepage and shared site behavior.
+- `previews.js`, `previews.css`: thumbnail stacks, lightbox, and animations.
+- `data/preview-projects.json`: project order, labels, short captions, links, and
+  media presentation. `mediaStyle.image` and `mediaStyle.video` support `background`,
+  `viewerFit`, and `thumbnailFit`; omitted settings use the CSS defaults.
+- `data/previews.js`: generated gallery data, checked in for static hosting and
+  direct-file previews. Do not edit by hand.
+- Individual project HTML pages: preserved media sources, available at their existing
+  URLs but not linked from the homepage. Without JavaScript, project labels remain text.
+- `bookshelf.html`, `bookshelf.js`, `bookshelf-coverflow.*`, `bookshelf-identity.js`:
+  the bookshelf and its four views. See `BOOKSHELF_README.md` for syncing details.
+
+The homepage and Bookshelf share title/photo styles and header spacing tokens in
+`styles.css`: `--home-content-width`, `--site-header-top`, and `--site-header-bottom`.
+
+## Gallery content and assets
+
+Edit the project pages or `data/preview-projects.json`, then run:
+
+```sh
+python3 scripts/build-previews.py
 ```
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles
-├── script.js           # JavaScript functionality
-├── .github/
-│   └── workflows/
-│       └── deploy.yml  # GitHub Actions deployment
-└── README.md           # This file
+
+The full rebuild requires Pillow and FFmpeg. It generates small WebP thumbnails,
+small silent 15 fps MP4 previews, and still-image viewer copies capped at 2000 × 1600.
+The lightbox uses full-resolution videos. Original media and transparent cutouts
+remain preserved for future changes. Pixélmon uses its original photos.
+
+Homepage videos play only while visible, pause offscreen and while the viewer is
+open, and retain a poster until a decoded frame is ready. Reduced-motion settings
+skip animation and autoplay. Click thumbnails or project titles to open the viewer,
+use adjacent cards or arrow keys to browse, and Escape to close.
+
+Press **T** inside the viewer to adjust media and caption animation settings.
+Settings persist locally; Reset restores defaults. Captions remain anchored while
+media moves. The implementation also preserves the canvas-export fallback needed
+for direct-file video previews.
+
+### Book updates
+
+The scheduled Goodreads workflow refreshes both `data/books.json` and the homepage
+book previews/count. To refresh only the homepage books locally:
+
+```sh
+python3 scripts/build-previews.py --books-only
 ```
 
-## 🛠️ Technologies Used
+This uses only Python’s standard library and leaves all other project previews and
+media unchanged. Covers still load from their external URLs.
 
-- **HTML5** - Semantic markup
-- **CSS3** - Modern styling with Grid and Flexbox
-- **JavaScript** - Interactive functionality
-- **GitHub Pages** - Hosting and deployment
-- **GitHub Actions** - Automated deployment
+### Background review tools
 
-## ✨ Features
+`background-review.html` compares original photos and transparent derivatives on
+light and dark backgrounds. It and the rejected AI trial are local review tools,
+excluded from deployment and portable exports. `data/background-review.json` is
+also a build input, so keep it with the sources.
 
-- **Responsive Design** - Works on desktop, tablet, and mobile
-- **Clean Typography** - Using DM Serif Display and Inter fonts
-- **Smooth Scrolling** - Enhanced navigation experience
-- **Accessibility** - Proper focus states and semantic HTML
-- **Performance** - Optimized loading and minimal dependencies
+To rebuild cutouts, run `python3 scripts/standardize-image-backgrounds.py` (Pillow
+and NumPy), followed by the full preview rebuild. Opaque artwork pixels are checked
+against originals; only the exterior matte and its antialiased edge are changed.
 
-## 🎨 Design
+## Verification
 
-The design maintains the minimal, clean aesthetic of the original site with:
+```sh
+node scripts/test-video-frame.cjs
+node scripts/test-rubber-band.cjs
+node --test .github/scripts/fetch-books.test.js
+python3 scripts/test-site-build.py
+```
 
-- Simple typography hierarchy
-- Generous white space
-- Subtle hover interactions
-- Mobile-first responsive design
+## Publishing and portable previews
 
-## 📱 Responsive Breakpoints
+GitHub Pages deploys on pushes to `main` and successful bookshelf updates. The
+workflow stages public pages, browser code, runtime data, and referenced assets
+with `scripts/site_files.py`. Source configs, data backups, scripts, documentation,
+and review experiments stay out of the published artifact. Existing project URLs
+and their media remain available. Staging does not publish by itself:
 
-- **Desktop**: 1200px and up
-- **Tablet**: 810px - 1199px
-- **Mobile**: 809px and below
+```sh
+python3 scripts/site_files.py /tmp/portfolio-site
+```
 
-## 🚀 Deployment
+The staging destination must be empty. To make a smaller downloadable copy:
 
-The site automatically deploys to GitHub Pages when changes are pushed to the `main` branch using GitHub Actions.
+```sh
+python3 scripts/package-local-preview.py /tmp/portfolio-export
+```
 
-### Manual Deployment Steps
-
-1. Push changes to the `main` branch
-2. GitHub Actions will automatically build and deploy
-3. Site will be available at the GitHub Pages URL
-
-### Custom Domain Setup (Optional)
-
-To use a custom domain:
-
-1. Add a `CNAME` file with your domain
-2. Configure DNS settings with your domain provider
-3. Enable HTTPS in repository settings
-
-## 🔧 Local Development
-
-To run locally:
-
-1. Clone the repository
-2. Open `index.html` in a web browser
-3. Or use a local server like `python -m http.server` or `live-server`
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+The resulting `portfolio-preview.zip` uses the same public file selection, optimizes
+exported media, and embeds book data so it can open directly from `index.html`.
+The source files remain untouched; external book covers still need internet access.

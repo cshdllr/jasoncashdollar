@@ -19,22 +19,21 @@
     <meta property="twitter:description" content="Books I've read, tracked automatically from my Goodreads profile.">
     
     <link rel="icon" href="images/jason.png" type="image/png">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="bookshelf-coverflow.css">
+    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="bookshelf-coverflow.css?v=4">
     <script src="analytics.js"></script>
 </head>
-<body>
+<body class="bookshelf-page">
     <div class="container bookshelf-container">
-        <header class="header">
-            <div class="breadcrumb">
-                <a href="/" class="breadcrumb-name">Jason Cashdollar</a> / <span class="breadcrumb-project">Bookshelf</span>
-            </div>
-        </header>
-
         <main class="bookshelf-main">
             <div class="bookshelf-header">
                 <div class="bookshelf-title-row">
-                    <h1 class="page-title">Bookshelf</h1>
+                    <div class="header-identity bookshelf-identity">
+                        <a href="index.html" class="bookshelf-home-link" aria-label="Jason Cashdollar — home">
+                            <img src="images/jason.png" alt="" class="header-photo" width="32" height="32">
+                        </a>
+                        <h1 class="name">Bookshelf</h1>
+                    </div>
                     <div class="view-toggles" role="group" aria-label="Library view">
                         <div class="view-toggle-indicator"></div>
                         <button class="view-toggle" type="button" data-view="grid" aria-pressed="false" title="Grid view" aria-label="Grid view">
