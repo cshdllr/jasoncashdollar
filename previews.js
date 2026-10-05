@@ -837,6 +837,8 @@
         if (thumbnails.length < 2) return;
         shell.classList.add('is-stack');
         const angles = [-2, 3, -3.5, 2, -1.5, 3.5];
+        const gap = parseFloat(getComputedStyle(strip).columnGap);
+        const widths = thumbnails.map(thumbnail => thumbnail.offsetWidth);
         let rowX = 0;
         let collapseTimer;
         thumbnails.forEach((thumbnail, index) => {
@@ -846,7 +848,7 @@
             thumbnail.style.setProperty('--stack-angle', `${angles[index % angles.length]}deg`);
             thumbnail.style.setProperty('--stack-order', thumbnails.length - index);
             thumbnail.style.setProperty('--fan-delay', `${Math.min(index, 5) * 18}ms`);
-            rowX += (thumbnail.classList.contains('is-book') ? 48 : 104) + 8;
+            rowX += widths[index] + gap;
         });
         const expand = () => {
             clearTimeout(collapseTimer);
@@ -936,6 +938,7 @@
                 const video = document.createElement('video');
                 video.muted = true;
                 video.defaultMuted = true;
+                video.controls = false;
                 video.loop = true;
                 video.playsInline = true;
                 video.preload = 'none';
@@ -944,22 +947,15 @@
                 video.setAttribute('aria-hidden', 'true');
                 video.tabIndex = -1;
                 watchVideoFrames(video, true);
-                video.addEventListener('playing', () => button.classList.add('is-playing'));
-                video.addEventListener('pause', () => button.classList.remove('is-playing'));
                 video.addEventListener('error', () => {
                     videoObserver.unobserve(video);
                     inlineVideos.delete(video);
                     videoCleanups.get(video)?.();
-                    button.classList.remove('is-playing');
                     video.remove();
                 }, { once: true });
                 button.append(video);
                 inlineVideos.set(video, false);
                 videoObserver.observe(video);
-                const badge = document.createElement('span');
-                badge.className = 'preview-play';
-                badge.setAttribute('aria-hidden', 'true');
-                button.append(badge);
             }
             button.addEventListener('click', () => open(index, button));
             strip.append(button);
@@ -980,9 +976,9 @@
         shell.className = 'preview-strip-shell';
         shell.append(strip);
         article.append(shell);
+        original.replaceWith(article);
         enableRubberBand(strip);
         enableThumbnailStack(shell, strip);
-        original.replaceWith(article);
     });
 
     dialog.addEventListener('cancel', event => {

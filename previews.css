@@ -62,8 +62,8 @@
 }
 .preview-strip.is-scrolling { scroll-snap-type: none; }
 .preview-thumbnail {
-  flex: 0 0 104px;
-  height: 64px;
+  flex: 0 0 120px;
+  height: 74px;
   border-radius: 8px;
   border: 0;
   background: var(--preview-media-background, var(--color-background-secondary));
@@ -95,8 +95,7 @@ video.preview-media.has-frame { opacity: 1; transition: opacity 120ms ease-out; 
   background: var(--preview-media-background, var(--color-background-secondary));
 }
 .preview-thumbnail.is-image { background: var(--preview-media-background, var(--preview-image-background)); }
-.preview-thumbnail.is-playing .preview-play { display: none; }
-.preview-thumbnail.is-book { flex-basis: 48px; }
+.preview-thumbnail.is-book { flex-basis: 56px; }
 .preview-thumbnail.is-book img { object-fit: contain; background: var(--preview-media-background, var(--color-background-secondary)); }
 .preview-all-books {
   display: flex;
@@ -118,25 +117,10 @@ video.preview-media.has-frame { opacity: 1; transition: opacity 120ms ease-out; 
   overflow-wrap: anywhere;
 }
 .preview-thumbnail:has(img) .preview-thumbnail-fallback { visibility: hidden; }
-.preview-play {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  display: grid;
-  place-items: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #000a;
-  color: white;
-  font-size: 8px;
-  padding-left: 1px;
-}
-.preview-play::after {
-  content: '';
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  border-left: 6px solid white;
+/* Safari can show a native play affordance even without the controls attribute. */
+.preview-thumbnail video::-webkit-media-controls,
+.preview-thumbnail video::-webkit-media-controls-start-playback-button {
+  display: none !important;
 }
 .home-page :is(button, a):focus-visible {
   outline: 2px solid var(--color-text-primary);
@@ -164,6 +148,9 @@ video.preview-media.has-frame { opacity: 1; transition: opacity 120ms ease-out; 
   .is-stack.is-expanded .preview-strip { overflow-x: auto; }
   .is-stack.is-expanded .preview-thumbnail {
     transform: translate(0, 0) rotate(0deg);
+    /* A slight overshoot softens the landing without bouncing the whole row. */
+    transition-duration: 480ms, 240ms;
+    transition-timing-function: cubic-bezier(.2, 1.22, .36, 1), ease;
     transition-delay: var(--fan-delay), 0ms;
   }
   .is-stack.is-expanded .preview-thumbnail:hover { transform: scale(1.04); }
@@ -187,9 +174,9 @@ html:has(.preview-lightbox[open]) { scrollbar-gutter: stable; overflow: hidden; 
   --preview-card-step: 95%;
   --preview-card-gap: 20px;
   --preview-caption-height: 128px;
-  --preview-stage-height: min(56.25vw, 55dvh, 560px, calc(100dvh - var(--preview-caption-height) - 48px));
+  --preview-stage-height: min(56.25vw, 55dvh, 675px, calc(100dvh - var(--preview-caption-height) - 48px));
   position: relative;
-  width: min(1000px, calc(100% - 112px));
+  width: min(1200px, calc(100% - 112px));
   height: calc(var(--preview-stage-height) + var(--preview-caption-height));
 }
 .preview-card {
