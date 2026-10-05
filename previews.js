@@ -507,7 +507,7 @@
         // Keep the same frozen frame when the outgoing card becomes a peek.
         // Swapping back to its poster here would create another end-of-slide flash.
         if (navigation.outgoingFrame) navigation.outgoingPeek.querySelector('.preview-stage').replaceChildren(navigation.outgoingFrame);
-        if (navigation.incomingVideo?.isConnected) navigation.incomingVideo.controls = true;
+        if (navigation.incomingVideo?.isConnected) navigation.incomingVideo.controls = desktopStacks.matches;
         releaseVideo(navigation.outgoing);
         navigation.outgoing.remove();
         navigation = null;
@@ -604,12 +604,37 @@
         media.className = 'preview-media';
         if (item.type === 'video') {
             // Restore controls after this card has reached the center.
-            media.controls = !outgoing;
+            media.controls = desktopStacks.matches && !outgoing;
             media.muted = true;
             media.loop = true;
             media.playsInline = true;
             media.preload = 'auto';
-            media.setAttribute('aria-label', item.alt);
+            const updateVideoAction = () => {
+                const touchPlayback = !desktopStacks.matches;
+                if (touchPlayback) media.tabIndex = 0;
+                else media.removeAttribute('tabindex');
+                if (touchPlayback) media.setAttribute('role', 'button');
+                else media.removeAttribute('role');
+                media.setAttribute('aria-label', touchPlayback
+                    ? `${media.paused ? 'Play' : 'Pause'} video: ${item.alt}` : item.alt);
+            };
+            const togglePlayback = () => {
+                if (desktopStacks.matches || motion || navigation) return;
+                if (media.paused) media.play().catch(() => {});
+                else media.pause();
+            };
+            media.addEventListener('click', togglePlayback);
+            media.addEventListener('keydown', event => {
+                if (!desktopStacks.matches && (event.key === 'Enter' || event.key === ' ')) {
+                    event.preventDefault();
+                    togglePlayback();
+                }
+            });
+            media.addEventListener('play', updateVideoAction);
+            media.addEventListener('pause', updateVideoAction);
+            updateVideoAction();
+            // Keep controls hidden while a new card is moving into place.
+            media.controls = desktopStacks.matches && !outgoing;
             const inlineVideo = slides[current].trigger.querySelector('video');
             const startTime = inlineVideo?.currentTime || 0;
             const poster = document.createElement('img');
@@ -676,7 +701,7 @@
                 if (navigation === transition) resetNavigation();
             }).catch(() => {});
         }
-        // Respect reduced motion and browser autoplay policies; controls always remain available.
+        // Respect reduced motion and autoplay policies; touch users can tap to play.
         if (item.type === 'video' && !reducedMotion.matches) {
             media.play().catch(() => {});
         }
@@ -1004,20 +1029,56 @@
         if (backdropDown && outside(event)) close();
         backdropDown = false;
     });
-    let touchStart;
-    stage.addEventListener('touchstart', event => {
-        if (event.target.tagName !== 'VIDEO' && event.touches.length === 1) {
-            touchStart = { x: event.touches[0].clientX, y: event.touches[0].clientY };
-        }
-    }, { passive: true });
-    stage.addEventListener('touchend', event => {
-        if (!touchStart) return;
-        const dx = event.changedTouches[0].clientX - touchStart.x;
-        const dy = event.changedTouches[0].clientY - touchStart.y;
-        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) navigate(dx < 0 ? 1 : -1);
-        touchStart = null;
-    }, { passive: true });
-    stage.addEventListener('touchcancel', () => { touchStart = null; });
+    function enableSwipeNavigation(surface, onNavigate) {
+        let gesture;
+        let suppressClickUntil = 0;
+        const reset = () => { gesture = null; };
+        surface.addEventListener('touchstart', event => {
+            reset();
+            // Leave native playback controls, links, and motion inputs alone.
+            // Videos without native controls support the same swipe as photos.
+            if (event.touches.length !== 1 || event.target.closest('video[controls], a, input, select, textarea, .preview-motion-tuner')) return;
+            const touch = event.touches[0];
+            gesture = { id: touch.identifier, x: touch.clientX, y: touch.clientY, axis: null };
+        }, { passive: true });
+        surface.addEventListener('touchmove', event => {
+            if (!gesture) return;
+            if (event.touches.length !== 1) { reset(); return; }
+            const touch = Array.from(event.touches).find(t => t.identifier === gesture.id);
+            if (!touch) { reset(); return; }
+            const dx = touch.clientX - gesture.x;
+            const dy = touch.clientY - gesture.y;
+            if (!gesture.axis && Math.max(Math.abs(dx), Math.abs(dy)) > 8) {
+                gesture.axis = Math.abs(dx) > Math.abs(dy) * 1.5 ? 'horizontal' : 'vertical';
+            }
+            // Claim a horizontal swipe before the browser starts native panning.
+            // Vertical scrolling and pinch zoom retain their normal behavior.
+            if (gesture.axis === 'horizontal' && event.cancelable) event.preventDefault();
+        }, { passive: false });
+        surface.addEventListener('touchend', event => {
+            if (!gesture) return;
+            const start = gesture;
+            reset();
+            const touch = Array.from(event.changedTouches).find(t => t.identifier === start.id);
+            if (!touch || event.touches.length) return;
+            const dx = touch.clientX - start.x;
+            const dy = touch.clientY - start.y;
+            const threshold = Math.min(50, Math.max(24, surface.clientWidth * 0.12));
+            if (start.axis !== 'vertical' && Math.abs(dx) >= threshold && Math.abs(dx) > Math.abs(dy) * 1.5) {
+                suppressClickUntil = Date.now() + 400;
+                onNavigate(dx < 0 ? 1 : -1);
+            }
+        }, { passive: true });
+        surface.addEventListener('touchcancel', reset, { passive: true });
+        surface.addEventListener('click', event => {
+            // A touch release can synthesize a click on a neighboring card.
+            if (Date.now() < suppressClickUntil) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+            }
+        }, true);
+    }
+    enableSwipeNavigation(rail, navigate);
     // A resized viewport invalidates the geometry. Settle immediately rather
     // than sending the image to an obsolete position.
     window.addEventListener('resize', () => {

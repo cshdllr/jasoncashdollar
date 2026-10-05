@@ -55,6 +55,8 @@
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
   padding: 24px;
+  /* Keep snap targets inside the shadow gutter rather than at the page edge. */
+  scroll-padding-inline: 24px;
   scroll-snap-type: x proximity;
   overscroll-behavior-x: contain;
 }
@@ -206,6 +208,7 @@ html:has(.preview-lightbox[open]) { scrollbar-gutter: stable; overflow: hidden; 
   corner-shape: superellipse(1.5);
   overflow: hidden;
 }
+.preview-card:not(:has(video[controls])), .preview-caption { touch-action: pan-y pinch-zoom; }
 .preview-card.is-image .preview-stage {
   background: var(--preview-media-background, var(--preview-image-background));
 }

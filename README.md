@@ -42,7 +42,9 @@ remain preserved for future changes. Pixélmon uses its original photos.
 Homepage videos play only while visible, pause offscreen and while the viewer is
 open, and retain a poster until a decoded frame is ready. Reduced-motion settings
 skip animation and autoplay. Click thumbnails or project titles to open the viewer,
-use adjacent cards or arrow keys to browse, and Escape to close.
+use adjacent cards, arrow keys, or horizontal swipes across photos and captions
+to browse, and Escape to close. Touch devices hide native video controls: tap a video to play/pause or swipe to
+browse. Desktop retains native playback controls.
 
 Press **T** inside the viewer to adjust media and caption animation settings.
 Settings persist locally; Reset restores defaults. Captions remain anchored while
@@ -75,6 +77,7 @@ against originals; only the exterior matte and its antialiased edge are changed.
 ## Verification
 
 ```sh
+node scripts/test-viewer-swipe.cjs
 node scripts/test-video-frame.cjs
 node scripts/test-rubber-band.cjs
 node --test .github/scripts/fetch-books.test.js
