@@ -3,7 +3,7 @@
   --preview-image-background: #f1f1f1;
   --preview-thumbnail-shadow: 0 2px 5px #0002, 0 5px 12px #0001;
   --home-section-spacing: 72px;
-  --home-project-spacing: 40px;
+  --home-project-spacing: 48px;
 }
 @media (prefers-color-scheme: dark) {
   .home-page {
@@ -95,8 +95,16 @@ video.preview-media.has-frame { opacity: 1; transition: opacity 120ms ease-out; 
   background: var(--preview-media-background, var(--color-background-secondary));
 }
 .preview-thumbnail.is-image { background: var(--preview-media-background, var(--preview-image-background)); }
-.preview-thumbnail.is-book { flex-basis: 56px; }
-.preview-thumbnail.is-book img { object-fit: contain; background: var(--preview-media-background, var(--color-background-secondary)); }
+.preview-thumbnail.is-book { flex-basis: 64px; height: 84px; }
+.preview-thumbnail.is-book:has(img) { flex-basis: auto; padding: 0; }
+.preview-thumbnail.is-book img {
+  position: relative;
+  display: block;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+.preview-thumbnail.is-book:has(img) .preview-thumbnail-fallback { position: absolute; }
 .preview-all-books {
   display: flex;
   flex-direction: column;
@@ -327,7 +335,7 @@ video.preview-media, .preview-frozen-frame { position: relative; z-index: 1; }
 .preview-motion-actions { margin-top: 16px; }
 .preview-motion-tuner p { margin-top: 12px; color: #bbb; font-size: 12px; }
 @media (max-width: 768px) {
-  .home-page { --home-section-spacing: 56px; --home-project-spacing: 32px; }
+  .home-page { --home-section-spacing: 56px; --home-project-spacing: 40px; }
   .home-page .main { padding-bottom: 56px; }
   .home-page .projects:has(.preview-project) .section-label { margin-bottom: 24px; }
 }

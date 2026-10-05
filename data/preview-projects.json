@@ -80,9 +80,6 @@
       "images/pixelmon/pixelmon-buy-in.png": [
         "Getting buy-in"
       ],
-      "images/pixelmon/pixelmon-coffee.png": [
-        "Taking a coffee break"
-      ],
       "images/pixelmon/pixelmon-editor.png": [
         "Building the world"
       ]
@@ -101,7 +98,10 @@
         "background": "#101010",
         "viewerFit": "cover"
       }
-    }
+    },
+    "excludeMedia": [
+      "images/pixelmon/pixelmon-coffee.png"
+    ]
   },
   {
     "slug": "slimeballbench",

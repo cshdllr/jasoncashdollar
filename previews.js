@@ -837,19 +837,28 @@
         if (thumbnails.length < 2) return;
         shell.classList.add('is-stack');
         const angles = [-2, 3, -3.5, 2, -1.5, 3.5];
-        const gap = parseFloat(getComputedStyle(strip).columnGap);
-        const widths = thumbnails.map(thumbnail => thumbnail.offsetWidth);
-        let rowX = 0;
         let collapseTimer;
+        const updateOffsets = () => {
+            const gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
+            let rowX = 0;
+            thumbnails.forEach(thumbnail => {
+                thumbnail.style.setProperty('--row-x', `${rowX}px`);
+                // Computed width preserves subpixels without including the stack transform.
+                rowX += parseFloat(getComputedStyle(thumbnail).width) + gap;
+            });
+        };
         thumbnails.forEach((thumbnail, index) => {
-            thumbnail.style.setProperty('--row-x', `${rowX}px`);
             thumbnail.style.setProperty('--stack-x', `${Math.min(index, 4) * 5}px`);
             thumbnail.style.setProperty('--stack-y', `${index ? (index % 3) * 2 - 2 : 0}px`);
             thumbnail.style.setProperty('--stack-angle', `${angles[index % angles.length]}deg`);
             thumbnail.style.setProperty('--stack-order', thumbnails.length - index);
             thumbnail.style.setProperty('--fan-delay', `${Math.min(index, 5) * 18}ms`);
-            rowX += widths[index] + gap;
         });
+        // Book covers acquire their natural widths after lazy loading. Keep the
+        // collapsed offsets in sync with those widths and responsive sizing.
+        const sizeObserver = new ResizeObserver(updateOffsets);
+        thumbnails.forEach(thumbnail => sizeObserver.observe(thumbnail));
+        updateOffsets();
         const expand = () => {
             clearTimeout(collapseTimer);
             if (desktopStacks.matches) shell.classList.add('is-expanded');

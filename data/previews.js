@@ -214,18 +214,6 @@ window.PORTFOLIO_PREVIEWS = [
       },
       {
         "type": "image",
-        "src": "images/pixelmon/pixelmon-coffee.png",
-        "poster": "",
-        "thumbnail": "images/previews/pixelmon-4.webp",
-        "title": "Pixélmon",
-        "alt": "A café conversation with a barista offering a latte, cappuccino, flat white, or espresso",
-        "description": [
-          "Taking a coffee break"
-        ],
-        "viewerSrc": "images/pixelmon/pixelmon-coffee.png"
-      },
-      {
-        "type": "image",
         "src": "images/pixelmon/pixelmon-editor.png",
         "poster": "",
         "thumbnail": "images/previews/pixelmon-5.webp",
