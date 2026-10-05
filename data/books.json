@@ -1,6 +1,19 @@
 {
   "books": [
     {
+      "title": "Klara and the Sun",
+      "author": "Kazuo Ishiguro",
+      "rating": 3,
+      "readAt": "Wed, 30 Sep 2026 00:00:00 +0000",
+      "bookId": "62799943",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1693919583l/62799943._SY475_.jpg",
+      "averageRating": 3.98,
+      "bookPublished": "2021",
+      "numPages": 418,
+      "source": "rss"
+    },
+    {
       "title": "Land",
       "author": "Maggie O'Farrell",
       "rating": 4,
@@ -21,7 +34,7 @@
       "bookId": "242082841",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1759325056l/242082841._SY475_.jpg",
-      "averageRating": 4.29,
+      "averageRating": 4.28,
       "bookPublished": "2026",
       "numPages": 207,
       "source": "rss"
@@ -47,7 +60,7 @@
       "bookId": "238514980",
       "isbn": "0593804228",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753931868l/238514980._SY475_.jpg",
-      "averageRating": 4.01,
+      "averageRating": 4,
       "bookPublished": "2026",
       "numPages": 391,
       "source": "rss"
@@ -86,7 +99,7 @@
       "bookId": "239719395",
       "isbn": "1538709112",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1754467690l/239719395._SY475_.jpg",
-      "averageRating": 4.2,
+      "averageRating": 4.21,
       "bookPublished": "",
       "numPages": 332,
       "source": "rss"
@@ -151,7 +164,7 @@
       "bookId": "216626186",
       "isbn": "0811237281",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730135211l/216626186._SY475_.jpg",
-      "averageRating": 4.17,
+      "averageRating": 4.18,
       "bookPublished": "2020",
       "numPages": 188,
       "source": "rss"
@@ -294,7 +307,7 @@
       "bookId": "199897944",
       "isbn": "1668034360",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1698835404l/199897944._SY475_.jpg",
-      "averageRating": 4.14,
+      "averageRating": 4.13,
       "bookPublished": "2024",
       "numPages": 272,
       "source": "rss"
@@ -541,7 +554,7 @@
       "bookId": "123811874",
       "isbn": "1538765500",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680179150l/123811874._SY475_.jpg",
-      "averageRating": 4.46,
+      "averageRating": 4.47,
       "bookPublished": "1998",
       "numPages": 434,
       "source": "rss"
@@ -5058,5 +5071,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-09-28T17:39:51.203Z"
+  "lastUpdated": "2026-10-05T18:28:48.444Z"
 }
