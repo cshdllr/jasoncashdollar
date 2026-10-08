@@ -52,14 +52,14 @@
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-border) transparent;
+  scrollbar-width: none;
   padding: 24px;
   /* Keep snap targets inside the shadow gutter rather than at the page edge. */
   scroll-padding-inline: 24px;
   scroll-snap-type: x proximity;
   overscroll-behavior-x: contain;
 }
+.preview-strip::-webkit-scrollbar { display: none; }
 .preview-strip.is-scrolling { scroll-snap-type: none; }
 .preview-thumbnail {
   flex: 0 0 120px;
@@ -95,7 +95,12 @@ video.preview-media.has-frame { opacity: 1; transition: opacity 120ms ease-out; 
   background: var(--preview-media-background, var(--color-background-secondary));
 }
 .preview-thumbnail.is-image { background: var(--preview-media-background, var(--preview-image-background)); }
-.preview-thumbnail.is-book { flex-basis: 64px; height: 84px; }
+.preview-thumbnail.is-book {
+  flex-basis: 64px;
+  height: 84px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
 .preview-thumbnail.is-book:has(img) { flex-basis: auto; padding: 0; }
 .preview-thumbnail.is-book img {
   position: relative;
@@ -127,7 +132,9 @@ video.preview-media.has-frame { opacity: 1; transition: opacity 120ms ease-out; 
 .preview-thumbnail:has(img) .preview-thumbnail-fallback { visibility: hidden; }
 /* Safari can show a native play affordance even without the controls attribute. */
 .preview-thumbnail video::-webkit-media-controls,
-.preview-thumbnail video::-webkit-media-controls-start-playback-button {
+.preview-thumbnail video::-webkit-media-controls-start-playback-button,
+video.preview-media::-webkit-media-controls,
+video.preview-media::-webkit-media-controls-start-playback-button {
   display: none !important;
 }
 .home-page :is(button, a):focus-visible {
@@ -202,6 +209,10 @@ html:has(.preview-lightbox[open]) { scrollbar-gutter: stable; overflow: hidden; 
   /* A continuous curve where supported; border-radius remains the fallback. */
   corner-shape: superellipse(1.5);
   overflow: hidden;
+  /* Composite video and native controls together before clipping the corners. */
+  isolation: isolate;
+  -webkit-mask-image: linear-gradient(#000, #000);
+  mask-image: linear-gradient(#000, #000);
 }
 .preview-card:not(:has(video[controls])), .preview-caption { touch-action: pan-y pinch-zoom; }
 .preview-card.is-image .preview-stage {

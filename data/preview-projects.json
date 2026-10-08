@@ -121,7 +121,8 @@
     ],
     "mediaStyle": {
       "video": {
-        "viewerFit": "cover"
+        "viewerFit": "cover",
+        "thumbnailFit": "cover"
       }
     }
   },

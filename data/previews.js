@@ -232,7 +232,8 @@ window.PORTFOLIO_PREVIEWS = [
     "description": "AI benchmarking tool",
     "mediaStyle": {
       "video": {
-        "viewerFit": "cover"
+        "viewerFit": "cover",
+        "thumbnailFit": "cover"
       }
     },
     "links": [

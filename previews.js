@@ -328,6 +328,33 @@
         }
     }
 
+    // Feed decoded full-resolution frames into the opening canvas without
+    // replacing the element (and restarting its scale animation).
+    function streamVideoMorph(video, canvas) {
+        let callback;
+        let stopped = false;
+        const usesVideoCallback = !!video.requestVideoFrameCallback;
+        const context = canvas.getContext('2d');
+        const paint = () => {
+            if (stopped) return;
+            if (context && video.readyState >= 2 && !video.seeking && video.videoWidth && video.videoHeight) {
+                try {
+                    if (canvas.width !== video.videoWidth) canvas.width = video.videoWidth;
+                    if (canvas.height !== video.videoHeight) canvas.height = video.videoHeight;
+                    context.drawImage(video, 0, 0);
+                } catch { /* Keep the last frame if decoding is interrupted. */ }
+            }
+            callback = usesVideoCallback
+                ? video.requestVideoFrameCallback(paint) : requestAnimationFrame(paint);
+        };
+        paint();
+        return () => {
+            stopped = true;
+            if (usesVideoCallback) video.cancelVideoFrameCallback(callback);
+            else cancelAnimationFrame(callback);
+        };
+    }
+
     function updateInlineVideos() {
         inlineVideos.forEach((visible, video) => {
             const thumbnail = video.closest('.preview-thumbnail');
@@ -350,6 +377,7 @@
     function resetMotion() {
         motionVersion++;
         if (motion) {
+            motion.stopVideo?.();
             motion.animations.forEach(animation => animation.cancel());
             motion.ghost?.remove();
             motion = null;
@@ -364,7 +392,9 @@
         } else {
             dialog.classList.add('is-revealed');
             const video = stage.querySelector('video');
-            if (video && !reducedMotion.matches) video.play().catch(() => {});
+            if (video) {
+                if (!reducedMotion.matches) video.play().catch(() => {});
+            }
         }
     }
 
@@ -377,6 +407,15 @@
             return;
         }
         if (motion) {
+            motion.stopVideo?.();
+            const video = stage.querySelector('video');
+            if (video) {
+                video.controls = false;
+                if (opening) {
+                    if (motion.ghost?.tagName === 'CANVAS') motion.stopVideo = streamVideoMorph(video, motion.ghost);
+                    video.play().catch(() => {});
+                } else video.pause();
+            }
             // Reverse the running timeline from its current progress, rather than
             // starting over at either endpoint. Even a very quick Escape works.
             motion.animations.forEach(animation => {
@@ -410,6 +449,21 @@
                         ghost = captureVideoFrame(frame);
                         if (!opening && inlineVideo?.readyState >= 1) inlineVideo.currentTime = media.currentTime;
                     }
+                    if (item.type === 'video' && opening && !ghost) {
+                        // Inline playback is already paused by the modal. Its
+                        // decoded frame can still seed the canvas until HD arrives.
+                        const seed = inlineVideo?.readyState >= 2 && !inlineVideo.seeking ? inlineVideo : thumbImage;
+                        const canvas = document.createElement('canvas');
+                        canvas.width = seed.videoWidth || seed.naturalWidth;
+                        canvas.height = seed.videoHeight || seed.naturalHeight;
+                        try {
+                            const context = canvas.getContext('2d');
+                            if (context && canvas.width && canvas.height) {
+                                context.drawImage(seed, 0, 0);
+                                ghost = canvas;
+                            }
+                        } catch { /* An unavailable seed falls back to the poster. */ }
+                    }
                     if (!ghost) {
                         ghost = document.createElement('img');
                         ghost.src = media.tagName === 'IMG' && media.complete && media.naturalWidth
@@ -438,10 +492,17 @@
                 }
             }
             const video = stage.querySelector('video');
-            if (video) video.pause();
+            let stopVideo;
+            if (video) {
+                video.controls = false;
+                if (opening) {
+                    if (ghost?.tagName === 'CANVAS') stopVideo = streamVideoMorph(video, ghost);
+                    video.play().catch(() => {});
+                } else video.pause();
+            }
             animations.push(caption.animate(opening ? [{ opacity: 0 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0 }], options));
             animations.push(panel.animate(opening ? [{ opacity: 0 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0 }], options));
-            motion = { ghost, animations, duration: options.duration };
+            motion = { ghost, animations, stopVideo, duration: options.duration };
         }
         const version = ++motionVersion;
         Promise.all(motion.animations.map(animation => animation.finished)).then(() => {
@@ -507,7 +568,6 @@
         // Keep the same frozen frame when the outgoing card becomes a peek.
         // Swapping back to its poster here would create another end-of-slide flash.
         if (navigation.outgoingFrame) navigation.outgoingPeek.querySelector('.preview-stage').replaceChildren(navigation.outgoingFrame);
-        if (navigation.incomingVideo?.isConnected) navigation.incomingVideo.controls = desktopStacks.matches;
         releaseVideo(navigation.outgoing);
         navigation.outgoing.remove();
         navigation = null;
@@ -603,8 +663,7 @@
         const media = document.createElement(item.type === 'video' ? 'video' : 'img');
         media.className = 'preview-media';
         if (item.type === 'video') {
-            // Restore controls after this card has reached the center.
-            media.controls = desktopStacks.matches && !outgoing;
+            media.controls = false;
             media.muted = true;
             media.loop = true;
             media.playsInline = true;
@@ -633,8 +692,6 @@
             media.addEventListener('play', updateVideoAction);
             media.addEventListener('pause', updateVideoAction);
             updateVideoAction();
-            // Keep controls hidden while a new card is moving into place.
-            media.controls = desktopStacks.matches && !outgoing;
             const inlineVideo = slides[current].trigger.querySelector('video');
             const startTime = inlineVideo?.currentTime || 0;
             const poster = document.createElement('img');
@@ -695,7 +752,7 @@
                     { transform: `translateX(0) scale(${neighborScale})`, opacity: peek === outgoingPeek ? 0 : 0.65 }
                 ], options))
             ];
-            const transition = { outgoing, animations, outgoingFrame, outgoingPeek, incomingVideo: item.type === 'video' ? media : null };
+            const transition = { outgoing, animations, outgoingFrame, outgoingPeek };
             navigation = transition;
             Promise.all(animations.map(animation => animation.finished)).then(() => {
                 if (navigation === transition) resetNavigation();
