@@ -189,9 +189,10 @@ html:has(.preview-lightbox[open]) { scrollbar-gutter: stable; overflow: hidden; 
   --preview-card-step: 95%;
   --preview-card-gap: 20px;
   --preview-caption-height: 128px;
-  --preview-stage-height: min(56.25vw, 55dvh, 675px, calc(100dvh - var(--preview-caption-height) - 48px));
+  /* Fit a 16:9 desktop frame to the available height, reserving caption space. */
+  --preview-stage-height: min(calc((100vw - 112px) * 9 / 16), 675px, calc(100dvh - var(--preview-caption-height) - 48px));
   position: relative;
-  width: min(1200px, calc(100% - 112px));
+  width: calc(var(--preview-stage-height) * 16 / 9);
   height: calc(var(--preview-stage-height) + var(--preview-caption-height));
 }
 .preview-card {
@@ -353,7 +354,12 @@ video.preview-media, .preview-frozen-frame { position: relative; z-index: 1; }
 @media (max-width: 600px) {
   .preview-project-heading { display: block; }
   .preview-project-description { margin-top: 4px; font-size: 15px; line-height: 20px; }
-  .preview-rail { width: calc(100% - 72px); --preview-card-gap: 12px; --preview-caption-height: 160px; }
+  .preview-rail {
+    width: calc(100% - 72px);
+    --preview-card-gap: 12px;
+    --preview-caption-height: 160px;
+    --preview-stage-height: min(56.25vw, 55dvh, 675px, calc(100dvh - var(--preview-caption-height) - 48px));
+  }
   .preview-panel { border-radius: 16px; }
   .preview-caption { padding: 16px 4px 4px 20px; }
 }
