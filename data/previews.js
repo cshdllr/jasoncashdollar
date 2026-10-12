@@ -587,8 +587,8 @@ window.PORTFOLIO_PREVIEWS = [
       },
       {
         "type": "book",
-        "src": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1745856191l/217273280._SY475_.jpg",
-        "thumbnail": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1745856191l/217273280._SY475_.jpg",
+        "src": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1791587122l/217273280._SY475_.jpg",
+        "thumbnail": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1791587122l/217273280._SY475_.jpg",
         "title": "The Correspondent",
         "alt": "The Correspondent by Virginia Evans",
         "description": [
