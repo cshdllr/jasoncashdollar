@@ -76,9 +76,16 @@ against originals; only the exterior matte and its antialiased edge are changed.
 
 ## Verification
 
+The homepage viewer supports media permalinks, for example
+`/#pixelmon/pixelmon-gameplay`. Open any preview and copy the address bar;
+the anchor updates as you browse. Back closes the viewer and Forward restores it.
+Direct links also work in the local file preview. Book links refer to covers in
+the current homepage selection; older books remain on the full bookshelf page.
+
 ```sh
 node scripts/test-viewer-swipe.cjs
 node scripts/test-video-frame.cjs
+node scripts/test-preview-permalinks.cjs
 node scripts/test-rubber-band.cjs
 node --test .github/scripts/fetch-books.test.js
 python3 scripts/test-site-build.py

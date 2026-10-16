@@ -4,6 +4,7 @@
     if (!projects || typeof HTMLDialogElement === 'undefined') return;
 
     const slides = [];
+    let permalinks;
     const dialog = document.createElement('dialog');
     dialog.className = 'preview-lightbox';
     dialog.setAttribute('aria-labelledby', 'preview-title');
@@ -514,6 +515,7 @@
         resetNavigation();
         settleCaptions();
         if (dialog.open) {
+            permalinks?.close();
             prepareFocusReturn();
             animateLightbox(false);
         }
@@ -762,6 +764,7 @@
         if (item.type === 'video' && !reducedMotion.matches) {
             media.play().catch(() => {});
         }
+        if (dialog.open) permalinks?.update(current);
         panel.scrollTop = 0;
     }
 
@@ -784,6 +787,58 @@
         animateLightbox(true);
         revealSidePreviews();
         title.focus({ preventScroll: true });
+        permalinks?.open(current);
+    }
+
+    function createPreviewPermalinks(entries, viewer, browser = window) {
+        // Use source names rather than positions so removing/reordering media
+        // doesn't send an existing link to a different image.
+        const hashes = entries.map(({ project, item }) => {
+            const name = item.type === 'book' ? item.title
+                : (item.originalSrc || item.src).split('/').pop().replace(/\.[^.]+$/, '');
+            return `#${project.slug}/${encodeURIComponent(name)}`;
+        });
+        const indices = new Map(hashes.map((hash, index) => [decodeURIComponent(hash), index]));
+        let syncing = false;
+        const indexFromURL = () => {
+            try { return indices.get(decodeURIComponent(browser.location.hash)); }
+            catch { return undefined; }
+        };
+        const write = (method, hash, state) => {
+            // History updates avoid native fragment scrolling and preserve query strings.
+            browser.history[method](state, '', browser.location.pathname + browser.location.search + hash);
+        };
+        const sync = () => {
+            const index = indexFromURL();
+            syncing = true;
+            try {
+                if (index !== undefined) {
+                    if (!viewer.isOpen()) viewer.open(index);
+                    else if (viewer.current() !== index || viewer.isClosing()) viewer.show(index);
+                } else if (viewer.isOpen() && !viewer.isClosing()) viewer.close();
+            } finally { syncing = false; }
+        };
+        // popstate handles Back/Forward; hashchange also handles pasted anchors.
+        browser.addEventListener('popstate', sync);
+        browser.addEventListener('hashchange', sync);
+        return {
+            sync,
+            open(index) {
+                if (syncing || indexFromURL() === index) return;
+                write('pushState', hashes[index], {
+                    ...browser.history.state,
+                    portfolioPreview: true
+                });
+            },
+            update(index) {
+                if (!syncing && indexFromURL() !== index) write('replaceState', hashes[index], browser.history.state);
+            },
+            close() {
+                if (syncing || indexFromURL() === undefined) return;
+                if (browser.history.state?.portfolioPreview) browser.history.back();
+                else write('replaceState', '', browser.history.state);
+            }
+        };
     }
 
     function enableRubberBand(strip) {
@@ -1155,4 +1210,13 @@
         if (dialog.open) updateCaption(false);
         updateInlineVideos();
     });
+    permalinks = createPreviewPermalinks(slides, {
+        isOpen: () => dialog.open,
+        isClosing: () => closing,
+        current: () => current,
+        open: index => open(index, slides[index].trigger),
+        show: index => show(index),
+        close
+    });
+    permalinks.sync();
 })();
