@@ -319,6 +319,39 @@ video.preview-media, .preview-frozen-frame { position: relative; z-index: 1; }
   text-shadow: none;
   white-space: nowrap;
 }
+.preview-audio-toggle {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #0009;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, background 160ms ease;
+}
+.preview-panel { position: relative; }
+.preview-panel:hover .preview-audio-toggle,
+.preview-audio-toggle:focus-visible { opacity: 1; pointer-events: auto; }
+.preview-audio-toggle:hover { background: #000c; }
+.preview-audio-toggle:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.preview-audio-toggle .preview-audio-muted,
+.preview-audio-toggle.is-muted .preview-audio-playing { display: none; }
+.preview-audio-toggle.is-muted .preview-audio-muted { display: block; }
+@media (hover: none), (pointer: coarse) {
+  .preview-audio-toggle { opacity: 1; pointer-events: auto; }
+}
+.preview-lightbox:not(.is-revealed) .preview-audio-toggle,
+.preview-panel:has(.is-morphing) .preview-audio-toggle { opacity: 0; pointer-events: none; }
+.preview-audio-toggle[hidden] { display: none; }
 .preview-links a { transition: background 140ms ease, border-color 140ms ease; }
 .preview-links a:hover, .preview-links a:focus-visible { background: #ffffff26; border-color: #ffffff60; }
 .preview-links a:active { background: #ffffff38; }

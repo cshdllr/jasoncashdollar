@@ -11,7 +11,15 @@
     dialog.innerHTML = `
         <div class="preview-rail">
         <div class="preview-card">
-        <div class="preview-panel"><div class="preview-stage"></div></div>
+        <div class="preview-panel"><div class="preview-stage"></div>
+            <button type="button" class="preview-audio-toggle" aria-label="Unmute Glance video" hidden>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M11 4 6 8H3v8h3l5 4Z" />
+                    <path class="preview-audio-muted" d="m16 9 6 6m0-6-6 6" />
+                    <path class="preview-audio-playing" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" />
+                </svg>
+            </button>
+        </div>
         </div>
         <div class="preview-caption">
             <div class="preview-caption-heading">
@@ -28,6 +36,13 @@
     const title = dialog.querySelector('#preview-title');
     const copy = dialog.querySelector('.preview-copy');
     const caption = dialog.querySelector('.preview-caption');
+    const audioToggle = dialog.querySelector('.preview-audio-toggle');
+    audioToggle.addEventListener('click', () => {
+        const video = stage.querySelector('video');
+        if (!video || audioToggle.hidden || closing) return;
+        video.muted = !video.muted;
+        if (!video.muted) video.play().catch(() => {});
+    });
     let captionLinks = '';
     const captionTransitions = new Map();
     const captionSegmenter = typeof Intl.Segmenter === 'function'
@@ -576,6 +591,7 @@
     }
 
     function clearMedia() {
+        audioToggle.hidden = true;
         releaseVideo(stage);
         stage.replaceChildren();
     }
@@ -633,6 +649,7 @@
         const outgoing = direction && !reducedMotion.matches ? panel.cloneNode(true) : null;
         let outgoingFrame;
         if (outgoing) {
+            outgoing.querySelector('.preview-audio-toggle')?.remove();
             // Native controls can repaint on pause, focus changes, and removal.
             // Slide only the decoded pixels, never a live video/control surface.
             const video = stage.querySelector('video');
@@ -670,6 +687,17 @@
             media.loop = true;
             media.playsInline = true;
             media.preload = 'auto';
+            if (project.slug === 'glance') {
+                const updateAudioToggle = () => {
+                    audioToggle.classList.toggle('is-muted', media.muted);
+                    audioToggle.setAttribute('aria-label', `${media.muted ? 'Unmute' : 'Mute'} Glance video`);
+                };
+                updateAudioToggle();
+                media.addEventListener('volumechange', () => {
+                    if (stage.contains(media)) updateAudioToggle();
+                });
+                audioToggle.hidden = false;
+            }
             const updateVideoAction = () => {
                 const touchPlayback = !desktopStacks.matches;
                 if (touchPlayback) media.tabIndex = 0;
@@ -714,6 +742,7 @@
         }
         media.addEventListener('error', () => {
             if (slides[current].item !== item) return;
+            audioToggle.hidden = true;
             const fallback = document.createElement('p');
             fallback.className = 'preview-media-fallback';
             fallback.textContent = item.type === 'book'
@@ -1154,7 +1183,7 @@
             reset();
             // Leave native playback controls, links, and motion inputs alone.
             // Videos without native controls support the same swipe as photos.
-            if (event.touches.length !== 1 || event.target.closest('video[controls], a, input, select, textarea, .preview-motion-tuner')) return;
+            if (event.touches.length !== 1 || event.target.closest('video[controls], a, input, select, textarea, .preview-audio-toggle, .preview-motion-tuner')) return;
             const touch = event.touches[0];
             gesture = { id: touch.identifier, x: touch.clientX, y: touch.clientY, axis: null };
         }, { passive: true });
