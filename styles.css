@@ -53,6 +53,7 @@
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
   --border-radius-large: 16px;
+  --corner-smoothing: superellipse(1.5);
 }
 
 /* Dark Mode */
@@ -76,6 +77,18 @@
 }
 
 /* Reset and Base Styles */
+/* Every rounded surface shares the viewer's continuous corners. Browsers
+   without corner-shape support retain the existing border-radius fallback. */
+*, *::before, *::after {
+  corner-shape: var(--corner-smoothing);
+}
+
+/* True circles and ellipses should retain their geometry. */
+.header-photo, .breadcrumb-name-thumb, .bookshelf-home-link,
+.preview-audio-toggle, .coverflow-cover::after {
+  corner-shape: round;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1099,12 +1112,10 @@ p a {
   }
 
   .work-item {
-    grid-template-columns: 1fr;
-    row-gap: var(--space-1);
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .project-description,
-  .work-dates {
+  .project-description {
     justify-self: start;
     text-align: left;
   }

@@ -428,7 +428,8 @@
             if (video) {
                 video.controls = false;
                 if (opening) {
-                    if (motion.ghost?.tagName === 'CANVAS') motion.stopVideo = streamVideoMorph(video, motion.ghost);
+                    const canvas = motion.ghost?.querySelector('canvas');
+                    if (canvas) motion.stopVideo = streamVideoMorph(video, canvas);
                     video.play().catch(() => {});
                 } else video.pause();
             }
@@ -491,19 +492,26 @@
                             if (ghost.isConnected && item.type !== 'video') ghost.src = fullImage.src;
                         }).catch(() => {});
                     }
+                    const ghostMedia = ghost;
+                    ghostMedia.className = 'preview-morph-media';
+                    ghost = document.createElement('div');
                     ghost.className = 'preview-morph';
                     ghost.setAttribute('aria-hidden', 'true');
+                    ghost.append(ghostMedia);
                     dialog.append(ghost);
                     const thumbScale = Math.min(thumb.width / width, thumb.height / height);
-                    const thumbWidth = item.type === 'video' && !coversThumbnail ? width * thumbScale : thumb.width;
-                    const thumbHeight = item.type === 'video' && !coversThumbnail ? height * thumbScale : thumb.height;
-                    const small = { left: `${thumb.left + (thumb.width - thumbWidth) / 2}px`, top: `${thumb.top + (thumb.height - thumbHeight) / 2}px`, width: `${thumbWidth}px`, height: `${thumbHeight}px`, borderRadius: '8px' };
-                    const large = coversStage
-                        ? { left: `${bounds.left}px`, top: `${bounds.top}px`, width: `${bounds.width}px`, height: `${bounds.height}px`, borderRadius: getComputedStyle(panel.querySelector('.preview-panel')).borderRadius }
-                        : { left: `${bounds.left + (bounds.width - width * scale) / 2}px`, top: `${bounds.top + (bounds.height - height * scale) / 2}px`, width: `${width * scale}px`, height: `${height * scale}px`, borderRadius: '0px' };
+                    const thumbWidth = !coversThumbnail ? width * thumbScale : thumb.width;
+                    const thumbHeight = !coversThumbnail ? height * thumbScale : thumb.height;
+                    const small = { left: `${thumb.left}px`, top: `${thumb.top}px`, width: `${thumb.width}px`, height: `${thumb.height}px`, borderRadius: getComputedStyle(trigger).borderRadius, backgroundColor: getComputedStyle(trigger).backgroundColor };
+                    const large = { left: `${bounds.left}px`, top: `${bounds.top}px`, width: `${bounds.width}px`, height: `${bounds.height}px`, borderRadius: getComputedStyle(panel.querySelector('.preview-panel')).borderRadius, backgroundColor: getComputedStyle(stage).backgroundColor };
+                    const smallMedia = { left: `${(thumb.width - thumbWidth) / 2}px`, top: `${(thumb.height - thumbHeight) / 2}px`, width: `${thumbWidth}px`, height: `${thumbHeight}px` };
+                    const largeMedia = coversStage
+                        ? { left: '0px', top: '0px', width: `${bounds.width}px`, height: `${bounds.height}px` }
+                        : { left: `${(bounds.width - width * scale) / 2}px`, top: `${(bounds.height - height * scale) / 2}px`, width: `${width * scale}px`, height: `${height * scale}px` };
                     // Closing needs its own ease-out; reversing the opening
                     // curve starts slowly and feels like a delay.
                     animations.push(ghost.animate(opening ? [small, large] : [large, small], options));
+                    animations.push(ghostMedia.animate(opening ? [smallMedia, largeMedia] : [largeMedia, smallMedia], options));
                     stage.classList.add('is-morphing');
                 }
             }
@@ -512,12 +520,16 @@
             if (video) {
                 video.controls = false;
                 if (opening) {
-                    if (ghost?.tagName === 'CANVAS') stopVideo = streamVideoMorph(video, ghost);
+                    const canvas = ghost?.querySelector('canvas');
+                    if (canvas) stopVideo = streamVideoMorph(video, canvas);
                     video.play().catch(() => {});
                 } else video.pause();
             }
             animations.push(caption.animate(opening ? [{ opacity: 0 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0 }], options));
-            animations.push(panel.animate(opening ? [{ opacity: 0 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0 }], options));
+            // The morph carries the entire card. Reveal the real panel only
+            // when it reaches the same bounds, avoiding a second card fading in.
+            animations.push(panel.animate(ghost ? [{ opacity: 0 }, { opacity: 0 }]
+                : opening ? [{ opacity: 0 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0 }], options));
             motion = { ghost, animations, stopVideo, duration: options.duration };
         }
         const version = ++motionVersion;
@@ -563,9 +575,9 @@
                 { opacity: 0.65 }
             ], {
                 // Overlap the main opening so the sides do not feel delayed.
-                delay: 100 + index * 40,
-                duration: 260,
-                easing: 'cubic-bezier(.22, 1, .36, 1)',
+                delay: 40 + index * 40,
+                duration: 440,
+                easing: 'cubic-bezier(.4, 0, .2, 1)',
                 fill: 'both'
             });
             const entrance = { peek, animation };
@@ -766,6 +778,9 @@
             const distance = panel.getBoundingClientRect().width * (1 + neighborScale) / 2 + parseFloat(getComputedStyle(rail).getPropertyValue('--preview-card-gap'));
             const options = { duration: motionSettings.duration, easing: motionEasings[motionSettings.easing], fill: 'both' };
             const outgoingPeek = direction > 0 ? previous : next;
+            // The slide eases out quickly; opacity needs a gentler curve so
+            // new neighbors don't pop in during the first few frames.
+            const fadeOptions = { ...options, easing: 'cubic-bezier(.4, 0, .2, 1)' };
             const animations = [
                 panel.animate([
                     { transform: `translateX(${direction * distance}px) scale(${neighborScale})`, opacity: 0.65 },
@@ -775,13 +790,16 @@
                     { transform: 'translateX(0) scale(1)', opacity: 1 },
                     { transform: `translateX(${-direction * distance}px) scale(${neighborScale})`, opacity: 0.65 }
                 ], options),
-                ...[previous, next].map(peek => peek.animate([
-                    { transform: `translateX(${direction * distance}px) scale(${neighborScale})`, opacity: 0 },
+                ...[previous, next].flatMap(peek => [peek.animate([
+                    { transform: `translateX(${direction * distance}px) scale(${neighborScale})` },
+                    { transform: `translateX(0) scale(${neighborScale})` }
+                ], options), peek.animate([
+                    { opacity: 0 },
                     // The outgoing card already fills this slot and dims as it moves.
                     // Fading its duplicate in underneath stacks their opacity, then
                     // flashes darker when the outgoing card is removed.
-                    { transform: `translateX(0) scale(${neighborScale})`, opacity: peek === outgoingPeek ? 0 : 0.65 }
-                ], options))
+                    { opacity: peek === outgoingPeek ? 0 : 0.65 }
+                ], fadeOptions)])
             ];
             const transition = { outgoing, animations, outgoingFrame, outgoingPeek };
             navigation = transition;
@@ -1225,6 +1243,39 @@
         }, true);
     }
     enableSwipeNavigation(rail, navigate);
+    function enableWheelNavigation(surface, onNavigate) {
+        let lastEvent = -Infinity;
+        let axis;
+        let distance = 0;
+        let navigated = false;
+        const reset = () => {
+            axis = undefined;
+            distance = 0;
+            navigated = false;
+        };
+        surface.addEventListener('wheel', event => {
+            // Trackpad pinch zoom and the motion settings retain their behavior.
+            if (event.ctrlKey || event.metaKey || event.target.closest('input, select, textarea, .preview-motion-tuner')) return;
+            const now = Date.now();
+            if (now - lastEvent > 220) reset();
+            lastEvent = now;
+            const dx = event.shiftKey && !event.deltaX ? event.deltaY : event.deltaX;
+            const dy = event.shiftKey ? 0 : event.deltaY;
+            if (!dx && !dy) return;
+            if (!axis) axis = Math.abs(dx) > Math.abs(dy) * 1.3 ? 'horizontal' : 'vertical';
+            if (axis !== 'horizontal') return;
+            if (event.cancelable) event.preventDefault();
+            // Consume the rest of the gesture, including its momentum tail.
+            if (navigated) return;
+            const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? surface.clientWidth : 1;
+            distance += dx * unit;
+            if (Math.abs(distance) < 50) return;
+            navigated = true;
+            onNavigate(distance > 0 ? 1 : -1);
+        }, { passive: false });
+        surface.addEventListener('close', reset);
+    }
+    enableWheelNavigation(dialog, navigate);
     // A resized viewport invalidates the geometry. Settle immediately rather
     // than sending the image to an obsolete position.
     window.addEventListener('resize', () => {

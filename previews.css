@@ -62,8 +62,8 @@
 .preview-strip::-webkit-scrollbar { display: none; }
 .preview-strip.is-scrolling { scroll-snap-type: none; }
 .preview-thumbnail {
-  flex: 0 0 120px;
-  height: 74px;
+  flex: 0 0 132px;
+  height: 82px;
   border-radius: 8px;
   border: 0;
   background: var(--preview-media-background, var(--color-background-secondary));
@@ -96,8 +96,8 @@ video.preview-media.has-frame { opacity: 1; transition: opacity 120ms ease-out; 
 }
 .preview-thumbnail.is-image { background: var(--preview-media-background, var(--preview-image-background)); }
 .preview-thumbnail.is-book {
-  flex-basis: 64px;
-  height: 84px;
+  flex-basis: 70px;
+  height: 92px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
@@ -152,7 +152,13 @@ video.preview-media::-webkit-media-controls-start-playback-button {
 @media (hover: hover) and (pointer: fine) {
   /* Desktop wheel elasticity is handled by the bounded custom spring. */
   .preview-strip { overscroll-behavior-x: none; }
-  .preview-strip-shell.is-stack { margin: -32px -24px; }
+  .preview-strip-shell.is-stack {
+    margin: -32px -24px;
+    /* Let the fan use the space to the viewport edge, beyond the text column.
+       Keep the left shadow gutter and scroll only once the screen is full. */
+    width: calc(50vw + 50% + 24px);
+    max-width: 100vw;
+  }
   .is-stack .preview-strip { padding: 32px 24px; overflow-x: hidden; scroll-snap-type: none; }
   .is-stack .preview-thumbnail {
     z-index: var(--stack-order);
@@ -172,6 +178,7 @@ video.preview-media::-webkit-media-controls-start-playback-button {
 }
 html:has(.preview-lightbox[open]) { scrollbar-gutter: stable; overflow: hidden; }
 .preview-lightbox {
+  overscroll-behavior-x: none;
   color: var(--color-text-primary);
   background: transparent;
   border: 0;
@@ -207,8 +214,6 @@ html:has(.preview-lightbox[open]) { scrollbar-gutter: stable; overflow: hidden; 
   background: var(--color-background);
   border: 0;
   border-radius: 20px;
-  /* A continuous curve where supported; border-radius remains the fallback. */
-  corner-shape: superellipse(1.5);
   overflow: hidden;
   /* Composite video and native controls together before clipping the corners. */
   isolation: isolate;
@@ -228,12 +233,13 @@ html:has(.preview-lightbox[open]) { scrollbar-gutter: stable; overflow: hidden; 
 .preview-lightbox.is-revealed::backdrop { opacity: 1; transition-duration: 240ms; }
 .preview-morph {
   position: fixed;
-  object-fit: cover;
+  overflow: hidden;
   pointer-events: none;
   z-index: 2;
   max-width: none;
   margin: 0;
 }
+.preview-morph-media { position: absolute; display: block; max-width: none; object-fit: cover; }
 .preview-stage.is-morphing .preview-media { visibility: hidden; }
 .preview-stage {
   display: grid;
