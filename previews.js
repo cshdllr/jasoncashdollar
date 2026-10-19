@@ -1248,29 +1248,45 @@
         let axis;
         let distance = 0;
         let navigated = false;
+        let navigatedAt = -Infinity;
+        let previousDelta = 0;
+        let risingEvents = 0;
         const reset = () => {
             axis = undefined;
             distance = 0;
             navigated = false;
+            previousDelta = 0;
+            risingEvents = 0;
         };
         surface.addEventListener('wheel', event => {
             // Trackpad pinch zoom and the motion settings retain their behavior.
             if (event.ctrlKey || event.metaKey || event.target.closest('input, select, textarea, .preview-motion-tuner')) return;
             const now = Date.now();
-            if (now - lastEvent > 220) reset();
-            lastEvent = now;
             const dx = event.shiftKey && !event.deltaX ? event.deltaY : event.deltaX;
             const dy = event.shiftKey ? 0 : event.deltaY;
             if (!dx && !dy) return;
+            const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? surface.clientWidth : 1;
+            const delta = dx * unit;
+            const magnitude = Math.abs(delta);
+            const previousMagnitude = Math.abs(previousDelta);
+            risingEvents = magnitude > previousMagnitude * 1.1 ? risingEvents + 1 : 0;
+            // Trackpad inertia may overlap the next swipe. Waiting only for
+            // silence keeps the handler locked across distinct gestures.
+            const newImpulse = navigated && now - navigatedAt >= 180 && magnitude >= 8 && (
+                Math.sign(delta) !== Math.sign(previousDelta) ||
+                magnitude >= Math.max(16, previousMagnitude * 2.5) || risingEvents >= 3);
+            if (now - lastEvent > 140 || newImpulse) reset();
+            lastEvent = now;
+            previousDelta = delta;
             if (!axis) axis = Math.abs(dx) > Math.abs(dy) * 1.3 ? 'horizontal' : 'vertical';
             if (axis !== 'horizontal') return;
             if (event.cancelable) event.preventDefault();
             // Consume the rest of the gesture, including its momentum tail.
             if (navigated) return;
-            const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? surface.clientWidth : 1;
-            distance += dx * unit;
+            distance += delta;
             if (Math.abs(distance) < 50) return;
             navigated = true;
+            navigatedAt = now;
             onNavigate(distance > 0 ? 1 : -1);
         }, { passive: false });
         surface.addEventListener('close', reset);
