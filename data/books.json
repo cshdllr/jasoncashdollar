@@ -14,6 +14,19 @@
       "source": "rss"
     },
     {
+      "title": "The Red Tent",
+      "author": "Anita Diamant",
+      "rating": 4,
+      "readAt": "Tue, 29 Sep 2026 15:07:14 -0700",
+      "bookId": "30236985",
+      "isbn": "",
+      "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1463702633l/30236985.jpg",
+      "averageRating": 4.27,
+      "bookPublished": "1997",
+      "numPages": 336,
+      "source": "rss"
+    },
+    {
       "title": "Land",
       "author": "Maggie O'Farrell",
       "rating": 4,
@@ -34,7 +47,7 @@
       "bookId": "242082841",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1759325056l/242082841._SY475_.jpg",
-      "averageRating": 4.28,
+      "averageRating": 4.27,
       "bookPublished": "2026",
       "numPages": 207,
       "source": "rss"
@@ -99,7 +112,7 @@
       "bookId": "239719395",
       "isbn": "1538709112",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1754467690l/239719395._SY475_.jpg",
-      "averageRating": 4.16,
+      "averageRating": 4.17,
       "bookPublished": "",
       "numPages": 332,
       "source": "rss"
@@ -125,7 +138,7 @@
       "bookId": "220195748",
       "isbn": "",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1783790767l/220195748._SY475_.jpg",
-      "averageRating": 4.16,
+      "averageRating": 4.15,
       "bookPublished": "2025",
       "numPages": 304,
       "source": "rss"
@@ -658,7 +671,7 @@
       "bookId": "211050274",
       "isbn": "0593230396",
       "imageUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1718939285l/211050274._SY475_.jpg",
-      "averageRating": 4.57,
+      "averageRating": 4.58,
       "bookPublished": "2024",
       "numPages": 237,
       "source": "rss"
@@ -5071,5 +5084,5 @@
       "source": "rss"
     }
   ],
-  "lastUpdated": "2026-10-19T16:28:10.484Z"
+  "lastUpdated": "2026-10-26T16:08:04.696Z"
 }

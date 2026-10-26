@@ -547,7 +547,7 @@ window.PORTFOLIO_PREVIEWS = [
     "slug": "bookshelf",
     "title": "Bookshelf",
     "description": "All the books I’ve read",
-    "totalBooks": 390,
+    "totalBooks": 391,
     "links": [
       {
         "href": "bookshelf.html",
@@ -563,6 +563,16 @@ window.PORTFOLIO_PREVIEWS = [
         "alt": "Klara and the Sun by Kazuo Ishiguro",
         "description": [
           "By Kazuo Ishiguro"
+        ]
+      },
+      {
+        "type": "book",
+        "src": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1463702633l/30236985.jpg",
+        "thumbnail": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1463702633l/30236985.jpg",
+        "title": "The Red Tent",
+        "alt": "The Red Tent by Anita Diamant",
+        "description": [
+          "By Anita Diamant"
         ]
       },
       {
@@ -603,16 +613,6 @@ window.PORTFOLIO_PREVIEWS = [
         "alt": "Yesteryear by Caro Claire Burke",
         "description": [
           "By Caro Claire Burke"
-        ]
-      },
-      {
-        "type": "book",
-        "src": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1638835838l/56898742.jpg",
-        "thumbnail": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1638835838l/56898742.jpg",
-        "title": "The Measure",
-        "alt": "The Measure by Nikki Erlick",
-        "description": [
-          "By Nikki Erlick"
         ]
       }
     ]
